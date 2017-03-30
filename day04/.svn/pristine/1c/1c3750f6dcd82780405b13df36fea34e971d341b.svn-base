@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>个人中心</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/NEW/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="percen_tp">
+    <ul>
+        <li class="xxzx fl"><a href="">
+            <p class="xxzl_lf"></p>
+            <p>消息中心</p>
+            </a></li>
+        <li class="pertp_cent fl">
+            <p class="cent_pic"><span id="headimg"></span></p>
+            <p id="name">花样百出</p>
+            <p id="phone">15241254125</p>
+        </li>
+        <li class="wszl fr"><a href="">
+            <p class="xxzl_rt"></p>
+            <p>完善资料</p>
+            </a></li>
+    </ul>
+</div>
+<div class="percen_nr both">
+    <div class="nrtab">
+        <p class="sqjl"><a href=""><span>申请记录</span></a></p>
+        <p class="hkjh"><a href=""><span>还款计划</span></a></p>
+    </div>
+    <div class="nrli">
+        <ul>
+            <li><b class="yhk"></b><a href="">银行卡</a><i></i></li>
+            <li><b class="yhj"></b><a class="bbomnone" href="">优惠券</a><i></i></li>
+        </ul>
+        <ul>
+            <li><b class="aqsz"></b><a class="bbomnone" href="">安全设置</a><i></i></li>
+        </ul>
+    </div>
+</div>
+
+<!--手机认证提示02-->
+<div id="remind02" class="modal01" style="display:block;">
+    <div class="modal_bg"></div>
+    <div class="modal02_nr">
+        <p class="modtwo_tp"><img src="../../images/NEW/modal01.png"><span>分期X温馨提示</span></p>
+        <p class="motwo_wz"></p>
+        <p class="motwo_wz404"></p>
+        <!-- <p class="motwo_annv" onclick="javascript: $('#remind02').css({ 'display': 'none' });">确定</p> -->
+        <p class="motwo_annv" style="display:flex;">
+            <button class="motwo_annv1" style="display:inline-block; flex: 0 0 50%; height:100%; border: none; background-color: #fff; color: #333; font-size: 1rem; text-align:center;">取消</button>
+            <button class="motwo_annv2" style="display:inline-block; flex: 0 0 50%; height:100%; border: none; background-color: #f64349; color: #fff; font-size: 1rem; text-align:center;">确定</button>
+        </p>
+    </div>
+</div>
+
+<script src="../../js/NEW/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function(){
+        //错误弹窗
+        var errcode = "{$:errcode jsencode=”true”}";
+        var errmsg = "{$:errmsg jsencode=”true”}";
+        if(errmsg.indexOf("jsencode") <= -1){
+            if (errcode || errmsg) {
+                errShow({ "errmsg": errmsg, "errcode": errcode });
+            }
+        }
+    })
+
+    function showMsg(){
+        $.ajax({
+            url: "",
+            type:"post",
+            dataType:"json",
+            data:{
+
+            },
+            success: function(msg){
+                if(!errShow(msg)){
+                    return;
+                }
+
+                if(msg.balckimage){
+                    $("#headimg").css("background-image", "url("+ msg.balckimage +")");
+                }
+                $("#phone").html(msg.phone);
+                $("#name").html(msg.name);
+                
+            }
+        })
+    }
+
+
+    function errShow(obj) {
+        if (obj.errmsg || obj.errcode) {
+            $("#remind02 .motwo_wz").html(obj.errmsg);
+            if(obj.errcode){
+                $("#remind02 .motwo_wz404").html("错误码:" + obj.errcode);
+            }else {
+                $("#remind02 .motwo_wz404").css("display", "none");
+            }
+            $("#remind02").css("display", "block");
+            return false;
+        }
+        return true;
+    }
+    //tipsPopup();
+    function tipsPopup(sTitle,sErrCode,sErrMsg){
+        var tipsHtml =  '<div id="remind02" class="modal01">'+
+                            '<div class="modal_bg"></div>'+
+                            '<div class="modal02_nr">'+
+                                '<p class="modtwo_tp"><img src="../../images/NEW/modal01.png"><span>分期X温馨提示</span></p>'+
+                                '<p class="motwo_wz"></p>'+
+                                '<p class="motwo_wz404"></p>'+
+                                '<p class="motwo_annv">确定</p>'+
+                            '</div>'+
+                        '</div>'
+        $(tipsHtml).appendTo("body");
+    }
+
+</script>
+</body>
+</html>

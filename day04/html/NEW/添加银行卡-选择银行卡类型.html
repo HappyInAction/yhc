@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>添加银行卡</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/NEW/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="content">
+    <form id="form" name="form" method="post" action="http://localhost:81/MyHandler.ashx">
+        <p class="banktt">请选择银行卡类型</p>
+        <div class="add_bank wid_13">
+            <ul>
+                <li id="select_bank" class="bbomnone"><b>卡类型</b>
+                    <select id="Select" class="bank" name="">
+                        <option>请选择</option>
+                        <option>中国银行</option>
+                        <option>招商银行</option>
+                        <option>农业银行</option>
+                    </select>
+                    <i class="sele_bg"></i></li>
+            </ul>
+        </div>
+        <div class="both bank_bom">
+            <p class="tips"><img src="../../images/NEW/input_01.png"><span>您所填写的银行卡必须是您本人的,我们将会把款项打到此银行卡上。</span></p>
+            <p>
+                <input id="addbank_button" name="addbank_button" type="button" value="下一步" disabled="disabled" >
+                <input id="hidbank" name="" type="hidden" value="">
+            </p>
+        </div>
+    </form>
+</div>
+<!--弹窗提示-->
+<div class="modal01" style="display:none;">
+    <div class="modal_bg"></div>
+    <div class="modal02_nr">
+        <p class="modtwo_tp"><img src="../../images/NEW/modal01.png"><span>分期X温馨提示</span></p>
+        <p class="motwo_wz" id="errmsg"></p>
+        <p class="motwo_annv" onClick="$('.modal01').css('display','none');">确定</p>
+    </div>
+</div>
+<script src="../../js/NEW/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function (){
+	$("#select_bank").cxSelect({
+		url: 'js/Bank.js',
+		selects: ['bank'],
+		required: true,
+		//IsDisable: false
+	});
+	
+	$("input").focusin(function () {
+		if ($(this).val().indexOf("请输入") > -1) {
+			$(this).attr("style", "color:black");
+			$(this).val("");
+		}
+	});
+	
+	var errcode="{$:errcode jsencode=”true”}";
+	var errmsg="{$:errmsg jsencode=”true”}";
+	if(errmsg.indexOf("")==-1){
+		if (errcode || errmsg) {
+			$("#errmsg").html(errmsg);
+			$(".modal01").css("display","block");
+		}
+	}
+	
+	$("#select_bank option").change(function (){
+		if($("#select_bank option").length>0){
+			var bankname="农业银行",//"{$:bankname jsencode=”true”}",
+				banknum="123456",//"{$:banknum jsencode=”true”}",
+				ss= Array();
+			if(bankname&&banknum){
+				$("#Select option").each(function(i) {
+					ss.push(this.text);
+				});
+				var j=0;
+				for(var x=0;x<ss.length;x++){
+					if(ss[x]==bankname){
+						var j=x;
+					}
+				}
+				if($.inArray(bankname, ss)>0){
+					$("#Select option").eq(j).attr("selected","selected");
+					$("#addbank_button").attr("class","pass");
+					$("#addbank_button").removeAttr("disabled");
+					var bname = $("#Select option:selected").text();
+					var bnum = $("#Select").val();
+					$("#hidbank").html(bname+"-"+bnum)
+				}
+			}
+		}
+	})
+
+	$("#Select").bind('propertychange', function () {
+		if ($(this).val() == "00000000") {
+			$(this).attr("style","color:red");
+		} else {
+			$(this).attr("style", "color:black");
+		}
+		seleval()
+	});
+	function seleval(){
+		if($("#Select").val() != "00000000"){
+			$("#addbank_button").attr("class","pass");
+			$("#addbank_button").removeAttr("disabled");
+		} else {
+			$("#addbank_button").attr({"disabled":"", "class":""});
+		}
+	}
+
+})
+
+function IsNumber(obj) {
+    Reg = /^\d+$/;
+    if (Reg.test(obj)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+</script>
+</body>
+</html>

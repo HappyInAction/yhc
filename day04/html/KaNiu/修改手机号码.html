@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>修改手机号码</title><meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="expires" content="">
+<link href="../../css/KaNiu/style.css" rel="stylesheet" type="text/css">
+<link href="../../css/KaNiu/record.css" rel="stylesheet" type="text/css">
+<link href="../../css/KaNiu/gennal.css" rel="stylesheet" type="text/css">
+<link href="../../css/KaNiu/replacePhone.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="content">
+    <!--<div class="add_bank wid_13">
+        <ul>
+            <li><b>旧手机号</b>
+                <input name="" type="text" placeholder="请输入旧手机号码">
+            </li>
+            <li class="hqyzm"><b>新手机号</b>
+                <input name="" type="text" placeholder="请输入新手机号码">
+                <b class="yzm">获取验证码</b></li>
+            <li class="bbomnone"><b>验证码</b>
+                <input name="" type="text" placeholder="请输入手机验证码">
+            </li>
+        </ul>
+    </div>-->
+    	
+		<header>
+			<div class="title">修改手机号码</div>
+			<i class="backBtn" onclick="window.history.back();"></i>
+		</header>
+	<div class="base_nr both">
+    <form id="form" name="form" method="post" action="?">
+       <!--<b>身份证</b><input type="text" />
+       <b>银行卡</b><input type="text" />
+       <b>旧手机号码</b><input type="text" />		
+       <b>新手机号码</b><input type="text" />-->
+       <ul>
+       	<li class="item"><b>身份证:</b><input type="text" id="user_id" placeholder="请输入您的身份证号码"/></li>
+       	<li class="item"><b>银行卡:</b><input type="text" id="user_card" placeholder="请输入放款默认银行卡"/></li>
+       	<li class="item"><b>原来手机号码:</b><input id="old_Mobile" type="text" placeholder="请输入您原来的手机号码"/></li>
+       	<li class="item"><b>新手机号码:</b><input id="new_Mobile" type="text"placeholder="请输入您的新手机号码" /></li>
+       	<li class="item"><b>验证码:</b><input type="text" id="txt_PwdTwo" placeholder="请输入正确的验证码" class="verify"/> 
+       		<button id="btn_code" class="btnCode btnCodeDes" type="button" name="" value=''>获取验证码</button>
+       	</li>
+       
+       </ul>
+    </form>
+  <div class="both index_bom">
+        <p>
+            <input id="addbank_button" name="" type="button" value="完成"  class="" disabled="disabled">
+        </p>
+      <!-- <div class="footbom">-->
+            <!--<p class="fl"><a>联系客服：<span onClick="document.getElementById('guided_mod').style.display='block'">请点击</span></a></p>
+            <p class="fr"><a href="">关于我们</a><a class="brtnone" href="">常见问题</a></p>
+        </div>-->
+    </div>   
+	</div>
+	   <!--错误弹窗提示-->
+	<div class="modal01" style="display:none;">
+    <div class="modal_bg"></div>
+    <div class="modal02_nr">
+        <p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>分期X温馨提示</span></p>
+        <p class="motwo_wz" id="errmsg"></p>
+        <p class="motwo_annv" onClick="closeErrMsg()">确定</p>
+    </div>
+</div>
+<script src="../../js/NEW/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+<script>
+	//
+	 var setTim = times = 60,Timer = "";
+	 //默认放款银行卡
+	
+        var sub_data = {
+            type:"Sub_Click",
+            old_Mobile:"",
+            new_Mobile:"",
+            txt_PwdTwo:"",
+            user_id:"",
+            user_card:""
+        };
+	
+	
+	 $(function () {
+            $("input[type=text]").focus(function () {
+                if ($(this).attr("readonly") == "readonly") {
+                    return;
+                } else {
+                    $(this).val("");
+                    $(this).attr("style", "color:brack");
+                }
+            });
+           $("#user_id").blur(function () {
+            if ($(this).val() == "" || !Isid($(this).val())) {
+                $(this).val("请输入身份证号");
+                $(this).attr("style", "color:red");
+            }
+            else {
+            	
+            	var temp=$(this).val();
+            		user_id = temp;
+//          	console.log(temp)
+            	$(this).val(HideId(temp,10,4));
+            }
+       		 });
+            $('#old_Mobile').blur(function(){
+            	if ($(this).val() == "" || !IsPhone($(this).val())) {
+                $(this).val("请输入原来手机的号码");
+                $(this).attr("style", "color:red");
+            	}
+            });
+            $('#new_Mobile').blur(function(){
+            	if ($(this).val() == "" || !IsPhone($(this).val())) {
+                $(this).val("请输入新手机号码");
+                $(this).attr("style", "color:red");
+            	}
+            });
+            $('#user_card').blur(function(){
+            	if ($(this).val() == "" || !IsBankCard($(this).val())) {
+                $(this).val("请输入默认放款银行卡");
+                $(this).attr("style", "color:red");
+            	}
+            });
+            $('#txt_PwdTwo').blur(function(){
+            	if ($(this).val() == "" || !IscodeNum($(this).val())) {
+                $(this).val("请输入正确的验证码");
+                $(this).attr("style", "color:red");
+            	}
+            });
+            //发送验证码
+    
+//         <script type="text/javascript">
+	
+	
+
+            
+//         $('input[type=text]').on('change',function(){
+//         	if($('#user_id').val()!='' && Isid($('#user_id').val()) && $('#old_Mobile').val()!='' && IsPhone($('#old_Mobile').val()) && $('#new_Mobile').val()!='' && IsPhone($('#new_Mobile').val()) 
+//          	 && $('#user_card').val()!='' && IsBankCard($('#user_card').val())
+//          	){
+//          		 $("#addbank_button").attr("class", "pass");
+//              	$("#addbank_button").removeAttr("disabled");
+//          		$("form").submit();
+//          		
+//          	}
+//         })
+//          	
+	 
+            
+
+	})
+	
+
+	
+	 //关闭错误弹窗
+    function closeErrMsg(){
+        location.href = "";
+        $('.modal01').css('display','none');
+    }
+	//判断身份证
+	function Isid(obj) {
+        Reg = /^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X|x)$/;
+        if (Reg.test(obj)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+	 //电话号码是否在正确
+	function IsPhone(obj) {
+	    Reg10 = /^10\d{9}$/;
+	    Reg11 = /^1\d{10}$/;
+	    Reg10_12 = /^0(\d{2,3}-?[\d]{7,8}-?[\d]{0,6})$/;
+	    if (obj.substr(0, 1).indexOf("0") > -1) {
+	        if (Reg10_12.test(obj)) {
+	            return true;
+	        } else {
+	            return false;
+	        }
+	    } else if (obj.substr(0, 1).indexOf("1") > -1) {
+	        if (Reg11.test(obj) && !Reg10.test(obj)) {
+	            return true;
+	        } else {
+	            return false;
+	        }
+	    }
+	    else {
+	        return false;
+	    }
+	}
+	 //判断银行卡
+	 
+	function IsBankCard(obj) {
+	    Reg = /^(\d{16}|\d{19})$/;
+	    if (Reg.test(obj)) {
+	        return true;
+	    } else {
+	        return false;
+	    }
+	}
+	//验证码
+	function IscodeNum(code){
+	    var Regst = /^\d{6}$/;
+	    if(Regst.test(code))
+	    {
+	        return true;
+	    }
+	    else
+	    {
+	        return false;
+	    }
+	}
+	//隐藏身份证信息
+	/**
+	 * 
+	 * @param {Object} str 字符串
+	 * @param {Object} frontLen 前面保留位数
+	 * @param {Object} endLen 后面保留位数
+	 */
+	function HideId (str,frontLen,endLen) { 
+	    var len = str.length-frontLen-endLen;
+	    var xing = '';
+	    for (var i=0;i<len;i++) {
+	        xing+='*';
+	    }
+	    return str.substr(0,frontLen)+xing+str.substr(str.length-endLen);
+	}
+	
+	
+</script>
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?7c6a8648887f4d87cb988cdfff3fec75";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+</html>

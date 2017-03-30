@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>添加银行卡</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+    <script src="../../js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+    
+    <script src="../../js/KaNiu/jquery.cxselect-new.js" type="text/javascript"></script>
+    <link href="../../css/KaNiu/style.css" rel="stylesheet" type="text/css">
+    <link href="../../css/KaNiu/gennal.css" rel="stylesheet" type="text/css">
+    <link href="../../css/KaNiu/record.css" rel="stylesheet" type="text/css">
+    <link href="../../css/NEW/pages/AddBankCard.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="content HSansGBW">
+   <div class="addBHeader">
+        <!-- <i class="to_back"></i> -->
+        <p>添加银行卡</p>
+    </div>
+  <div id="show_card" class="showcard" >
+      <div class="showDomain">
+          <div class="cardbg">
+              <p class="cardName both"><b class="bankType">招商银行</b><span class="cardType">储蓄卡</span></p>
+              <p class="cardNum">
+                  <b class="numSpace">
+                    <span class="num1">2</span><span class="num1">1</span><span class="num1">3</span><span class="">5</span>
+                  </b>
+                  <b class="numSpace">
+                  <span class="num1">5</span><span class="num1">9</span><span class="num1">5</span><span class="">3</span>
+                  </b>
+                  <b class="numSpace">
+                  <span class="num1">2</span><span class="num1">4</span><span class="num1">8</span><span class="">5</span>
+                  </b>
+                  <b class="lastNum" style="font-weight:normal;">
+                  <span class="num1"></span><span class="num1"></span><span class="num1"></span><span class="num1"></span><span class="num1"></span><span class="num1"></span><span class=""></span>
+                  </b>
+              </p>
+          </div>
+      </div>
+     <div class="showInfor">
+        <ul>
+            <li><b>开户行省份</b><span class="province">四川省</span></li>
+            <li><b>姓&nbsp;&nbsp;名</b><span class="username">张婷婷</span></li>
+            <li><b>身份证号</b><span class="idnumber">4455456777890099</span></li>
+            <li class="bbomnone"><b>手机号码</b><span class="phone">18281601527</span></li>
+        </ul>
+    </div>
+    <div class="both bank_bom">
+        <p class="tips"><img src="../../images/KaNiu/input_01.png"><span>您所填写的银行卡必须是您本人的,我们将会把款项打到此银行卡上,并通知您。</span></p>
+        <p>
+            <input id="addbank_button" class="pass HSansGBW" name="addbank_button" type="button" value="绑定成功" onclick="$('#form').submit()">
+        </p>
+    </div>
+  </div>
+
+</div>
+    <!--弹窗提示-->
+    <div class="modal01 HSansGBW" style="display:none;">
+        <div class="modal_bg"></div>
+        <div class="modal02_nr">
+            <p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>分期X温馨提示</span></p>
+            <p class="motwo_wz new_style" id="errmsg">您所填写的银行卡与姓名不匹配或银行卡绑定手机不正确<br />
+            <span class="tipTimes">(今日剩余鉴权次数<em class="timesCredit">2</em>次)</span></p>
+            <p class="motwo_annv" onclick="$('.modal01').css('display','none');">确定</p>
+        </div>
+    </div>
+    <!-- 搜索失败弹窗 -->
+    <div id="pop" class="pop fam_yh" style="display:none;">
+        <div class="pop_icon"></div>
+        <p>系统繁忙，请稍后再试</p>
+    </div>
+
+    <!--客服引导mod-->
+    <div id="guided_mod" class="guided_mod" style="display:none;">
+        <i class="modal_bg" onclick="document.getElementById('guided_mod').style.display='none'"></i>
+        <div class="guimod">
+            <div class="posrela">
+                <div class="kfyd_box">
+                    <div class="index02"><img src="../../images/NEW/rg_01.png"></div>
+                    <div class="ttu"><span class="nuc">1</span>进入分期X微信公众号，直接输入“客服”即可咨询。</div>
+                    <div class="kfyd_img"><img src="../../images/NEW/rg_03.jpg"></div>
+                    <div class="ttu"><span class="nuc">2</span>咨询人工客服可点击公众号右上角标识进入公众号简介，点击“客服人员”即可。</div>
+                    <div class="kfyd_img mb20"><img src="../../images/NEW/rg_05.png"></div>
+                </div>
+                <div class="guimod_bom"><a class="over" onclick="document.getElementById('guided_mod').style.display='none'">关闭</a></div>
+            </div>
+        </div>
+    </div>
+   
+    <script src="../../js/KaNiu/jquery.cxselect.js" type="text/javascript"></script>
+    <script src="../../js/KaNiu/Bank.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      var url = "{$:url jsencode=”true”}";
+      var name = "{$:name jsencode=”true”}";
+      var creid = "{$:creid jsencode=”true”}";
+      var bankid = "{$:bankid jsencode=”true”}";
+      var bankname = "{$:bankname jsencode=”true”}";
+      var bankprov = "{$:bankprov jsencode=”true”}";
+      var mobile =  "{$:mobile jsencode=”true”}";
+      $(function () {
+        if(bankid)
+            { 
+                var bankID = bankid.split(""); 
+                    for(var i=0;i<bankID.length;i++)
+                    {
+                        $(".cardNum span").eq(i).text(bankID[i]);
+                    }
+            }
+            if(bankname)
+            {
+                $(".bankType").html(bankname);
+            }
+            if(bankprov)
+            {
+                $(".province").html(bankprov);
+            }
+              if(name)
+            {
+                $(".username").html(name);
+            }
+              if(creid)
+            {
+                $(".idnumber").html(creid);
+            }
+              if(mobile)
+            {
+                $(".phone").html(mobile);
+            }
+     });
+        function sunmit_to()
+        {
+          location.href = url;
+        }
+    </script>
+</body>
+</html>

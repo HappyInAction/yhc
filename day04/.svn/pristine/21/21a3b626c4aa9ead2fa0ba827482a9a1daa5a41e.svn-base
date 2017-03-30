@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>404</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/NEW/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="error_monsucc">
+    <div class="error_img"></div>
+	<p>迷路了...该网页打不开</p>
+    <p class="small">可能原因：网络不稳定<br>尚未接入互联网<br>安全软件禁止访问网络</p>
+    <p style="padding-bottom:0;"></p>
+    <p class="losertips">你可以选择：<br>联系我们的微信客服，如何<a onclick="document.getElementById('guided_mod').style.display='block'">联系客服？</a></p>
+   
+</div>
+
+<!--客服引导mod-->
+<div id="guided_mod" class="guided_mod" style="display:none;">
+    <i class="modal_bg" onclick="document.getElementById('guided_mod').style.display='none'"></i>
+    <div class="guimod">
+        <div class="posrela">
+            <div class="kfyd_box">
+                <div class="index02"><img src="../../images/NEW/rg_01.png"></div>
+                <div class="ttu"><span class="nuc">1</span>进入分期X微信公众号，直接输入“客服”即可咨询。</div>
+                <div class="kfyd_img"><img src="../../images/NEW/rg_03.jpg"></div>
+                <div class="ttu"><span class="nuc">2</span>咨询人工客服可点击公众号右上角标识进入公众号简介，点击“客服人员”即可。</div>
+                <div class="kfyd_img mb20"><img src="../../images/NEW/rg_05.png"></div>
+            </div>
+            <div class="guimod_bom"><a class="over" onclick="document.getElementById('guided_mod').style.display='none'">关闭</a></div>
+        </div>
+    </div>
+</div>
+
+<script src="../../js/NEW/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+</body>
+</html>

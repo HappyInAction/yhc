@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>激活额度</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/KaNiu/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="fff">
+<div class="content">
+    <div class="appli_tp">
+        <div class="apptp_pic">
+            <ul>
+                <li class="apptp_mt">最高贷款额度为</li>
+                <li class="wzwz"><span class="apptp_mb">5000</span>元</li>
+                <li class="apptp_mt">最长期限为</li>
+                <li class="wzwz"><span class="months">12</span>个月</li>
+            </ul>
+        </div>
+    </div>
+    <form name="sqmoney" action="/test.txt">
+        <div class="appli_bom jhed both">
+            <ul>
+                <li><b>申请金额</b>
+                    <input name="money" id="Number" name="Number" type="text" placeholder="请填写申请金额">
+                </li>
+                <li><b>还款期数</b>
+                    <select name="periods" id="Select">
+                        <!--
+                        {$:Months htmlencode="true"}
+                        <option value="0">请选择还款期数</option>
+                        <option value="3">3期</option>
+                        <option value="6">6期</option>
+                        <option value="9">9期</option>
+                        <option value="12">12期</option>-->
+                    </select>
+                    <i></i>
+                </li>
+            </ul>
+        </div>
+        <div class="both bank_bom"> 
+            <p>
+                <!-- <input class="hide_radio" type="text" name="repay_channle" value="0" style="display:none;"> -->
+                <input id="Submit" name="" type="submit" value="激活额度" disabled >
+            </p>
+        </div>
+    </form>
+    <div class="footer">
+        <div class="foottp"><i></i>
+            <p><img src="../../images/KaNiu/appli03.png"></p>
+        </div>
+        <div class="footbom">
+            <p class="fl"><a>联系客服：<span onClick="document.getElementById('guided_mod').style.display='block'">请点击</span></a></p>
+            <p class="fr"><a href="">关于我们</a><a class="brtnone" href="">常见问题</a></p>
+        </div>
+    </div>
+</div>
+<!-- <div id="modal02" class="modal02" style="display:none;">
+    <div class="guimodal_bg"></div>
+    <div class="four_mod newgd">
+        <div class="four_tp">
+            <p class="pic01"><img src="../../images/KaNiu/jhed.png"></p>
+            <p class="wzwz">我们会根据您的征信情况,适当<br>
+                变更您的申请额度和申请期数,<br>
+                申请成功后无法取消申请 <br>
+                您是否接受呢？</p>
+            <p class="four_annv" onClick="document.getElementById('modal02').style.display='none';">我接受</p>
+            <p class="tips"><span>注</span>:放款时,会收取<a style="color:red;">6%-20%</a>的账户管理费及<a style="color:red;"></a>放款手续费</p>
+        </div>
+    </div>
+</div> -->
+
+<!--弹窗提示-->
+<!-- <div class="modal03" style="display:none;">
+    <div class="modal_bg"></div>
+    <div class="modal02_nr">
+        <p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>分期X温馨提示</span></p>
+        <p class="motwo_wz hmoney"></p>
+        <p class="motwo_annv" onClick="$('.modal03').css('display','none');">确定</p>
+    </div>
+</div>
+ -->
+<!--推荐还款方式-->
+<!-- <div class="modal04" style="display:none;">
+    <div class="modal_bg"></div>
+    <div class="modal04_nr">
+        <p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>分期X还款模式</span></p>
+        <div class="modtwo_content">
+            <div class="modfour">
+                <p class="modfour_title modfour_title_bg">推荐模式</p>
+                <p class="modfour_content">
+                    <input type="radio" class="fenqi_radio" name="periods" value="1"><label class="fenqi_label_radio fenqi_radio_on"></label>
+                    <span>合同金额<em class="fenqi_red">高</em>，每月应还<em class="fenqi_red">少</em>，最终总还款<em class="fenqi_red">少</em></span>
+                </p>
+            </div>
+            <div class="modfour modfour_down">
+                <p class="modfour_title">其他模式<i class="modfour_title_icon"></i></p>
+                <p class="modfour_content modfour_down_content">
+                    <input type="radio" class="fenqi_radio" name="periods" value="0"><label class="fenqi_label_radio fenqi_radio_off"></label>
+                    合同金额<em class="fenqi_red">低</em>，每月应还<em class="fenqi_red">多</em>，最终总还款<em class="fenqi_red">多</em>
+                </p>
+            </div>
+            <div class="modfour_extra">
+                <p class="modfour_text fenqi_gray">样例试算（以下试算<span class="fenqi_red">仅供参考</span>）</p>
+                <p class="modfour_text">放款金额：<span class="fenqi_red">2000</span>元&nbsp;分期期数：<span class="fenqi_red">6</span>个月</p> 
+                <div class="repayment_example">
+                    <table cellpadding="0" cellspacing="0">
+                        <thead>
+                            <th>样例试算</th>
+                            <th>合同金额</th>
+                            <th>每月应还金额</th>
+                            <th>总还款金额</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>推荐模式</td>
+                                <td class="recommend_price">2500</td>
+                                <td class="recommend_repay">419.6</td>
+                                <td class="recommend_all">2950</td>
+                            </tr>
+                            <tr>
+                                <td>其他模式</td>
+                                <td class="other_price">2127</td>
+                                <td class="other_repay">504</td>
+                                <td class="other_all">504</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div> 
+            <p class="modfour_tips"><i class="modfour_tips_icon"></i>分期X平台评估的是您的最终放款金额，您可以选择两种还款方式，进行还款</p>
+        </div>
+        <p class="modfour_annv" >确认</p>
+    </div>
+</div> -->
+
+<!--客服引导mod-->
+<div id="guided_mod" class="guided_mod" style="display:none;"> <i class="guimodal_bg" onClick="document.getElementById('guided_mod').style.display='none'"></i>
+    <div class="guimod">
+        <div class="posrela">
+            <div class="kfyd_box">
+                <div class="index02"><img src="../../images/KaNiu/rg_01.png"></div>
+                <div class="ttu"><span class="nuc">1</span>进入分期X微信公众号，直接输入“客服”即可咨询。</div>
+                <div class="kfyd_img"><img src="../../images/KaNiu/rg_03.jpg"></div>
+                <div class="ttu"><span class="nuc">2</span>咨询人工刻度可点击公众号右上角标识进入公众号简介，点击“客服人员”即可。</div>
+                <div class="kfyd_img mb20"><img src="../../images/KaNiu/rg_05.png"></div>
+            </div>
+            <div class="guimod_bom"><a class="over" onClick="document.getElementById('guided_mod').style.display='none'">关闭</a></div>
+        </div>
+    </div>
+</div>
+<script src="../../js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function (){
+    var Months = $(".months").html();
+    
+    if(Months == "1"){
+        $("#Select").append('<option value="0">请选择还款期数</option><option value="2">2周</option>');
+    } else if(Months == "12"){
+        $("#Select").append(
+            '<option value="0">请选择还款期数</option>' + 
+            '<option value="6">6期</option>' + 
+            '<option value="9">9期</option>' + 
+            '<option value="12">12期</option>'
+        );
+    }
+    
+    
+    $("input").focusin(function () {
+        if ($(this).val().indexOf("请填写") > -1) {
+            $(this).attr("style", "color:black");
+            $(this).val("");
+        }
+    });
+    /*$("#Number").bind('input propertychange',function () {
+        if ($(this).val() == "" || !IsNumber($(this).val())) {
+            $(this).val("请填写申请金额");
+            $(this).attr("style", "color:red");
+        } else if ( $(this).val() > parseInt($(".apptp_mb").html()) ){
+            $(".hmoney").html("最高申请金额不能大于最高贷款额度");
+            $(".modal03").css("display","block");
+            $(this).val("请填写申请金额");
+            $(this).attr("style", "color:red");
+        }
+    });*/
+    $("#Select").bind("focusout change", function () {
+        if ($(this).val() == "0") {
+            $(this).attr("style","color:red");
+        } else {
+            $(this).attr("style", "color:black");
+        }
+    });
+    $("#Number").bind('input propertychange',function (){
+        onsele()
+    });
+    $("#Select").bind('change',function (){
+        onsele()
+    });
+    /*$("#Submit").on("click",function(){
+        $(".modal04").css("display","block");
+    });*/
+    
+    function onsele(){
+        /*var jkMoney = $("#Number").val();
+        var qxMoney = $("#Select").val();
+        var hkMoney = $("#displayCalculation");
+        var yfthValue;
+        yfthValue = (jkMoney * 0.02 *　qxMoney + parseFloat(jkMoney)) / qxMoney;
+        if( yfthValue != Infinity ){
+            hkMoney.html( Math.round(yfthValue*100)/100 );
+        } else {
+            hkMoney.html("");
+        }*/
+        if(IsNumber($("#Number").val()) && $("#Select").val() > 0){
+            $("#Submit").attr("class","pass");
+            $("#Submit").removeAttr("disabled");
+        } else {
+            $("#Submit").attr({"disabled":"", "class":""});
+        }
+    }
+
+    //弹窗js
+    /*var fenqi_label_radio = $(".fenqi_label_radio");
+    fenqi_label_radio.eq(0).click(
+        function(){
+            $(this).addClass("fenqi_radio_on");
+            fenqi_label_radio.eq(1).removeClass("fenqi_radio_on");
+            fenqi_label_radio.eq(1).addClass("fenqi_radio_off");
+            $(".fenqi_radio").eq(0).val("1");
+            $(".fenqi_radio").eq(1).val("0");
+            $(".hide_radio").val("0");
+    });
+    fenqi_label_radio.eq(1).click(
+        function(){
+            $(this).addClass("fenqi_radio_on");
+            fenqi_label_radio.eq(0).removeClass("fenqi_radio_on");
+            fenqi_label_radio.eq(0).addClass("fenqi_radio_off");
+            $(".fenqi_radio").eq(1).val("1");
+            $(".fenqi_radio").eq(0).val("0");
+            $(".hide_radio").val("1");
+    });
+    var modfour_title_icon = $(".modfour_title_icon");
+    modfour_title_icon.on("click",function(){        
+        $(this).css("display","none");
+        $(".modfour_extra").css("display","block");
+        $(".modfour_down_content").css("display","block");
+        $(".modfour_down").css("height","4.1rem");           
+    })
+    
+    $(".modfour_annv").on("click",function(){
+        $("form").submit();
+        $(".modal04").css("display","none");
+    });*/
+    
+    
+})
+
+function IsNumber(obj) {
+    Reg = /^\d+$/;
+    if (Reg.test(obj)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+</script>
+</body>
+</html>

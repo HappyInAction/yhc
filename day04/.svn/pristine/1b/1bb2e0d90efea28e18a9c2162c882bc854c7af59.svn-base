@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>提交成功</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/KaNiu/style.css" rel="stylesheet" type="text/css">
+<link href="../../css/KaNiu/gennal.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="monsucc">
+    <p class="succ_pic tj"></p>
+    <div class="mes">
+    	我们将在24小时之内，告知您审核结果。<br>如果有任何或催单：<a href="https://www.fenqix.com/about/lxkf.html?s=wx">请点击</a>
+    </div>
+    <a class="rclk" href=""  onclick="$('#form').submit()">返回首页</a> 
+</div>
+<script src="../../js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+</body>
+</html>

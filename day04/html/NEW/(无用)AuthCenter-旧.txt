@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>认证中心</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+
+<link href="css/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="f5">
+<div class="content contpad">
+	<div class="auth_cont">
+        <div class="auth_list">
+            <ul>
+                <p class="tt">基本信息</p>
+                <li class="borbom"><a href="AuthCenter.ashx?type=ValidateCreid"><b class="img"><img src="images/auth02.png"></b><span>身份证/居住信息</span></a><i class="right"></i></li>
+                <li><a href="AuthCenter.ashx?type=ValidateEmail"><b class="img"><img src="images/auth03.png"></b><span>邮箱/紧急联系人</span></a><i class="right"></i></li>
+                <p class="tt">工作/信用资料</p>
+                <li class="borbom"><a href="AuthCenter.ashx?type=InvestiGation"><b class="img"><img src="images/auth04.png"></b><span>征信/银行流水</span></a><i class="right"></i></li>
+                <li><a href="AuthCenter.ashx?type=ValidateWork"><b class="img"><img src="images/auth05.png"></b><span>工作/通话详单</span></a><i class="right"></i></li>
+                <p class="tt">其他资料</p>
+                <li style="background:none;"><a href="AuthCenter.ashx?type=ValidateOther"><b class="img"><img src="images/auth06.png"></b><span>其他资料</span></a><i class="right"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+</body>
+</html>

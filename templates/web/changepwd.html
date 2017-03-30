@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='utf-8'>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="key" type="hidden" content = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDfs1/wLxKKElztd2LKni3qHxrsW8y5xGNt8lYpxDSVObh1fkD9Cy3UfWi5J6ihppwU8GnIQXV7xa2KewOJzAG/9sDuVAeDHp79FAI6yAw0Q7UJ4HYOHF55HaQZqdW8WFsEV8cB5KChUMeOpRi31vSGC039bpJfyo/7cfFTvGzphQIDAQAB">
+
+    <title>萤火虫科技有限公司</title>
+    <link rel="shortcut icon" type="image/x-icon" href="//staticcdn.yhctech.com/static/img/4ba1ac6d564e7588c9d41c97684d242baa3c0142.ico" />
+    <link rel="stylesheet" href="//staticcdn.yhctech.com/static/css/daae2214c8e1ba10da6106f4197c323489dfca04.css">
+    <link rel="stylesheet" href="//staticcdn.yhctech.com/static/css/877efe4a2eff81d75dff4fdd6839929071f23637.css">
+    <link rel="stylesheet" href="//static.yhctech.com/frontend/css/layer.css" type="text/css">
+</head>
+<body>
+    <div class="commonWrap">
+        <div class="changepwdContent_wrap">
+            <div class="common_header">
+                <div class="commonLogo">
+                    <img src="//staticcdn.yhctech.com/static/img/f018d2c7f2199f941a05a864b03159f07e101fc4.png" alt="">
+                </div>
+                <h1>欢迎来到萤火虫科技</h1>
+            </div>
+            <div class="commonContent">
+                <form action="" method="post" class="common_post">
+<!--                     <div class="telephone">
+                        <label for="userPhone"></label>
+                        <i class="iconfont iconPic">&#xe67a;</i>
+                        <input type="text" placeholder="请输入手机号" id="userPhone" class="telephoneNumber" maxlength="11">
+                        <span class="realPhone">请输入真实手机号码</span>
+                    </div> -->
+                    <div class="error_msg">
+                        <img class="error_pic" src="//staticcdn.yhctech.com/static/img/1cf9486a8eb9b4568f352e38b24a5b25b9535a11.png">
+                        <span class="error_text"></span>
+                    </div>
+                    <div class="oldPassword">
+                        <label for="oldPassword"></label>
+                        <i class="iconfont iconPic">&#xe727;</i>
+                        <input type="password" placeholder="请输入原密码" id="oldPassword" class="oldpasswordTest">
+                        <span class="oldwriteCode">请输入原密码</span>
+                    </div>
+
+                    <div class="setPassword">
+                        <label for="setPassword"></label>
+                        <i class="iconfont iconPic">&#xe727;</i>
+                        <input type="password" placeholder="设置新密码" id="setPassword" class="passwordTest">
+                        <span class="chgwriteCode">请输入新密码</span>
+                        <!-- <img class="error_pic" src="//staticcdn.yhctech.com/static/img/1cf9486a8eb9b4568f352e38b24a5b25b9535a11.png"> -->
+                        <span class="chgwriteCode_error">密码格式错误,密码长度8-20位,字母开头,包含数字</span>
+                    </div>
+                    <div class="againPassword">
+                        <label for="againPassword"></label>
+                        <i class="iconfont iconPic">&#xe727;</i>
+                        <input type="password" placeholder="确认新密码" id="againPassword" class="againPass_test">
+                        <span class="againCode_error">两次密码输入不一致</span>
+                        <span class="chgagainpwd">请再次输入新密码</span>
+                        <span class="againpwd_err">密码格式错误,密码长度8-20位,字母开头,包含数字</span>
+                    </div>
+                    <div class="verificationCode">
+                        <div class="codeLeft">
+                            <label for="code"></label>
+                            <i class="iconfont iconPic">&#xe655;</i>
+                            <input type="text" placeholder="请输入验证码" id="code" class="code" maxlength="4">
+                        </div>
+                        <div class="codeMain">
+                            <img src="" alt="" class="vcode">
+                        </div>
+                        <span class="codeError">请输入图片验证码</span>
+                        <span class="codeError_2">图片验证码不正确</span>
+                    </div>
+                    <input type="button" class="buttoncommon" value="确认修改">
+                </form>
+            </div>
+            <i class="iconfont back" onclick="javascript:window.history.back(-1);">&#xe67c;</i>
+        </div>
+        <div class="bglogin_pic"></div>
+    </div>
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//staticcdn.yhctech.com/lib/js/passport_web_cypager.min.js"></script>
+    <script type="text/javascript" src="//staticcdn.yhctech.com/static/js/c1b38ba58be78a62bad590261107e0df86555f9c.js"></script>
+    <script type="text/javascript" src="//staticcdn.yhctech.com/lib/js/jsencrypt.js"></script>
+    <script type="text/javascript" src = "//static.yhctech.com/frontend/js/layer.js"></script>
+</body>
+</html>

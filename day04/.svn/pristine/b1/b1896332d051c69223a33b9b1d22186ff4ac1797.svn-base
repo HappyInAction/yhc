@@ -1,0 +1,231 @@
+@charset "utf-8";
+/* CSS Document */
+
+.login-form .us {
+	display: block;
+	height: 96px;
+	line-height: 96px;
+	width: 660px;
+	margin: 0 auto;
+	border: none;
+	background-color: #fff;
+	font-size: 30px;
+	text-indent: 60px;
+	color: #333;
+	background-image: url(../images/icon.png);
+	background-repeat: no-repeat;
+	outline: none;
+}
+.login-form a.all {
+	height: 94px;
+	line-height: 94px;
+}
+.form-zd {
+	border-bottom: 1px solid #ddd !important;
+	background-position: 0px -433px;
+}
+.form-hk {
+	border-bottom: 1px solid #ddd !important;
+	background-position: 0px 21px;
+}
+.form-jl {
+	background-position: 0px -78px;
+}
+.form-yhj{background-position: 0px -1195px; border-bottom: 1px solid #ddd !important;}
+.form-cx {
+		border-bottom: 1px solid #ddd !important;
+	background-position: 0px -185px;
+}
+.form-cx1 {
+	background-position: 0px -185px;
+		border-bottom: 1px solid #ddd !important;
+
+}.form-zll {
+	background-position: 0px -723px;
+	border-bottom: 1px solid #ddd !important;
+
+}
+.form-aqsz {
+	background-position: 0px -523px;
+}
+.form-aqsz-xg {
+	background-position: 0px -604px;
+}
+.form-aqsz-mb {
+	background-position: 0px -846px;
+}.form-aqsz-tel {
+	background-position: 0px -939px;
+}
+.form-aqsz-mail {
+	background-position: 5px -1333px;
+}
+.form-aqsz-wx {
+	background-position: 5px -1432px;
+}
+.form-xxs {
+	background-position: 0px -300px;
+}
+
+.news {
+	position: absolute;
+	width: 28px;
+	height: 28px;
+	display: block;
+	border-radius: 50%;
+	background: #ccc;
+	text-align: center;
+	top: 35px;
+	right: 30px;
+	background: url(../images/news.png)
+}
+.jtt-down {
+	position: absolute;
+	width: 25px;
+	height: 19px;
+	display: block;
+	border-radius: 50%;
+	background: #ccc;
+	text-align: center;
+	top: 37px;
+	right: 0;
+	background: url(../images/arror-r1.png)
+}
+.jtt, .jtt_01, .jtt_02 {
+	position: absolute;
+	width: 19px;
+	height: 25px;
+	display: block;
+	border-radius: 50%;
+	background: #ccc;
+	text-align: center;
+	top: 37px;
+	right: 0;
+	background: url(../images/arror-r.png)
+}
+.jtt_01 {
+	background: url(../images/arror-t.png);
+	width: 25px;
+	height: 19px;
+}
+.jtt_02 {
+	background: url(../images/arror-b.png);
+	width: 25px;
+	height: 19px;
+}
+.bg {
+	background: url(../images/aboutp.png) no-repeat center top;
+	height: 330px;
+}
+.cur-t1 h1.jss {
+	text-align: center;
+	font-size: 30px;
+	color: #08af66;
+}
+section.cur-t2.cur-t2 p.cur-t4 span {
+	color: #08af66;
+}
+section.cur-t2.cur-t2 h3 {
+	color: #08af66;
+	font-size: 24px;
+}
+.mt30 {
+	margin-top: 30px;
+}
+.login-form .tin {
+	text-indent: 0px;
+!important;
+}
+.login-input p.answer {
+	font-size: 24px;
+	line-height: 36px;
+	padding: 20px 0px;
+	border-top: solid #ddd 1px;
+	border-bottom: solid #ddd 1px;
+}
+.que, .anw {
+	background: #ff6400;
+	color: #fff;
+	height: 30px;
+	line-height: 30px;
+	width: 30px;
+	display: inline-block;
+	text-align: center;
+	margin-right: 10px;
+	border-radius: 5px;
+}
+.anw {
+	background: #08af66;
+}
+.line {
+	border-bottom: 1px solid #ddd !important;
+}
+.bgnone {
+	background: none!important;
+}
+.bill-text1 {
+	font-size: 30px;
+	color: #333;
+}
+.bill-text2 {
+	font-size: 24px;
+	color: #0b0b0b;
+}
+.gree {
+	background-color: #f2fbf7!important;
+}
+.yqq {
+	border-radius: 50%;
+	background: #ff6500;
+	font-size: 20px;
+	color: #fff;
+	margin-right: 5px;
+	font-style: normal;
+	height: 28px;
+	width: 28px;
+	display: inline-block;
+	text-align: center;
+	line-height: 28px;
+	vertical-align: top;
+	margin-top: 4px;
+	position: absolute;
+	top: 30px;
+	right: 20px;
+}
+/*直接转账*/
+.zjzz-text2{ font-size:32px;color:#ff6500;}
+.ml58{ margin-left:58px;}
+.ml117{ margin-left:117px;}
+.notic{ margin-top:30px; margin-bottom:40px; height:165px; overflow:hidden;}
+.look{ position:absolute; left:0; top:0; width:31px; height:31px; background:url(../images/notic.png);}
+.notic p{ position:absolute; left:7%; top:0; color:#999; font-size:26px; line-height:36px;}
+.notic p a.red{ color:#ff6500; text-decoration:underline;}
+.jxk {
+  width: 600px;
+  margin: auto;
+  border: 3px solid #f6f6f6;
+  border-radius: 5px;
+  position: relative;
+  /* margin-top: 130px; */
+  padding: 10px;}
+.jxk img{margin: 0 auto;
+  display: block;}
+.color-zjzz{ color:#999;
+  height: 96px;
+  width: 139px;
+  display: inline-block;
+}
+.login-form .u {
+
+  height: 96px;
+  line-height: 96px;
+  width: 660px;
+  font-size: 30px;
+
+}
+
+.login-form .u a.red { color:#ff6500;}
+
+.bordert a{ color:#ff6500; text-decoration:underline;}
+
+
+

@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>添加银行卡</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+    
+
+    <link href="../../css/kaniu/style.css" rel="stylesheet" type="text/css">
+    <link href="../../css/kaniu/gennal.css" rel="stylesheet" type="text/css">
+    <link href="../../css/kaniu/record.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        .modloading {
+            width: 100%;
+            height: 6.26rem;
+            line-height: 1.2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .modloading img {
+            width: 3.06rem;
+            height: 3.06rem;
+        }
+    </style>
+</head>
+
+<body class="f5">
+<div class="content">
+    <form id="form" name="form" method="post" action="/InterFace/AddBankCard01.ashx">
+        <p class="banktt">请选择银行卡类型</p>
+        <div class="add_bank wid_13">
+            <ul>
+                <li id="select_bank" class="bbomnone"><b>卡类型</b><select id="bank" class="bank" name=""></select><i class="sele_bg"></i></li>
+            </ul>
+        </div>
+        <div class="both bank_bom">
+            <p class="tips"><img src="../../images/kaniu/input_01.png"><span>您所填写的银行卡必须是您本人的,我们将会把款项打到此银行卡上。</span></p>
+            <p>
+                <input id="addbank_button" name="addbank_button" type="button" value="下一步" disabled="disabled" onclick="$('#form').submit()">
+                <input id="hidbank" name="hidbank" type="hidden" value="">
+                <input id="bankid" name="bankid" type="hidden" value="" />
+                <input id="hidurl" name="hidurl" type="hidden" value="" />
+                <input id="hidfid" name="hidfid" type="hidden" value="" />
+				<input id="hidApplyOrRepay" name="ApplyOrRepay" type="hidden" value="" />
+				<input id="hidPlanID" name="PlanID" type="hidden" value=""/>
+            </p>
+        </div>
+    </form>
+    <div class="footer foor_ab">
+    	<div class="foottp"><i></i><p class="base_footerf5"><img src="../../images/kaniu/appli03.png"></p></div>
+        <div class="footbom"><p class="fl"><a>联系客服：<span onclick="document.getElementById('guided_mod').style.display='block'">请点击</span></a></p><p class="fr"><a href="">关于我们</a><a class="brtnone" href="">常见问题</a></p></div>
+    </div> 
+</div>
+<!--弹窗提示-->
+<div id="remaind01" class="modal01" style="display:none;">
+	<div class="modal_bg"></div>
+    <div class="modal02_nr">
+    	<p class="modtwo_tp"><img src="../../images/kaniu/modal01.png"><span>分期X温馨提示</span></p>
+        <p class="motwo_wz" id="errmsg"></p>
+        <p class="motwo_annv">确定</p>
+    </div>
+</div>
+
+    <!--客服引导mod-->
+    <div id="guided_mod" class="guided_mod" style="display:none;">
+        <i class="modal_bg" onclick="document.getElementById('guided_mod').style.display='none'"></i>
+        <div class="guimod">
+            <div class="posrela">
+                <div class="kfyd_box">
+                    <div class="index02"><img src="../../images/kaniu/rg_01.png"></div>
+                    <div class="ttu"><span class="nuc">1</span>进入分期X微信公众号，直接输入“客服”即可咨询。</div>
+                    <div class="kfyd_img"><img src="../../images/kaniu/rg_03.jpg"></div>
+                    <div class="ttu"><span class="nuc">2</span>咨询人工客服可点击公众号右上角标识进入公众号简介，点击“客服人员”即可。</div>
+                    <div class="kfyd_img mb20"><img src="../../images/kaniu/rg_05.png"></div>
+                </div>
+                <div class="guimod_bom"><a class="over" onclick="document.getElementById('guided_mod').style.display='none'">关闭</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!--加载中-->
+    <div id="loading" class="modal01" style="display:none;">
+        <div class="modal_bg"></div>
+        <div class="modal02_nr">
+            <p class="modtwo_tp"><img src="../../images/kaniu/modal01.png"><span>分期X温馨提示</span></p>
+            <p class="modloading"><img src="../../images/kaniu/loading.gif"><br>正在加载中...</p>
+        </div>
+    </div>
+
+    <script src="../../js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+    <script src="../../js/KaNiu/Bank.js" type="text/javascript"></script>
+    <script src="../../js/KaNiu/jquery.cxselect-new.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+$(function (){
+    $("#select_bank").cxSelect({
+        url: '../../js/KaNiu/Bank.js',//'/InterFace/js/KaNiu/Bank.js',
+        selects: ['bank'],
+        required: true,
+        //IsDisable: false
+    });
+	
+    $("#loading").css({ "display": "block" });
+
+	$("input").focusin(function () {
+		if ($(this).val().indexOf("请输入") > -1) {
+			$(this).attr("style", "color:black");
+			$(this).val("");
+		}
+	});
+	var ApplyOrRepay = "{$:ApplyOrRepay jsencode=”true”}";
+	var PlanID = "{$:PlanID jsencode=”true”}";
+	if(ApplyOrRepay){
+		$("#hidApplyOrRepay").val(ApplyOrRepay);
+	}
+	if(PlanID){
+		$("#hidPlanID").val(PlanID);
+	}
+	
+	var bankid = "{$:bankid jsencode=”true”}";
+	if(bankid){
+	    $("#bankid").val(bankid);
+	}
+
+	var hidfid = "{$:hidfid jsencode=”true”}";
+	if (hidfid) {
+	    $("#hidfid").val(hidfid);
+	}
+
+	var hidurl = "{$:hidurl jsencode=”true”}";
+	if (hidurl) {
+	    $("#hidurl").val(hidurl);
+	}
+
+	var jump = "{$:jump jsencode=”true”}";
+	var errcode= "{$:errcode jsencode=”true”}";
+	var errmsg="{$:errmsg jsencode=”true”}";
+	/*if (errcode || errmsg) 
+	{
+	    $("#errmsg").html("错误代码:" + errcode + "," + errmsg);
+	    if (jump) {
+	        $("#remaind01 .motwo_annv").click(function () {
+	            window.location.href = $("#hidurl").val();
+	        });
+	    }else {
+	        $("#remaind01 .motwo_annv").click(function () {
+	            $("#remaind01").css("display", "none");
+	        });
+	    }
+	    $("#loading").css({ "display": "none" });
+	    $("#remaind01").css("display", "block");
+	}*/
+	
+		setTimeout(function () {
+		    //if ($("#select_bank option").length > 0) {
+		        var bankname = "{$:bankname jsencode=”true”}";
+		        var banknum = "{$:banknum jsencode=”true”}";
+		        var selebank = document.getElementById("bank");
+		        for (var i = 0; i < selebank.options.length; i++)
+		        {
+		            var curobj = selebank.options[i];
+		            if(curobj.text == bankname)
+		            {
+		                //curobj.selected = true;
+		                selebank.value = curobj.value;
+		                $("#addbank_button").attr("class", "pass");
+		                $("#addbank_button").removeAttr("disabled");
+		                var bname = curobj.text;
+		                var bnum = $("#bank").val();
+		                $("#hidbank").val(bname + "-" + bnum);
+		                break;
+		            }
+		        }
+
+		        $("#loading").css({ "display": "none" });
+
+
+                //    ss = Array();
+		        //if (bankname) {
+		        //    $("#bank option").each(function (i) {
+		        //        ss.push(this.text);
+		        //    });
+		        //    var j = 0;
+		        //    for (var x = 0; x < ss.length; x++) {
+		        //        if (ss[x] == bankname) {
+		        //            var j = x;
+		        //        }
+		        //    }
+		        //    if ($.inArray(bankname, ss) > 0) {
+		        //        $("#bank option").eq(j).attr("selected", "selected");
+		        //        $("#addbank_button").attr("class", "pass");
+		        //        $("#addbank_button").removeAttr("disabled");
+		        //        var bname = $("#bank option:selected").text();
+		        //        var bnum = $("#bank").val();
+		        //        $("#hidbank").val(bname + "-" + bnum)
+		        //    }
+		        //}
+		    //}
+		}, 1200);
+
+
+
+
+	/*$.ajax({
+		url:'http://localhost:81/MyHandler.ashx',
+		type: 'get',
+		dataType: 'json',
+		cache: false,
+		async: false,
+		success: function (msg) {
+			var ecode = msg.errcode,
+				emsg = msg.errmsg,
+				bankname = msg.bankname,
+				banknum = msg.banknum,
+				ss= Array();
+			if(ecode || emsg){
+				$("#errmsg").html(errmsg);
+				$(".modal01").css("display","block");
+				return
+			}
+			$("#bank option").each(function(i) {
+				ss.push(this.text);
+			});
+			var j=0;
+			for(var x=0;x<ss.length;x++){
+				if(ss[x]==bankname){
+					var j=x;
+				}
+			}
+			if($.inArray(bankname, ss)>0){
+				$("#bank option").eq(j).attr("selected","selected");
+				$("#addbank_button").attr("class","pass");
+				$("#addbank_button").removeAttr("disabled");
+				var bname = $("#bank option:selected").text();
+				var bnum = $("#bank").val();
+				$("#hidbank").html(bname+"-"+bnum)
+			}
+		}
+	});*/
+
+    $("#bank").bind('change propertychange', function () {
+            var bname = $("#bank option:selected").text();
+            var bnum = $("#bank").val();
+            if ($(this).val() == "00000000") {
+                $(this).attr("style", "color:red");
+                $("#addbank_button").attr({ "disabled": "", "class": "" });
+            } else {
+                $(this).attr("style", "color:black");
+                $("#hidbank").val(bname + "-" + bnum);
+                $("#addbank_button").attr("class", "pass");
+                $("#addbank_button").removeAttr("disabled");
+            }
+    });
+})
+
+function IsNumber(obj) {
+    Reg = /^\d+$/;
+    if (Reg.test(obj)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+</script>
+</body>
+</html>

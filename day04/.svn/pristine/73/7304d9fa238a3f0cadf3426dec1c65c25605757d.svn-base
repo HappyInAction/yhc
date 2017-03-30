@@ -1,0 +1,407 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>手机认证</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="cleartype" content="on">
+    <link href="../../css/KaNiu/style.css" rel="stylesheet" type="text/css">
+    <script src="../../js/KaNiu/exif.js" type="text/javascript"></script>
+    <script src="../../js/KaNiu/imghelper.js" type="text/javascript"></script>
+    <script src="../../js/KaNiu/chkHelper.js" type="text/javascript"></script>
+</head>
+
+<body class="f5">
+    <div class="content contpad">
+        <div class="telcont" style="border-bottom:1px #ddd solid;">
+            <b>验证方式</b>
+            <div class="fl yzfs_rt telrz">
+                <input id="yzfstop01" name="yzfsname" type="radio" checked value="0"><label id="labeltop01" class="pass" for="yzfstop01">服务密码验证</label>
+                <input id="yzfstop02" name="yzfsname" type="radio" value="1"><label id="labeltop02" for="yzfstop02" style="display:none">通话截图验证</label>
+            </div>
+        </div>
+        <div id="cjtxl" class="qhtab">
+            <div id="yzdiv" class="add_bank wid_13">
+                <ul>
+                    <div class="tel_rztab">
+                        <!--<li class="rztel bt"><b>卡牛绑定手机号码</b><span id="phone"></span></li>-->
+                        <li id="fwpw" class="pr"><b>服务密码</b><input id="phone" name="" type="text" placeholder="请输入服务密码"><input id="btnemail" class="send-mess gcolor" name="" type="button" onclick="msg_req('')" value="验 证"></li>
+                        <li id="newpw" style="display: none;"><b>新密码</b><input id="newfwpw" name="" type="text" placeholder="请输入新密码" value=""></li>
+                        <li id="newyzm" class="pr" style="display: none;"><b>验证码</b><input id="newfwyzm" name="" type="text" placeholder="请输入验证码" value=""><input id="newyzm_reset" onclick="reset_sendyzm()" class="send-mess gcolor btn_yzm" name="" type="button" value="重新获取"></li>
+                    </div>
+                </ul>
+            </div>
+
+            <div class="both bank_bom" style="display: none;">
+                <p><input id="resetpw" name="" class="hs" type="button" onclick="reset_pw('SUBMIT_RESET_PWD')" value="忘记密码"></p>
+                <p><input id="retrunlog" onclick="relogin()" name="" class="xt" type="button" value="返回登录"></p>
+            </div>
+            <div id="rzimg" style="display:none;padding-top:1rem;background-color:#fff;"><div class="rz_yes" style=" background-size: 20rem 6.32rem;"></div></div>
+            <div class="file_linr fff">
+                <div class="tel_table">
+                    <p>获取服务密码方法如下：</p>
+                    <table border="0" cellspacing="1" cellpadding="0">
+                        <tr class="tt">
+                            <td class="tdwid01"></td>
+                            <td class="tdwid02">1、手机拨号-转人工服务</td>
+                            <td class="tdwid03">2、手机登陆网址-“忘记密码”查询</td>
+                        </tr>
+                        <tr>
+                            <td><p class="pic_yd"></p></td>
+                            <td><a href="tel://10086">10086</a></td>
+                            <td>10086.cn</td>
+                        </tr>
+                        <tr>
+                            <td><p class="pic_lt"></p></td>
+                            <td><a href="tel://10010">10010</a></td>
+                            <td>wap.10010.com</td>
+                        </tr>
+                        <tr>
+                            <td><p class="pic_dx"></p></td>
+                            <td><a href="tel://10000">10000</a></td>
+                            <td>wapzt.189.cn</td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+		<form id="user" name="user" method="post" enctype="multipart/form-data" action="/InterFace/kaniuFace.ashx">
+        <div id="sctxl" class="online_bom pabom qhtab" style="display:none;">
+            <p class="tt">上传通话记录截图</p>        
+            <p class="ztips">注：至少上传六个月的通话记录截图信息</p>  
+            <div class="bankfile">
+                <ul>
+                    <li class="uppic">
+                        <a id="file01" class="bg btn" href="javascript:openCamera('img_0');" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;z-index: 99;opacity: 0;filter: alpha(opacity=0);z-index: 99;"></a>
+                        <img src="../../images/KaNiu/rz_06.png">
+                    </li>
+
+                </ul>
+            </div>
+            
+            <p class="tt">图片实例图</p>
+            <p class="upwzwz">注：上传信息必须是真实有效的。</p>
+            <div class="house_bom">
+                <div class="fl"><img src="../../images/KaNiu/auth13.jpg"><br>个人信息</div>
+                <div class="fr"><img src="../../images/KaNiu/auth14.jpg"><br>通话详单</div>
+            </div>
+        </div>
+            <div class="both bank_bom">
+                <p class="tips"><img src="/InterFace/images/kaniu/input_01.png"><span>如有疑问，联系客服:<a onclick="document.getElementById('guided_mod').style.display='block'">请点击</a></span></p>
+                <p class="tips" style="margin-left:0.67rem;">注:为了您的安全，我们不会保存任何密码记录</p>
+                <p>
+                    <input id="subbut" name="" class="pass" type="button" onclick="check()" value="填好了">
+                </p>
+            </div>
+		 </form>      
+    </div>
+
+    <!--客服引导mod-->
+    <div id="guided_mod" class="guided_mod" style="display:none;">
+        <i class="modal_bg" onclick="document.getElementById('guided_mod').style.display='none'"></i>
+        <div class="guimod">
+            <div class="posrela">
+                <div class="kfyd_box">
+                    <div class="index02"><img src="/Tenant/style/images/rg_01.png"></div>
+                    <div class="ttu"><span class="nuc">1</span>进入分期X微信公众号，直接输入“客服”即可咨询。</div>
+                    <div class="kfyd_img"><img src="/Tenant/style/images/rg_03.jpg"></div>
+                    <div class="ttu"><span class="nuc">2</span>咨询人工客服可点击公众号右上角标识进入公众号简介，点击“客服人员”即可。</div>
+                    <div class="kfyd_img mb20"><img src="/Tenant/style/images/rg_05.png"></div>
+                </div>
+                <div class="guimod_bom"><a class="over" onclick="document.getElementById('guided_mod').style.display='none'">关闭</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!--加载中-->
+    <div id="loading" class="modal01" style="display:none;">
+        <div class="modal_bg"></div>
+        <div class="modal02_nr">
+            <p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>分期X温馨提示</span></p>
+            <p class="modloading"><img src="../../images/KaNiu/loading.gif"><br>正在加载中...</p>
+        </div>
+    </div>
+
+
+    <!--手机认证提示01-->
+    <div id="remind01" class="modal01" style="display:none;">
+        <div class="modal_bg"></div>
+        <div class="modal02_nr">
+            <p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>请输入短信验证码</span></p>
+            <p class="motwo_wz"><input id="reqyzm" name="" onfocus="reqyzmfocus()" type="text" class="sz" placeholder="888888" value=""></p>
+            <p id="yzmerr" style="margin:auto; text-align:center;color:red;display:none;">短信验证码格式错误，请重新输入</p>
+            <p class="motwo_annv" onclick="msg_req('SUBMIT_CAPTCHA')">确定</p>
+
+        </div>
+    </div>
+
+    <!--手机认证提示02-->
+    <div id="remind02" class="modal01" style="display:none;">
+        <div class="modal_bg"></div>
+        <div class="modal02_nr">
+            <p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>分期X温馨提示</span></p>
+            <p class="motwo_wz"></p><!--<i class="yes"></i>恭喜你！验证成功-->
+            <p class="motwo_wz404"></p>
+            <p class="motwo_annv" onclick="javascript: $('#remind02').css({ 'display': 'none' });">确定</p>
+        </div>
+    </div>
+
+    <!--手机认证提示02-->
+    <div id="remind03" class="modal01" style="display:none;">
+        <div class="modal_bg"></div>
+        <div class="modal02_nr">
+            <p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>分期X温馨提示</span></p>
+            <p class="motwo_wz"></p><!--<i class="yes"></i>恭喜你！验证成功-->
+            <p class="motwo_wz404"></p>
+            <div class="twobtn">
+                <a class="fl" onclick="javascript: $('#remind03').css({ 'display': 'none' });">确定</a>
+                <a class="fr" onclick="turnUploadImg()">上传截图</a>
+            </div>         
+        </div>
+    </div>
+
+    <!--选择电商-->
+    <div class="modal01" id="bussele" style="display:none;">
+        <div class="modal_bg"></div>
+        <div class="modal02_nr">
+            <p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>电商验证选择</span></p>
+            <div class="onlitab">
+                <div class="onli_yzfs">
+                    <input id="yzfs01" name="yzfsname" type="radio" value=""><label id="label01" for="yzfs01">淘宝帐号</label>
+                    <input id="yzfs02" name="yzfsname" type="radio" value=""><label id="label02" for="yzfs02">京东帐号</label>
+                </div>
+                <p id="buserr"></p>
+            </div>
+            <p class="motwo_annv" onclick="chkbusiness()">确定</p>
+        </div>
+    </div>
+
+    <script src="../../js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+
+    <script src="../../js/KaNiu/juxinli.js" type="text/javascript"></script>
+    <script src="../../js/KaNiu/juxinli_kaniu.js" type="text/javascript"></script>
+    
+    <script type="text/javascript">
+
+        var usermsgflag = 0;
+        var uploadImgFlag = 0;//上传图片的标志
+
+        var jxl = new jxlModel();
+
+
+        $(function () {
+
+            $("#loading").css({ "display": "block" });
+
+            //弹窗
+            var errcode = "{$:errcode jsencode=”true”}";
+            var errmsg = "{$:errmsg jsencode=”true”}";
+            if ((errcode || errmsg) && (errcode.indexOf("jsencode") < 0)) {
+                $("#loading").css({ "display": "none" });
+                $("#remind02 .motwo_wz").html(errmsg);
+                $("#remind02 .motwo_wz404").html("错误码:" + errcode);
+                $("#remind02").css("display", "block");
+                usermsgflag = 1;
+            }
+
+            var str = window.location.href;
+            try {
+                var params = str.split('?')[1];
+                if (params.indexOf("uploadImgFlag") != -1)
+                {
+                    uploadImgFlag = 1;
+                }
+            }
+            catch (e) { }
+
+            //判断是否只上传图片
+            if (uploadImgFlag == 1) {
+                $("#subbut").css({ "display": "inline-block" });
+                onlyUploadImg();
+            }
+            else {
+                //判断是否已采集数据
+                jxl.hasReportFn(dealHasReport);
+            }
+                    
+
+            $(".onli_yzfs input[type=radio]").bind("click", function () {
+                if ($(this).attr("checked")) {
+                    $(this).attr("checked", false);
+                    $(this).next("label").removeClass("pass");
+                }
+                else {                   
+                    $(this).attr("checked", true);
+                    $(this).next("label").addClass("pass");
+                }
+                $("#buserr").css({ "display": "none" });
+            });
+
+            $(".upflpic i").each(function (i) {
+                $(this).click(function () {
+                    $(this).parent().remove();
+                })
+            });
+
+            window.onReceivePhoto = function (imageString, jsonStr) {
+                var imgsrc = "data:image/png;base64," + imageString;
+                var imgname = 'img_';
+                var has = $(".img:last").attr("id");
+                if (has) {
+                    var imgcunt = has.split('_')[1];
+                    imgcunt++;
+                    imgname += imgcunt;
+                } else {
+                    imgname += '1';
+                }
+                $(".uppic").before("<li  class='upflpic'><img  id='" + imgname + "' src='' class='img' style='width:100%; height:100%;'><i onclick='$(this).parent().remove()'></i><>");
+                uploadfile.apply(this, [imgsrc, imgname + ".png", imgname, imgname, "/InterFace/ValidatePhone.ashx"])
+            };
+  
+            $(".yzfs_rt label").each(function (i) {
+                $(this).click(function () {
+                    if (!$(".yzfs_rt input").eq(i).is(":checked")) {
+                        $(".yzfs_rt label").attr("class", "");
+                        $(".yzfs_rt label").eq(i).addClass("pass");
+                        $(".qhtab").css("display", "none");
+                        $(".qhtab").eq(i).css("display", "block");
+                    }
+                })
+            });
+        });
+
+
+        function imgClose(obj) {
+            var type_detail = $(obj).attr("type_detail");
+            $(obj).parent().remove();
+            if(type_detail==""){
+                return;
+            }
+            $.ajax({
+                url: '/InterFace/ValidatePhone.ashx',
+                type: 'post',
+                dataType: 'txt',
+                cache: false,
+                data: { "type": "delete","type_detail":type_detail},
+                success: function () {}
+            });
+
+        }
+      
+        
+        function showMsg()
+        {
+            $("#yzdiv").css({ "display": "none" });
+            $("#rzimg").css({"display": "block"});
+
+            //显示上传截图
+            $("#labeltop02").css({ "display": "inline-block" });
+
+            getImg();
+        }
+
+        function onlyUploadImg()
+        {
+            $("#labeltop01").css({ "display": "none" });
+            $("#cjtxl").css({ "display": "none" });
+
+            //显示上传截图
+            $("#labeltop02").css({ "display": "inline-block" });
+            $("#labeltop02").addClass("pass");
+            $("#sctxl").css({ "display": "block" });
+            getImg();
+        }
+
+        function getImg()
+        {
+            $.ajax({
+                url: '/InterFace/ValidatePhone.ashx?type=pic',
+                type: 'get',
+                dataType: 'json',
+                cache: false,
+                success: function (msg) {
+
+                    $("#loading").css({ "display": "none" });
+
+                    var yzfsname = msg.yzfsname,
+                        picarr = Array(),
+                        json = eval(msg.Img);
+
+                    $.each(json, function (k, v) {
+                        picarr.push(v);
+                    });
+                    picshow(picarr);
+                }
+            });
+        }
+
+        function picshow(picarr) {
+            picarr.reverse();
+            for (var i = 0; i < picarr.length; i++) {
+                if (picarr[i].state == "1") {
+                    $(".uppic").before("<li class='upflpic'><img id='img_" + picarr[i].type_detail + "' src='" + picarr[i].Img + "' class='img' style='width:100%; height:100%;'></li>");
+                } else {
+                    $(".uppic").before("<li class='upflpic'><img id='img_" + picarr[i].type_detail + "' src='" + picarr[i].Img + "' class='img' style='width:100%; height:100%;'><i onclick='imgClose(this)' type_detail='" + picarr[i].type_detail + "'></i></li>");
+                }
+            }
+        }
+
+        function reqyzmfocus() {
+            $("#yzmerr").css({ "display": "none" });
+            //$("#reqyzm").val("");
+        };
+
+        function errShow(obj) {
+            if (obj.errcode || obj.errmsg) {
+                usermsgflag = 1;
+                $("#bussele").css({ "display": "none" });
+                $("#remind02 .motwo_wz").html(obj.errmsg);
+                $("#remind02 .motwo_wz404").html("错误码:" + obj.errcode);
+                $("#remind02").css("display", "block");
+                return true;
+            }
+            return false;
+        }
+
+        function remindShow(msg, code) {
+            $("#remind02 .motwo_wz").html(msg);
+            $("#remind02 .motwo_wz404").html("状态码:" + code);
+            $("#remind02").css("display", "block");
+        }
+
+        function uploadImgShow(msg, code)
+        {
+            $("#remind03 .motwo_wz").html(msg);
+            $("#remind03 .motwo_wz404").html("状态码:" + code);
+            $("#remind03").css("display", "block");
+        }
+
+        function turnUploadImg()
+        {
+            $("#remind03").css({ "display": "none" });
+
+            $("#yzfstop01").attr("checked", false);
+            $("#yzfstop01").next("label").removeClass("pass");
+            $("#yzfstop01").next("label").css({ "display": "none" });
+            $("#yzfstop02").attr("checked", true);
+            $("#yzfstop02").next("label").addClass("pass");
+            $("#yzfstop02").next("label").css({ "display": "block" });
+
+            $("#cjtxl").css("display", "none");
+            $("#sctxl").css("display", "block");
+            $("#subbut").css({ "display": "inline-block" });
+        }
+
+        function check() {
+            var yzfsname = "1";//上传截图
+            window.location.href = "/InterFace/ValidatePhone.ashx?yzfsname=" + yzfsname;
+        }
+    </script>
+
+</body>
+</html>

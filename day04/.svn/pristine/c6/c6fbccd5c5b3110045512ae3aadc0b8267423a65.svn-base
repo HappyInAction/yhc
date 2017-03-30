@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>电商认证</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+
+<link href="../../css/NEW/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="f5">
+<div class="content contpad">
+	<div class="credit">
+        <div class="credit_tab">
+        	<ul>
+            	<li class="active">账号密码</li>
+                <li>截图验证</li>
+            </ul>
+        </div>
+        <div class="qhtab">
+            <div class="add_bank wid_13">
+                <ul>
+                    <div class="tel_rztab">
+                    
+                        <li class="pr"><b>账号</b><input id="fwword" name="" type="password" placeholder="请输入分期用途"></li>
+                        <li class="pr bbomnone"><b>密码</b><input id="fwword" name="" type="password" placeholder="请输入密码"><input id="btnemail" class="send-mess gcolor" name="" type="button" value="验证"></li>
+                    </div>
+                </ul>
+            </div>
+        </div>
+        <form id="user" name="user" method="post" enctype="multipart/form-data" action="">
+        <div class="online_bom pabom qhtab" style="display:none">
+            <p class="tt">交易截图(至少上传近六个月交易记录)</p>
+            <div class="bankfile">
+                <ul>
+                    <li class="upflpic"><img src="../../images/NEW/404.png"><i></i></li>
+                    <li class="upflpic"><img src="../../images/NEW/404.png"><i></i></li>
+                    <li class="upflpic"><img src="../../images/NEW/404.png"><i></i></li>
+                    <li class="upflpic"><img src="../../images/NEW/404.png"><i></i></li>
+                    <li class="upflpic"><img src="../../images/NEW/404.png"><i></i></li>
+                    <li class="upflpic"><img src="../../images/NEW/404.png"><i></i></li>
+                    <li class="uppic">
+                        <input name="" type="file" accept="image/*">
+                        <img src="../../images/NEW/rz_06.png">
+                    </li>
+                </ul>
+            </div>
+            <p class="ztips">注：上传截图中必须有一张可以看清实名信息，及6个月通话详单!</p>
+            <p class="tt">拍照图片示例</p>
+
+            <p class="img"><img src="../../images/NEW/auth12.jpg"></p>            
+            
+            
+<!--            <p class="ztips dheie">注：暂时支持图片格式：jpg/png/xls/xlsx</p>
+-->        </div>
+        <div class="both bank_bom">
+        	<p class="tips"><img src="../../images/NEW/input_01.png"><span>注：你可以选择提供账号密码给我们，也可以选择自己上传记录；我们不会泄露你的任何信息！淘宝和京东任选其一；忘记密码可登陆官网找回密码</span></p>
+            <p><input name="" class="" type="button" value="下一步" ></p>
+        </div>
+        </form>
+    </div>
+</div>
+
+<script src="../../js/NEW/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function (){
+	$('.credit_tab ul li').each(function(i) {
+        $(this).click(function (){
+			$('.credit_tab ul li').removeClass('active');
+			$(this).addClass('active');
+			$('.qhtab').css('display','none');
+			$('.qhtab').eq(i).css('display','block');
+		})
+    });
+})
+</script>
+<script type="text/javascript">
+	$(function () {
+		$(".upflpic i").each(function (i) {
+			$(this).click(function () {
+				$(this).parent().remove();
+			})
+		});
+		window.onReceivePhoto = function (imageString, jsonStr) {
+			var imgsrc = "data:image/png;base64," + imageString;
+			var imgname = 'img_';
+			var has = $(".img:last").attr("id");
+			if (has) {
+				var imgcunt = has.split('_')[1];
+				imgcunt++;
+				imgname += imgcunt;
+			} else {
+				imgname += '1';
+			}
+			$(".uppic").before("<li  class='upflpic'><img  id='" + imgname + "' src='' class='img' style='width:100%; height:100%;'><i onclick='$(this).parent().remove()'></i><>");
+			uploadfile.apply(this, [imgsrc, imgname + ".png", imgname, imgname, "/InterFace/ValidatePhone.ashx"])
+		};
+
+		$.ajax({
+			url: '/InterFace/ValidatePhone.ashx?type=pic',
+			type: 'get',
+			dataType: 'json',
+			cache: false,
+			success: function (msg) {
+				var phone = msg.sjrz_telphone.substr(0, 3) + '****' + msg.sjrz_telphone.substr(7),
+					passwd = msg.service_password,
+					yzfsname = msg.yzfsname,
+					picarr = Array(),
+					json = eval(msg.Img);
+
+				tablab(yzfsname)
+				if (phone) {
+					$("#phone").html(phone);
+				}
+				if (passwd) {
+					if (passwd != "") {
+						$("#fwword").val("********");
+						$("#fwword").attr("readonly", "readonly");
+					}
+				}
+				$.each(json, function (k, v) {
+					picarr.push(v);
+				});
+				picshow(picarr)
+			}
+		});
+
+		function picshow(picarr) {
+			picarr.reverse();
+			for (var i = 0; i < picarr.length; i++) {
+				if (picarr[i].state == "1") {
+					$(".uppic").before("<li class='upflpic'><img id='img_" + picarr[i].type_detail + "' src='" + picarr[i].Img + "' class='img' style='width:100%; height:100%;'></li>");
+				} else {
+					$(".uppic").before("<li class='upflpic'><img id='img_" + picarr[i].type_detail + "' src='" + picarr[i].Img + "' class='img' style='width:100%; height:100%;'><i onclick='imgClose(this)' type_detail='" + picarr[i].type_detail + "'></i></li>");
+				}
+			}
+		}
+
+		function tablab(tabval) {
+			if (tabval == 1) {
+				$("#yzfs01").removeAttr("checked");
+				$("#yzfs02").attr("checked", "checked");
+				$(".yzfs_rt label").attr("class", "");
+				$(".yzfs_rt label").eq(1).addClass("pass");
+				$(".qhtab").css("display", "none");
+				$(".qhtab").eq(1).css("display", "block");
+			}
+		}
+		$(".yzfs_rt label").each(function (i) {
+			$(this).click(function () {
+				if (!$(".yzfs_rt input").eq(i).is(":checked")) {
+					$(".yzfs_rt label").attr("class", "");
+					$(".yzfs_rt label").eq(i).addClass("pass");
+					$(".qhtab").css("display", "none");
+					$(".qhtab").eq(i).css("display", "block");
+				}
+			})
+		});
+		//
+		$("input").focusin(function () {
+			if ($(this).val().indexOf("请输入") > -1) {
+				$(this).attr("style", "color:black");
+				$(this).val("");
+			}
+		});
+		//$("#fwword").focusout(function () {
+		//    if ($(this).val() == "" || !IsNumber($(this).val())) {
+		//        $(this).val("请输入您手机号的服务密码");
+		//        $(this).attr("style", "color:red");
+		//    }
+		//});
+		//弹窗
+		var errcode = "{$:errcode jsencode=”true”}";
+		var errmsg = "{$:errmsg jsencode=”true”}";
+		if (errmsg.indexOf("") == -1) {
+			if (errcode || errmsg) {
+				$("#errmsg").html("错误代码:" + errcode + "," + errmsg);
+				$(".modal01").css("display", "block");
+			}
+		}
+	});
+	function imgClose(obj) {
+		var type_detail = $(obj).attr("type_detail");
+		$(obj).parent().remove();
+		if(type_detail==""){
+			return;
+		}          
+		$.ajax({
+			url: '/InterFace/ValidatePhone.ashx',
+			type: 'post',
+			dataType: 'txt',
+			cache: false,
+			data: { "type": "delete","type_detail":type_detail},
+			success: function () {}
+		});
+
+	}      
+
+	function IsNumber(obj) {
+		Reg = /^\d+$/;
+		if (Reg.test(obj)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	function check() {
+		var yzfsname = $("input:radio[name='yzfsname']:checked").val();
+		//if ((yzfsname == "0" && $("#fwword").val() == "") || (yzfsname == "0" &&$("#fwword").val().indexOf("输入")>-1)) {
+		//    alert("请输入服务密码");
+		//    return;
+		//} else if (yzfsname == "1"&& $(".img").length==0) {
+		//    alert("请上传最近六个月的通话截图");
+		//    return;
+		//}
+		var service_password = $("#fwword").val();
+		window.location.href = "/InterFace/ValidatePhone.ashx?yzfsname=" + yzfsname + "&service_password=" + service_password;
+	}
+</script>
+</body>
+</html>

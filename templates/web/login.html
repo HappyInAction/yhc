@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='utf-8'>
+
+    <meta name="key" type="hidden" content = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDfs1/wLxKKElztd2LKni3qHxrsW8y5xGNt8lYpxDSVObh1fkD9Cy3UfWi5J6ihppwU8GnIQXV7xa2KewOJzAG/9sDuVAeDHp79FAI6yAw0Q7UJ4HYOHF55HaQZqdW8WFsEV8cB5KChUMeOpRi31vSGC039bpJfyo/7cfFTvGzphQIDAQAB">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="requestamount" content="{{ requestamount }}">
+
+    <title>萤火虫科技有限公司</title>
+    <link rel="shortcut icon" type="image/x-icon" href="//staticcdn.yhctech.com/static/img/4ba1ac6d564e7588c9d41c97684d242baa3c0142.ico" />
+    <link rel="stylesheet" href="//staticcdn.yhctech.com/static/css/daae2214c8e1ba10da6106f4197c323489dfca04.css">
+    <link rel="stylesheet" href="//staticcdn.yhctech.com/static/css/877efe4a2eff81d75dff4fdd6839929071f23637.css">
+    <link rel="stylesheet" href="//static.yhctech.com/frontend/css/layer.css" type="text/css">
+</head>
+<body>
+<div class="commonWrap">
+    <div class="loginContent_wrap">
+        <div class="common_header">
+            <div class="commonLogo">
+                <img src="//staticcdn.yhctech.com/static/img/f018d2c7f2199f941a05a864b03159f07e101fc4.png" alt="">
+            </div>
+            <h1>欢迎来到萤火虫科技</h1>
+        </div>
+        <div class="commonContent loginContent">
+            <form action="" method="post" class="common_post">
+                <div class="error_msg">
+                    <img class="error_pic" src="//staticcdn.yhctech.com/static/img/1cf9486a8eb9b4568f352e38b24a5b25b9535a11.png">
+                    <span class="error_text"></span>
+                </div>
+                <div class="telephone">
+                    <label for="userPhone"></label>
+                    <i class="iconfont iconPic">&#xe67a;</i>
+                    <input type="text" maxlength=11 placeholder="请输入手机号" id="userPhone" class="userPhone_test" name="userPhone">
+                    <span class="disSolve">请输入真实手机号码</span>
+                    <span class="phone_exists">该手机号尚未注册</span>
+                    <!-- <span class="iconfont clearPhone">&#xe61c;</span> -->
+                </div>
+                <div class="againPassword loginPassword">
+                    <label for="againPassword"></label>
+                    <i class="iconfont iconPic">&#xe727;</i>
+                    <input type="password" placeholder="密码" id="againPassword" class="userPassword_test">
+                    <span class="passError">请输入密码</span>
+                </div>
+
+                <div class="loginverificationCode">
+                    <div class="codeLeft">
+                        <label for="code"></label>
+                        <i class="iconfont iconPic">&#xe655;</i>
+                        <input type="text" placeholder="请输入验证码" id="code" class="code" maxlength="4">
+                    </div>
+                    <div class="codeMain">
+                        <img src="" alt="" class="vcode">
+                    </div>
+                    <span class="codeError">请输入图片验证码</span>
+                    <span class="codeError_2">图片验证码不正确</span>
+                </div>
+
+                <div class="userAgree loginAgree">
+<!--                     <div class="rememberPass">
+                        <input type="checkbox" id="checkboxRemember" class="userCheck"/><label for="checkboxRemember"></label>
+                        <a href="javascript:void(0);">记住密码</a>
+                    </div> -->
+                    <div class="autoLogin">
+                        <input type="checkbox" id="checkboxAuto" class="userCheck"/><label for="checkboxAuto"></label>
+                        <a href="javascript:void(0);">自动登录</a>
+                    </div>
+                </div>
+                <input type="button" class="buttoncommon buttonLogin" value="登录">
+            </form>
+            <div class="points">
+                <a href="JavaScript:void(0);" class="nowLogin">还没有账号？立即注册</a>
+                <a href="JavaScript:void(0);" class="forgetPassword">忘记密码</a>
+            </div>
+        </div>
+        <i class="iconfont back" onclick="javascript:window.history.back(-1);">&#xe67c;</i>
+    </div>
+    <div class="bglogin_pic"></div>
+</div>
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//staticcdn.yhctech.com/lib/js/passport_web_cypager.min.js"></script>
+<script type="text/javascript" src="//staticcdn.yhctech.com/static/js/6e67b28775c41ea11b7d8be785178f96a1b0a47e.js"></script>
+<script type="text/javascript" src="//staticcdn.yhctech.com/lib/js/jsencrypt.js"></script>
+<script type="text/javascript" src = "//static.yhctech.com/frontend/js/layer.js"></script>
+</body>
+</html>

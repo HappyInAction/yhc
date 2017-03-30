@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>申请记录</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/NEW/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="content">
+    <div class="repayjh">
+        <ul id="data">
+            <vt:foreach from="$LoanData" item="lst">
+                <li onclick="lookDetail(this)">
+                    <div class="fl repay_lf record_lf"><p></p><i></i></div>
+                    <div class="fl repay_rt">
+                        <div class="record_tt">
+                            <p class="fl repayrt_tt">{$:lst.Fcreate_time}</p>
+                            <div class="fr record_shzt">
+                                <p class="fr wzwz">{$:lst.Fstate}</p><p class="fr"></p><p class="fr reshzt_pic02 zt_shz"></p><p class="fr"></p>
+                            </div>
+                        </div>
+                        <div class="rert_nr">
+                            <div class="rert_cont">
+                                <div class="fl fqlx"><p class="fqlx_pic zf"></p>
+                                    <p>{$:lst.Ftype_text}</p>
+                            </div>
+                                <div class="fl fqzlwz"><p>分期金额:<span>{$:lst.Floan_money}元</span></p><p>期　　数:<span>{$:lst.Floan_month}月</span>
+                            <i class="arr"></i>
+                            </p><p>每月还款:<span>{$:lst.Fmonthly_repayment}元</span></p>
+                            </div>
+                            </div>
+                         <div class="record_bom"><p class="fl recbom_wzwz"><img src="../../images/NEW/repay02.png"><span>申请时间:{$:lst.Fcreate_time}</span></p>
+                        </div>
+                        </div>
+                    </div><input type="hidden" value="{$:lst.Ftrans_id}">
+                </li>
+            </vt:foreach>
+        </ul>
+    </div>
+</div>
+
+<div class="zkbom" style="display: none;"><img src="../../images/NEW/loading-bom.gif" /></div>
+<div class="zktxt" style="display: none;">没有更多数据</div>
+
+<!--手机认证提示02-->
+<div id="remind02" class="modal01" style="display:none;">
+    <div class="modal_bg"></div>
+    <div class="modal02_nr">
+        <p class="modtwo_tp"><img src="../../images/NEW/modal01.png"><span>分期X温馨提示</span></p>
+        <p class="motwo_wz"></p>
+        <p class="motwo_wz404"></p>
+        <p class="motwo_annv" onclick="javascript: $('#remind02').css({ 'display': 'none' });">确定</p>
+    </div>
+</div>
+
+<script src="../../js/NEW/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+<script src="../../js/NEW/applyType.min.js" type="text/javascript"></script>
+<script src="../../js/NEW/Record.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function(){
+        var timer,page=1;
+        var pageCount = "{$:pageCount jsencode=”true”}";
+
+        $(window).on("touchmove", function(){
+            clearTimeout(timer);
+            timer = setTimeout(function () {
+                if ($(window).height() + $(window).scrollTop() >= $("body").height()) {
+                    showMsg(page);
+                    page++;
+                }
+            }, 300);
+        });
+
+        $("#data").find("li").each(function(){
+            var typeName = $(this).find("div.fqlx").find("p").eq(1).html().trim();
+            var typeClass = getApplyType(typeName);
+            $(this).find("div.fqlx").find("p").eq(0).addClass(typeClass.typeClass);
+
+            var state = $(this).find(".record_shzt p.wzwz").html().trim();
+            if(state == "2" || state == "101"){
+                $(this).find(".record_shzt p.wzwz").html("不通过");
+                $(this).find(".record_shzt").find("p").eq(1).addClass("reshzt_pic03_h");
+                $(this).find(".record_shzt").find("p").eq(3).addClass("reshzt_pic01_h");
+            }else if(parseInt(state)>=0 && parseInt(state) <= 7){
+                $(this).find(".record_shzt p.wzwz").html("审核中");
+                $(this).find(".record_shzt").find("p").eq(1).addClass("reshzt_pic03_h");
+                $(this).find(".record_shzt").find("p").eq(3).addClass("reshzt_pic01");
+            }else {
+                $(this).find(".record_shzt p.wzwz").html("已放款");
+                $(this).find(".record_shzt").find("p").eq(1).addClass("reshzt_pic03");
+                $(this).find(".record_shzt").find("p").eq(3).addClass("reshzt_pic01");
+            }
+
+            var type = $(this).find(".fqlx").find("p").eq(1);
+            if(type.html().indexOf("任性花") > -1){
+                type.html("任性花");
+            }else if(type.html().indexOf("短借") > -1){
+                $(this).find(".fqzlwz").find("p").eq(2).html().replace("每月还款","应 还 款");
+                $(this).find(".fqzlwz").find("p").eq(1).html().replace("月", "周");
+            }
+
+        })
+
+
+        //错误弹窗
+        var errcode = "{$:errcode jsencode=”true”}";
+        var errmsg = "{$:errmsg jsencode=”true”}";
+        if(errmsg.indexOf("jsencode") <= -1){
+            if (errcode || errmsg) {
+                errShow({ "errmsg": errmsg, "errcode": errcode });
+            }
+        }
+    })
+</script>
+</body>
+</html>

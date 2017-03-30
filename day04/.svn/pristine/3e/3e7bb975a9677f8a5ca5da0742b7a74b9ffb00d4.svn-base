@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>添加银行卡</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/KaNiu/style.css" rel="stylesheet" type="text/css">
+<link href="../../css/KaNiu/record.css" rel="stylesheet" type="text/css">
+<link href="../../css/KaNiu/gennal.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="content">
+    <form id="form" name="form" method="post" action="http://localhost:81/MyHandler.ashx">
+        <p class="banktt">请绑定持卡人本人的银行卡</p>
+        <div class="add_bank wid_13">
+            <ul>
+                <li><b>持卡人</b><span>草木灰</span></li>
+                <li class="bbomnone"><b>银行卡号</b>
+                    <input id="addbank_card" name="addbank_card" type="text" placeholder="请输入您的银行卡号">
+                </li>
+            </ul>
+        </div>
+        <div class="both bank_bom">
+            <p class="tips"><img src="../../images/KaNiu/input_01.png"><span>您所填写的银行卡必须是您本人的,我们将会把款项打到此银行卡上。</span></p>
+            <p>
+                <input id="addbank_button" name="addbank_button" type="button" value="确定添加" disabled="disabled" >
+                <input id="hidbank" name="" type="hidden" value="">
+            </p>
+        </div>
+    </form>
+    <div class="footer foor_ab">
+        <div class="foottp"><i></i>
+            <p class="base_footerf5"><img src="../../images/KaNiu/appli03.png"></p>
+        </div>
+        <div class="footbom">
+            <p class="fl"><a>联系客服：<span onClick="document.getElementById('guided_mod').style.display='block'">请点击</span></a></p>
+            <p class="fr"><a href="">关于我们</a><a class="brtnone" href="">常见问题</a></p>
+        </div>
+    </div>
+</div>
+<!--弹窗提示-->
+<div class="modal01" style="display:none;">
+    <div class="modal_bg"></div>
+    <div class="modal02_nr">
+        <p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>分期X温馨提示</span></p>
+        <p class="motwo_wz" id="errmsg"></p>
+        <p class="motwo_annv" onClick="$('.modal01').css('display','none');">确定</p>
+    </div>
+</div>
+
+<!--客服引导mod-->
+<div id="guided_mod" class="guided_mod" style="display:none;">
+    <i class="guimodal_bg" onClick="document.getElementById('guided_mod').style.display='none'"></i>
+    <div class="guimod">
+    	<div class="posrela">
+        <div class="kfyd_box">
+            <div class="index02"><img src="../../images/KaNiu/rg_01.png"></div>
+            <div class="ttu"><span class="nuc">1</span>进入分期X微信公众号，直接输入“客服”即可咨询。</div>
+            <div class="kfyd_img"><img src="../../images/KaNiu/rg_03.jpg"></div>
+            <div class="ttu"><span class="nuc">2</span>咨询人工刻度可点击公众号右上角标识进入公众号简介，点击“客服人员”即可。</div>
+            <div class="kfyd_img mb20"><img src="../../images/KaNiu/rg_05.png"></div>
+        </div>
+        <div class="guimod_bom"><a class="over" onClick="document.getElementById('guided_mod').style.display='none'">关闭</a></div>
+        </div>
+    </div>
+</div>
+
+<script src="../../js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script> 
+<script src="../../js/KaNiu/bank.js" type="text/javascript"></script> 
+<script src="../../js/KaNiu/jquery.cxselect-new.js" type="text/javascript"></script> 
+<script type="text/javascript">
+$(function (){
+	$("#select_bank").cxSelect({
+		url: 'js/Bank.js',
+		selects: ['bank'],
+		required: true,
+		//IsDisable: false
+	});
+	
+	$("input").focusin(function () {
+		if ($(this).val().indexOf("请输入") > -1) {
+			$(this).attr("style", "color:black");
+			$(this).val("");
+		}
+	});
+	
+	var errcode="{$:errcode jsencode=”true”}";
+	var errmsg="{$:errmsg jsencode=”true”}";
+	if(errmsg.indexOf("")==-1){
+		if (errcode || errmsg) {
+			$("#errmsg").html(errmsg);
+			$(".modal01").css("display","block");
+		}
+	}
+	
+	$("#addbank_card").bind("focusout change", function () {
+		if ($(this).val() == "" || !IsNumber($(this).val())) {
+			$(this).val("请输入您的银行卡号");
+			$(this).attr("style", "color:red");
+		} else {
+			var backcard = $("#addbank_card").val();
+			$.ajax({
+				url:'http://localhost:81/MyHandler.ashx',
+				type: 'get',
+				dataType: 'json',
+				cache: false,
+				success: function (msg) {
+					var ecode = msg.errcode,
+						emsg = msg,errmsg,
+						bankname = msg.bankname,
+						banknum = msg.banknum,
+						ss= Array();
+					if(errcode || errmsg){
+						$("#errmsg").html(errmsg);
+						$(".modal01").css("display","block");
+						return
+					}
+					$("#Select option").each(function(i) {
+						ss.push(this.text);
+					});
+					var j=0;
+					for(var x=0;x<ss.length;x++){
+						if(ss[x]==bankname){
+							var j=x;
+						}
+					}
+					
+					if($.inArray(bankname, ss)>0){
+						$("#Select option").eq(j).attr("selected","selected");
+						$("#addbank_button").attr("class","pass");
+						$("#addbank_button").removeAttr("disabled");
+						var bname = $("#Select option:selected").text();
+						var bnum = $("#Select").val();
+						$("#hidbank").html(bname+"-"+bnum)
+					} else {
+						$(".modal01").css("display","block");
+						$("#errmsg").html("该卡暂不能开通快捷支付，请换张卡试试！");
+					}
+	
+				}
+			});
+		}
+		
+	});
+	$("#Select").bind('input propertychange', function () {
+		if ($(this).val() == "00000000") {
+			$(this).attr("style","color:red");
+		} else {
+			$(this).attr("style", "color:black");
+		}
+	});
+	$("#addbank_card,#Select").bind('input propertychange',function (){
+		if(IsNumber($("#addbank_card").val()) && $("#Select").val() != "00000000" && $("#addbank_card").val().length>13 ){
+			$("#addbank_button").attr("class","pass");
+			$("#addbank_button").removeAttr("disabled");
+		} else {
+			$("#addbank_button").attr({"disabled":"", "class":""});
+		}
+	});
+
+})
+
+function IsNumber(obj) {
+    Reg = /^\d+$/;
+    if (Reg.test(obj)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+</script>
+</body>
+</html>

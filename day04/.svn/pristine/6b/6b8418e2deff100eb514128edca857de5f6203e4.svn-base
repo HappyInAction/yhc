@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>我的帐单-待还款</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/KaNiu/style.css" rel="stylesheet" type="text/css">
+<link href="../../css/KaNiu/gennal.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="bili_tp">
+    <ul>
+        <li class="text01">待还款金额(元)</li>
+        <li class="text02 xml_height530">{$:backbill htmlencode="true"}</li>
+        <li class="text03"><img src="../../images/KaNiu/bili04.png"><span>截止还款时间：{$:limitetime htmlencode="true"}</span></li>
+    </ul>
+</div>
+<div class="bili_cont both">
+<div class="cont_tab">
+    <ul>
+        <li><span class="span01">应还本金(元)</span><span class="xml_backbill">{$:left_money htmlencode="true"}</span></li>
+        <li><span class="span01">利息(元)</span><span class="xml_backbill">{$:interest_money htmlencode="true"}</span></li>
+        <li style="border-right:none;"><span class="span01">服务费(元)</span><span class="xml_backbill">{$:service_money htmlencode="true"}</span></li>
+    </ul>
+</div>
+<form id="form" name="form" method="post" action="/InterFace/kaniuFace03.ashx">
+    <div class="bili_ctli">
+        <ul>
+            <li><b class="fx"></b><a class="btopnone"><span class="fl">罚息</span><span class="fr ff6600 je">{$:repayment_money htmlencode="true"}元</span></a></li>
+            <li id="Penalty" style="display:none"><b class=""></b><a href=""><span class="fl co999">亲，你还未绑定银行卡！</span><span class="fr ff6600">立即绑定</span></a><i></i></li>
+        </ul>
+    </div>
+    <div class="both bank_bom both">
+        <p class="tips"><img src="../../images/KaNiu/input_01.png"><span>1.用以上银行卡还款？如果不确定，你可以点击修改银行卡。<br>
+            2.如果还款金额有任何问题，<a onClick="document.getElementById('guided_mod').style.display='block'">请点击</a></span></p>
+        <p>
+            <input id="backbill_button" class="pass" name="backbill_button" type="button" value="确定还款" >
+        </p>
+    </div>
+    </div>
+</form>
+
+<!--客服引导mod-->
+<div id="guided_mod" class="guided_mod" style="display:none;"> <i class="guimodal_bg" onClick="document.getElementById('guided_mod').style.display='none'"></i>
+    <div class="guimod">
+        <div class="posrela">
+            <div class="kfyd_box">
+                <div class="index02"><img src="../../images/KaNiu/rg_01.png"></div>
+                <div class="ttu"><span class="nuc">1</span>进入分期X微信公众号，直接输入“客服”即可咨询。</div>
+                <div class="kfyd_img"><img src="../../images/KaNiu/rg_03.jpg"></div>
+                <div class="ttu"><span class="nuc">2</span>咨询人工刻度可点击公众号右上角标识进入公众号简介，点击“客服人员”即可。</div>
+                <div class="kfyd_img mb20"><img src="../../images/KaNiu/rg_05.png"></div>
+            </div>
+            <div class="guimod_bom"><a class="over" onClick="document.getElementById('guided_mod').style.display='none'">关闭</a></div>
+        </div>
+    </div>
+</div>
+<script src="../../js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script> 
+<script src="../../js/KaNiu/jQuery.Hz2Py-min.js" type="text/javascript"></script> 
+<script type="text/javascript">
+$(function (){
+	$.ajax({
+		url: 'http://localhost:81/MyHandler.ashx',
+		type: 'get',
+		dataType: 'json',
+		cache: false,
+		success: function(data){
+			var json = eval("(" + data.json + ")");
+			$.each(json, function (k ,v){
+				var bank = this.bank,
+					bank_id = this.bank_id,
+					trans_id = this.trans_id;
+				if(bank=="" || bank_id=="" || trans_id==""){
+					$('#Penalty').css('display','block');
+				} else {
+					$('#Penalty').before("<li class='bankcard'><b class='bank'></b><a><p><span>"+ bank_id +"</span><span class='co999'>"+ bank +"<input class='hidinput' name='' type='hidden' value=''></span></p></a><i></i></li>");
+					$('.hidinput').val(bank);
+					var pinyin = $.trim($('.hidinput').toPinyin()).replace(/\s/g,'_');
+					$('.bank').eq(k).addClass(pinyin);
+					$('#Penalty').css('display','none');
+				}
+			})
+		}
+	})
+	
+})
+
+</script>
+</body>
+</html>

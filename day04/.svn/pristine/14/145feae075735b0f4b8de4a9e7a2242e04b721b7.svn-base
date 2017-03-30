@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>征信-银行流水</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/NEW/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="content contpad">
+    <div class="credit">
+        <div class="credit_tab">
+            <ul>
+                <li class="active">征信详单</li>
+                <li>银行流水</li>
+            </ul>
+        </div>
+        <form id="uploadForm" action="http://www.baidu.com/test.aspx" method="post" enctype="multipart/form-data">
+            <div class="crenr jqtab">
+                <div class="upfile">
+                    <input id="uploadImage" name="myPhoto" type="file" accept="image/*" onchange="loadImageFile();" >
+                    <p>上传征信报告</p>
+                    <i><img src="../../images/NEW/auth07.png"></i> <b><img id="uploadPreview" src=""></b> </div>
+                <p class="btn">
+                    <input name="" type="button" disabled='disabled' value="下一步" >
+                </p>
+                <div class="crenr_cont">
+                    <div class="tt">信用报告是指近一个月内打印的个人信用报告。</div>
+                    <p>1.可带上身份证至当地中国人民银行办理。</p>
+                    <p>2.登录 <a href="https://ipcrs.pbccrc.org.cn">https://ipcrs.pbccrc.org.cn</a> 获取。</p>
+                    <p>3.你也可以选择自动获取信用报告将优先进行审核。</p>
+                    <div class="tt">个人信用报告示例</div>
+                    <i><img src="../../images/NEW/auth08.jpg"></i> </div>
+            </div>
+        </form>
+        <div class="bankbill jqtab bfff" style="display:none;">
+            <p class="tt">大众版网银</p>
+            <div class="intbank">
+                <ul>
+                    <li><b>网银帐号</b>
+                        <input name="" type="text" placeholder="请输入网银账号">
+                    </li>
+                    <li ><b>密码</b>
+                        <input name="" type="text" placeholder="请输入相应的登陆密码">
+                    </li>
+                    <!--<li class="bbomnone"><b>密码</b><input name="" type="text" placeholder="请输入相应的登陆密码"></li>-->
+                </ul>
+            </div>
+            <p class="tt">银行流水截图</p>
+            <div class="bankfile">
+                <p class="bt">注：至少上传六个月流水</p>
+                <ul>
+                    <li class="upflpic"><img src="../../images/NEW/404.png"><i></i></li>
+                    <li class="upflpic"><img src="../../images/NEW/404.png"><i></i></li>
+                    <li class="upflpic"><img src="../../images/NEW/404.png"><i></i></li>
+                    <li class="upflpic"><img src="../../images/NEW/404.png"><i></i></li>
+                    <li class="upflpic"><img src="../../images/NEW/404.png"><i></i></li>
+                    <li class="upflpic"><img src="../../images/NEW/404.png"><i></i></li>
+                    <li class="uppic">
+                        <input name="" type="file" accept="image/*">
+                        <img src="../../images/NEW/rz_06.png"> </li>
+                </ul>
+            </div>
+            <p class="btn">
+                <input name="" type="button" disabled='disabled' value="下一步" >
+            </p>
+            <p class="tt">个人银行流水示例</p>
+            <div class="bill_img">
+                <p class="wzwz">注：你可以选择提供账号密码给我们，也可以选择自己上传流水；我们不会泄露你的任何信息！</p>
+                <p class="img"><img src="../../images/NEW/auth09.jpg"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../js/NEW/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function (){
+	$('.credit_tab ul li').each(function(i) {
+        $(this).click(function (){
+			$('.credit_tab ul li').removeClass('active');
+			$(this).addClass('active');
+			$('.jqtab').css('display','none');
+			$('.jqtab').eq(i).css('display','block');
+		})
+    });
+})
+
+	oFReader = new FileReader();
+	
+	oFReader.onload = function (oFREvent) {
+	  document.getElementById("uploadPreview").src = oFREvent.target.result;
+	  
+	};
+	
+	function loadImageFile() {
+		if (document.getElementById("uploadImage").files.length === 0) {
+			return;
+		}
+		var oFile = document.getElementById("uploadImage").files[0];
+		oFReader.readAsDataURL(oFile);
+	}
+</script>
+</body>
+</html>

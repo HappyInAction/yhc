@@ -1,0 +1,337 @@
+@charset "utf-8";
+/* CSS Document */
+body, div, p, h1, h2, h3, h4, ul, li, ol, span, i, em, dl, dt, dd, input, form, section, header, footer, button {
+	padding: 0;
+	margin: 0
+}
+img {
+	max-width: 100%;
+}
+ul, li {
+	list-style: none;
+}
+a {
+	color: #333;
+	text-decoration: none;
+}
+body {
+}
+.f5 {
+    background: #f5f5f5;
+}
+.content {
+    width: 20rem;
+    height: auto;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.problem_bg {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    width: 20rem;
+    height: 100%;
+    margin-left: -10rem;
+    background: url(../../images/KaNiu/problem01.jpg) no-repeat;
+    background-size: 100% 100%;
+    z-index: -1;
+}
+.problem_nr {
+    position: relative;
+    width: 20rem;
+    height: auto;
+    overflow: hidden;
+}
+.file_cont {
+    width: 100%;
+    height: auto;
+    font-size: 0.85rem;
+    overflow: hidden;
+    padding-bottom: 8rem;
+}
+.pronr {
+    width: 100%;
+    height: auto;
+    font-size: 0.8rem;
+    color: #fff;
+    overflow: hidden;
+}
+.file_cont ul li.cont_li {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 2.67rem;
+    line-height: 2.67rem;
+    font-size: 0.85rem;
+}
+.file_cont ul li .file_tab {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+.file_tab b.proli_pic {
+    background: url(../../images/KaNiu/problem02.png) center no-repeat;
+    background-size: 0.8rem 0.8rem;
+}
+.file_tab b {
+    display: block;
+    float: left;
+    width: 2.66rem;
+    height: 2.67rem;
+}
+.pronr ul li a {
+    color: #fff;
+}
+.file_tab a {
+    float: left;
+    display: block;
+    width: 17.34rem;
+    height: 2.67rem;
+    border-top: 1px #d9adb0 solid;
+    cursor: pointer;
+}
+.file_tab .zixun {
+    display: block;
+    float: left;
+    width: 2.66rem;
+    height: 2.67rem;
+    background: url(../../images/KaNiu/problem03.png) center 0.45rem no-repeat;
+    background-size: 0.8rem 0.8rem;
+    margin-top: 0.8rem;
+}
+a {
+    color: #333;
+    text-decoration: none;
+}
+.file_tab i {
+    position: absolute;
+    top: 0.922rem;
+    right: 0.827rem;
+    display: block;
+    width: 0.83rem;
+    height: 0.48rem;
+    background: url(../../images/KaNiu/file_bom2.png) center no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+    transition: transform linear .3s;
+    -webkit-transition: transform linear .3s;
+}
+.pronr ul li {
+    width: 100%;
+    height: auto;
+    color: #fff;
+    overflow: hidden;
+}
+.tab_li {
+    max-height: 0;
+    overflow: hidden;
+    transition: all ease-in-out .7s;
+    -webkit-transition: all ease-in-out .7s;
+}
+.proli_nr {
+    width: 20rem;
+    max-height: 0;
+    overflow: hidden;
+}
+.proli_nr b {
+    display: block;
+    float: left;
+    width: 2.66rem;
+    height: 2.67rem;
+    background: url(../../images/KaNiu/problem03.png) center 0.45rem no-repeat;
+    background-size: 0.8rem 0.8rem;
+}
+.proli_nr .pronr_wzwz {
+    float: right;
+    width: 16.5rem;
+    height: auto;
+    line-height: 1rem;
+    border-top: 1px #d9adb0 solid;
+    padding: 0.3rem 0.84rem 0.3rem 0;
+    font-size: 0.64rem;
+    overflow: hidden;
+}
+.heimodal {
+    position: fixed;
+    bottom: 0;
+    width: 20rem;
+    height: auto;
+    overflow: hidden;
+}
+.heibg {
+    position: relative;
+    width: 100%;
+    height: 2.66rem;
+    background: url(../../images/KaNiu/problem04.png) repeat-x;
+}
+.pointer {
+    cursor: pointer;
+}
+.heibg i.hei {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../../images/KaNiu/problem11.png) center no-repeat;
+    background-size: 1.04rem 0.56rem;
+}
+.heimod_nr {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    background: #fff;
+}
+.heimod_nr ul li.widli02 img{
+	width:2rem;
+	height:2rem;
+	margin:0.0rem auto 0 auto;	
+}
+.heimod_nr ul li.widli02 span{
+	display:block;
+}
+.heimod_nr ul li.widli01 {
+    width: 50%;
+    height: 3.46rem;
+    line-height: 3.46rem;
+    font-size: 0.65rem;
+    margin-right: -1px;
+    border-right: 1px #ddd solid;
+    border-bottom: 1px #ddd solid;
+}
+.heimod_nr ul li {
+    float: left;
+    font-size: 0.43rem;
+    color: #1a1a1a;
+    text-align: center;
+}
+.widli01 img {
+    float: left;
+    width: 1.92rem;
+    height: 1.92rem;
+    margin: 0.77rem 0.5rem 0 1.8rem;
+}
+.widli01 span {
+    float: left;
+}
+.brtnone {
+    border-right: none !important;
+}
+.heimod_nr ul li.widli02 {
+    width: 33.333%;
+    line-height: 0.7rem;
+    margin-right: -1px;
+    border: 1px #ddd solid;
+    border-left: none;
+}
+.heimod_nr ul li a {
+    display: block;
+	margin:0.5rem 0rem;
+}
+.heimod_nr ul li.widli03 {
+    width: 100%;
+    height: 1.44rem;
+    line-height: 1.44rem;
+}
+.widli03 img {
+    float: left;
+    width: 0.8266rem;
+    height: 0.8266rem;
+    margin: 0.3067rem 0.5rem 0 7.2rem;
+}
+.widli03 p {
+    float: left;
+}
+.shormod_nr {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    background: #fff;
+    padding-bottom: 0.3rem;
+}
+.shormod_nr ul li {
+    float: left;
+    width: 24.5%;
+    line-height: 0.8rem;
+    font-size: 0.64rem;
+    color: #1a1a1a;
+    text-align: center;
+}
+.shormod_nr ul li img {
+    width: 1.92rem;
+    height: 1.92rem;
+    margin: 0.9rem 0 0.3rem 0;
+}
+.heibg i.shor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../../images/KaNiu/problem12.png) center no-repeat;
+    background-size: 1.04rem 0.56rem;
+}
+.lineheight {
+    line-height: 1rem;
+    padding-top: 0.8rem;
+}
+.cjwt_width{ width:15.5rem;}
+.cjwt_mybill {
+    width: 20rem;
+    height: auto;
+    overflow: hidden;
+    margin: 0 auto;
+	background-color:#f64349;
+}
+.cjwt_mybill .cjwt_mybill_tab {
+    width: 18.4rem;
+    height: 2.08rem;
+    line-height: 2.1rem;
+    text-align: center;
+    margin: 0.83rem auto 0.56rem auto;
+    background: #f64349;
+    border: 0.06rem #fff solid;
+    border-radius: 0.2rem;
+    overflow: hidden;
+}
+.cjwt_mybill_tab ul li {
+    float: left;
+    width: 9.17rem;
+    color: #fff;
+    background: #f64349;
+    font-size: 0.8rem;
+    margin-right: 0.06rem;
+    cursor: pointer;
+}
+.file_cont .file_tt {
+    height: 1.87rem;
+    line-height: 1.87rem;
+    font-size: 0.8rem;
+    margin-left: 0.8rem;
+	margin-top:-1px;
+	overflow:hidden;
+}
+.pro_ptt {
+    position: relative;
+    padding-left: 0.8rem;
+    margin-left: 0 !important;
+}
+.pro_ptt span {
+    position: absolute;
+    left: 0.8rem;
+}
+.pro_ptt i {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    opacity: 0.2;
+    filter: alpha(opacity=20);
+	overflow:hidden;
+	margin-top:-1px;
+}
+.cjwt_mybill_tab ul li.active{ color:#f64349; background:#f5f5f5;}
+.bbomnone{ border-bottom:none !important;}
+.btopnone{ border-top:none !important;}

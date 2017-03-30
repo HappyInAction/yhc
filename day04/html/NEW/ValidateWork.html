@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>工作信息</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/NEW/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="content contpad">
+    <div class="workinfor intbank">
+        <ul>
+            <li><b>从事行业</b>
+                <input id="Industry" name="" type="text" placeholder="请如实填写">
+            </li>
+            <li><b>工作岗位</b>
+                <input id="Station" name="" type="text" placeholder="请如实填写">
+            </li>
+            <li><b>单位名称</b>
+                <input id="Companyname" name="" type="text" placeholder="请如实填写">
+            </li>
+            <li><b>单位所在地</b>
+                <input id="Companyaddr" name="" type="text" placeholder="请如实填写">
+            </li>
+            <li class=""><b>单位电话</b>
+                <input id="Companytel" name="" type="text" placeholder="如:0755-88888888">
+            </li>
+        </ul>
+        <div class="students_bom">
+            <p class="tt">工作证明截图</p>
+            <p class="upwzwz">注：名片/工牌/劳动合同任选其一即可。</p>
+
+            <div class="upfile">
+                <a id="inputa" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;z-index: 99;opacity: 0;filter: alpha(opacity=0);"></a>
+                <p>上传照片</p>
+                <i><img id="showImg" src="../../images/NEW/auth07.png"></i></div>
+            <div class="lfpic fl"><img src="../../images/NEW/mp.jpg"><br>
+                名片</div>
+            <div class="fl"><img src="../../images/NEW/gp.jpg"><br>
+                工牌</div>
+            <div class="fl"><img src="../../images/NEW/ld.jpg"><br>
+                劳动合同</div>
+        </div>
+    </div>
+    <div class="both bank_bom">
+        <p class="tips"><img src="../../images/NEW/input_01.png"><span>您所填写的信息必须为真实信息，有利于提升分期额度。</span></p>
+        <p>
+            <input id="subpeo" name="" class="pass" type="button" value="下一步"  onClick="butSubmit()" >
+        </p>
+    </div>
+</div>
+
+<!--手机认证提示02-->
+<div id="remind02" class="modal01" style="display:none;">
+    <div class="modal_bg"></div>
+    <div class="modal02_nr">
+        <p class="modtwo_tp"><img src="../../images/NEW/modal01.png"><span>分期X温馨提示</span></p>
+        <p class="motwo_wz"></p>
+        <p class="motwo_wz404"></p>
+        <p class="motwo_annv" onclick="javascript: $('#remind02').css({ 'display': 'none' });">确定</p>
+    </div>
+</div>
+
+<script src="../../js/NEW/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+<script src="../../js/NEW/chkHelper.js" type="text/javascript"></script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+<script src="../../js/NEW/WeiXin.js" type="text/javascript"></script>
+<script src="../../js/NEW/ValidateWork.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function (){
+
+    WXOnLoad();
+
+    showMsg();
+
+    showImg();
+
+    $("input[type=text]").on("focusout", function () {
+        if ($(this).attr("id") == "Companytel" && !chk_tel($(this).val())) {
+            $(this).css("color", "red");
+            $(this).val("请输入正确的电话号码");
+        } else if ($(this).val() == "") {
+            $(this).css("color", "red");
+            $(this).val("请输入" + $(this).parent().find("b").html());
+        }
+    });
+
+    $("input[type=text]").on("focusin", function () {
+        if($(this).val().indexOf("请输入") > -1){
+            $(this).val("");
+        }
+        $(this).css("color", "black");
+    });
+
+    //错误弹窗
+    var errcode = "{$:errcode jsencode=”true”}";
+    var errmsg = "{$:errmsg jsencode=”true”}";
+    if(errmsg.indexOf("jsencode") <= -1){
+        if (errcode || errmsg) {
+            errShow({ "errmsg": errmsg, "errcode": errcode });
+        }
+    }
+
+});
+
+
+</script>
+</body>
+</html>

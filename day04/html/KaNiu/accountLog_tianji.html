@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>账单录入</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/kaniu/style.css" rel="stylesheet" type="text/css" >
+<link href="../../css/kaniu/tianji.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+<div class="content fam_yh">
+	<div class="header">
+		<i class="back_to"><img src="../../images/KaNiu/back_icon.png" width="100%" height="100%"></i>
+		<span>账单导入</span>
+	</div>
+	<div class="contents">
+	  <p class="search_icon icon"></p>
+	  <p class="search_words">正在搜索账单...</p>
+	  <p class="search_result">已在最近12个月中，搜索到<span class="search_num ">0</span>封账单</p>
+	  <a class="search_over" href="#">导入完成</a>
+	</div>
+</div>
+<!--弹窗提示-->
+<div class="modal01" style="display:none;">
+    <div class="modal_bg"></div>
+    <div class="modal02_nr">
+        <p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>分期X温馨提示</span></p>
+        <p class="motwo_wz" id="errmsg"></p>
+        <p class="motwo_annv" onClick="$('.modal01').css('display','none');">确定</p>
+    </div>
+</div>
+<script src="../../js/KaNiu/jquery-1.10.2.7.min.js" type="text/javascript"></script> 
+<script type="text/javascript">
+    $(function () {
+        $.ajax({
+            url: "/InterFace/ValidateEmail_TJ.ashx",//"http://localhost/test/ValidateC1.php",
+            type: "post",
+            data: {
+                Type: "getData"                 
+            },
+            success: function(msg){
+            	if(msg.empty)
+            	{
+            		$(".modal01").css("display","block");
+            		$("#errmsg").text(msg.empty);
+            		$(".contents p.search_icon").addClass("icon_ing").removeClass("icon");
+					$(".contents .search_btn").css({"background-color":"#ccc"});
+            	}
+            	if(msg.msg && msg.msg==="success")
+            	{
+            		$(".contents p.search_icon").addClass("icon").removeClass("icon_ing");
+					$(".contents .search_btn").css({"background-color":"#f64349"});	
+                    $(".search_words").text("账单搜索完成");
+					$(".search_num").text("3");
+            	}
+            },
+            error: function(){
+            	$(".modal01").css("display","block");
+            	$("#errmsg").text("errcode:900");
+            }
+        });
+    });
+</script>
+</body>
+</html>

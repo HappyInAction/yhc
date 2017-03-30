@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>邮箱+紧急联系人验证</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+
+<link href="../../css/KaNiu/style.css" rel="stylesheet" type="text/css">
+<link href="../../css/KaNiu/record.css" rel="stylesheet" type="text/css">
+<link href="../../css/KaNiu/gennal.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="f5">
+<div class="content">
+    <div class="contab tab_contacts">
+    	<!-- <div class="contacts"><p>紧急联系人认证</p></div> -->
+        <div class="contacts_nr">
+            <div class="yz_jjperson yz_mtnone">
+                <ul>
+                    <li>
+	                    <select name="" id="Select01">
+	                    	<option value="父母">父母</option>
+	                    	<option value="配偶">配偶</option>
+	                    </select>
+                    	<i></i><input id="name01" name="" type="text" placeholder="请输入姓名">
+                    </li>
+                    <li class="bbomnone">
+                    	<b>手机号码</b><input id="tel01" name="" type="text" placeholder="请输入手机号码">
+                    </li>    
+                </ul>
+            </div>
+            <div class="yz_jjperson">
+                <ul>
+                    <li><select name="" id="Select02"><option value="男女朋友">男女朋友</option><option value="朋友">朋友</option></select><i></i><input id="name02" name="" type="text" placeholder="请输入姓名"></li>
+                    <li class="bbomnone"><b>手机号码</b><input id="tel02" name="" type="text" placeholder="请输入手机号码"></li>    
+                </ul>
+            </div>
+            <div class="yz_jjperson">
+                <ul>
+                    <li><select name="" id="Select03"><option value="同学">同学</option><option value="同事">同事</option></select><i></i><input id="name03" name="" type="text" placeholder="请输入姓名"></li>
+                    <li class="bbomnone"><b>手机号码</b><input id="tel03" name="" type="text" placeholder="请输入手机号码"></li>    
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="both bank_bom">
+        <p><input id="rzbtn" name="" class="" disabled="disabled" type="button" value="下一步" ></p>
+    </div>
+    <div class="footer foor_ab" style="display:none;">
+        <div class="foottp"><i></i><p class="base_footerf5"><img src="../../images/KaNiu/appli03.png"></p></div>
+        <div class="footbom"><p class="fl"><a href="tel://4008272232">400-8272-232<span>(9:00-19:00)</span></a></p><p class="fr"><a href="">关于我们</a><a class="brtnone" href="">常见问题</a></p></div>
+    </div>
+</div>
+
+<!--弹窗提示-->
+<div class="modal01" style="display:none;">
+	<div class="modal_bg"></div>
+    <div class="modal02_nr">
+    	<p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>分期X温馨提示</span></p>
+        <p class="motwo_wz" id="errmsg"></p>
+        <p class="motwo_annv" onClick="$('.modal01').css('display','none');">确定</p>
+    </div>
+</div>
+
+<script src="../../js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function(){
+	var email = "aseffs@sdfe.com"/*"{$:email jsencode=”true”}"*/,
+		role01 = "配偶"/*"{$:role01 jsencode=”true”}"*/,
+		role02 = "朋友"/*"{$:role02 jsencode=”true”}"*/,
+		role03 = "同事"/*"{$:role03 jsencode=”true”}"*/,
+		name01 = "花样百出"/*"{$:name01 jsencode=”true”}"*/,
+		name02 = "草木灰"/*"{$:name02 jsencode=”true”}"*/,
+		name03 = "士大夫"/*"{$:name03 jsencode=”true”}"*/,
+		phone01 = "13547854785"/*"{$:phone01 jsencode=”true”}"*/,
+		phone02 = "13785412541"/*"{$:phone02 jsencode=”true”}"*/,
+		phone03 = "13941254125"/*"{$:phone03 jsencode=”true”}"*/,
+		emlhei = "2.66rem";//"8.266rem";
+		conhei = "16.8rem";
+	if (email) {
+		$('#hidinput').val('1');
+		$('.rzyzm,.rz_tips').remove();
+		$('.emailspan').html(email);
+		$('#btnemail').val("已认证");
+		$('#btnemail').attr('disabled','true');
+		emlhei = '2.66rem';
+		$('.email_nr').css('height',emlhei);
+	}
+	if (role01) {
+		$('#Select01').val(role01);
+	}
+	if (role02) {
+		$('#Select02').val(role02);
+	}
+	if (role03) {
+		$('#Select03').val(role03);
+	}
+	chasele();
+	function chasele (){
+		if (name01) {
+			$('#name01').val(name01);
+		}
+		if (name02) {
+			$('#name02').val(name02);
+		}
+		if (name03) {
+			$('#name03').val(name03);
+		}
+		if (phone01) {
+			$('#tel01').val(phone01);
+		}
+		if (phone02) {
+			$('#tel02').val(phone02);
+		}
+		if (phone03) {
+			$('#tel03').val(phone03);
+		}
+		if( IsGB($("#name01").val()) && IsGB($("#name02").val()) && IsGB($("#name03").val()) && IsPhone($("#tel01").val()) && IsPhone($("#tel02").val()) && IsPhone($("#tel03").val()) ){
+			$("#rzbtn").attr("class","pass");
+			$("#rzbtn").removeAttr("disabled");
+		} else {
+			$("#rzbtn").attr({"disabled":"", "class":""});
+		}
+
+	}
+	//select
+	$("#Select01").change(function (){
+		if($(this).val()!=role01){
+			$("#name01,#tel01").attr("style", "color:black");
+			$("#name01").val("");
+			$("#tel01").val("");
+		} else {
+			chasele()
+			$("#name01,#tel01").attr("style", "color:black");
+		}
+	})
+	$("#Select02").change(function (){
+		if($(this).val()!=role02){
+			$("#name02,#tel02").attr("style", "color:black");
+			$("#name02").val("");
+			$("#tel02").val("");
+		} else {
+			chasele()
+			$("#name02,#tel02").attr("style", "color:black");
+		}
+	})
+	$("#Select03").change(function (){
+		if($(this).val()!=role03){
+			$("#name03,#tel03").attr("style", "color:black");
+			$("#name03").val("");
+			$("#tel03").val("");
+		} else {
+			chasele()
+			$("#name03,#tel03").attr("style", "color:black");
+		}
+	})
+
+	//click
+	/*$(".email p").click(function(){
+		$('.email_nr').css('transition','height ease-in-out 1s');
+		if($('.email_nr').height()==0){
+			$('.email_nr').css({'height':emlhei, 'border-top':'1px #ddd solid'});
+			$('.email p').css({'background':'url(../../images/KaNiu/arror-r2.png) right center no-repeat','background-size':'0.666rem 0.5rem'});
+			$('.contacts_nr').css({'height':'0', 'border-top':'none'});
+		} else {
+			$('.email_nr').css({'height':'0', 'border-top':'none'});
+			$('.email p').css({'background':'url(../../images/KaNiu/arror-r1.png) right center no-repeat','background-size':'0.666rem 0.5rem'});
+		}
+	});
+	$(".contacts p").click(function(){
+		$('.contacts_nr').css('transition','height ease-in-out 1s');
+		if($('.contacts_nr').height()==0){
+			$('.contacts_nr').css({'height':conhei, 'border-top':'1px #ddd solid'});
+			$('.contacts p').css({'background':'url(../../images/KaNiu/arror-r2.png) right center no-repeat','background-size':'0.666rem 0.5rem'});
+			$('.email_nr').css({'height':'0', 'border-top':'none'});
+		} else {
+			$('.contacts_nr').css({'height':'0', 'border-top':'none'});
+			$('.contacts p').css({'background':'url(../../images/KaNiu/arror-r1.png) right center no-repeat','background-size':'0.666rem 0.5rem'});
+		}
+	});*/
+	$('.contacts_nr').css({'height':conhei, 'border-top':'1px #ddd solid'});
+	//
+	$("input").focusin(function () {
+		if ($(this).val().indexOf("请输入") > -1) {
+			$(this).attr("style", "color:black");
+			$(this).val("");
+		}
+	});
+	$("#yzm").focusout(function () {
+		if ($(this).val() == "" || !Number($(this).val())) {
+			$(this).val("请输入验证码");
+			$(this).attr("style", "color:red");
+		}
+	});
+	$("#name01,#name02,#name03").focusout(function () {
+		if ($(this).val() == "" || !IsGB($(this).val())) {
+			$(this).val("请输入姓名");
+			$(this).attr("style", "color:red");
+		}
+	});
+	$("#tel01,#tel02,#tel03").focusout(function () {
+		if ($(this).val() == "" || !IsPhone($(this).val())) {
+			$(this).val("请输入手机号码");
+			$(this).attr("style", "color:red");
+		}
+	});
+	$("input[type=text]").bind('input propertychange',function (){
+		if( IsGB($("#name01").val()) && IsGB($("#name02").val()) && IsGB($("#name03").val()) && IsPhone($("#tel01").val()) && IsPhone($("#tel02").val()) && IsPhone($("#tel03").val()) ){
+			$("#rzbtn").attr("class","pass");
+			$("#rzbtn").removeAttr("disabled");
+		} else {
+			$("#rzbtn").attr({"disabled":"", "class":""});
+		}
+	})
+	
+})
+
+//yzm
+var wait = 60;	
+function time(o) {
+	if (wait == 0) {
+		o.removeAttribute("disabled");
+		o.value = "发送邮件";
+		wait = 60;
+		o.style.fontSize="0.8rem";
+		o.style.background="#f64349";
+	} else {
+		o.setAttribute("disabled", true);
+		o.value = wait + "秒后重新发送";
+		o.style.fontSize="0.6rem";
+		o.style.background="#ccc";
+		wait--;
+		setTimeout(function() {
+			time(o)
+		},
+		1000)
+	}
+}
+document.getElementById("btnemail").onclick = function() {
+	time(this);
+}
+
+function IsGB(obj) {
+    Reg = /^[\u4e00-\u9fa5]+$/;
+    if (Reg.test(obj)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+function IsPhone(obj) {
+    Reg11 = /^1\d{10}$/;
+    Reg10_12 = /^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$/;
+    if (obj.substr(0, 1).indexOf("0") > -1) {
+        if (Reg10_12.test(obj)) {
+            return true;
+        } else {
+            return false;
+        }
+    } else if (obj.substr(0, 1).indexOf("1") > -1) {
+        if (Reg11.test(obj)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    else {
+        return false;
+    }
+}
+</script>
+</body>
+</html>

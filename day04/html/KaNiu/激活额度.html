@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>激活额度</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/KaNiu/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="fff">
+<div class="content">
+    <div class="appli_tp">
+        <div class="apptp_pic">
+            <ul>
+                <li class="apptp_mt">最高贷款额度为</li>
+                <li class="wzwz"><span class="apptp_mb" id="num">5000</span>元</li>
+                <li class="apptp_mt">最长期限为</li>
+                <li class="wzwz pi"><span class="months">{$:Months htmlencode="true"}</span>期</li>
+            </ul>
+        </div>
+    </div>
+    <form name="sqmoney" action="/test.txt">
+        <div class="appli_bom jhed both">
+            <ul>
+                <li><b>申请金额</b>
+                    <input name="money" id="Number" name="Number" type="number" placeholder="请填写申请金额">
+                </li>
+                <li><b>还款期数</b>
+                    <select name="periods" id="Select">
+                        <!--
+                        {$:Months htmlencode="true"}
+                        <option value="0">请选择还款期数</option>
+                        <option value="3">3期</option>
+                        <option value="6">6期</option>
+                        <option value="9">9期</option>
+                        <option value="12">12期</option>-->
+                    </select>
+                    <i></i>
+                </li>
+            </ul>
+        </div>
+        <div class="both bank_bom"> 
+            <p>
+                <!-- <input class="hide_radio" type="text" name="repay_channle" value="0" style="display:none;"> -->
+                <input id="Submit" name="" type="submit" value="激活额度" disabled >
+            </p>
+        </div>
+    </form>
+    <div class="footer">
+        <div class="foottp"><i></i>
+            <p><img src="../../images/KaNiu/appli03.png"></p>
+        </div>
+        <div class="footbom">
+            <p class="fl"><a>联系客服：<span onClick="document.getElementById('guided_mod').style.display='block'">请点击</span></a></p>
+            <p class="fr"><a href="">关于我们</a><a class="brtnone" href="">常见问题</a></p>
+        </div>
+    </div>
+</div>
+<!--弹窗提示-->
+<div class="modal03" style="display:none;">
+    <div class="modal_bg"></div>
+    <div class="modal02_nr">
+        <p class="modtwo_tp"><img src="/InterFace/images/KaNiu/modal01.png"><span>分期X温馨提示</span></p>
+        <p class="motwo_wz hmoney" id="errmsg"></p>
+        <p class="motwo_wz404" id="errcode"></p>
+        <p class="motwo_annv" onclick="$('.modal03').css('display','none');">确定</p>
+    </div>
+</div>
+<!--客服引导mod-->
+<div id="guided_mod" class="guided_mod" style="display:none;"> <i class="guimodal_bg" onClick="document.getElementById('guided_mod').style.display='none'"></i>
+    <div class="guimod">
+        <div class="posrela">
+            <div class="kfyd_box">
+                <div class="index02"><img src="../../images/KaNiu/rg_01.png"></div>
+                <div class="ttu"><span class="nuc">1</span>进入分期X微信公众号，直接输入“客服”即可咨询。</div>
+                <div class="kfyd_img"><img src="../../images/KaNiu/rg_03.jpg"></div>
+                <div class="ttu"><span class="nuc">2</span>咨询人工刻度可点击公众号右上角标识进入公众号简介，点击“客服人员”即可。</div>
+                <div class="kfyd_img mb20"><img src="../../images/KaNiu/rg_05.png"></div>
+            </div>
+            <div class="guimod_bom"><a class="over" onClick="document.getElementById('guided_mod').style.display='none'">关闭</a></div>
+        </div>
+    </div>
+</div>
+<script src="../../js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+            var minMoney = 500;
+            var Months = $(".months").html();
+            //if (Months == "1") {
+            //    $("#Select").append('<option value="0">请选择还款期数</option><option value="2">2周</option>');
+            //} else if (Months == "12") {
+            //    $("#Select").append(
+            //        '<option value="0">请选择还款期数</option>' +
+            //        '<option value="3">3期</option>' +
+            //        '<option value="6">6期</option>'
+            //    );
+            //}
+            switch (Months) {
+                case "1":
+                    var level = "{$:level jsencode=“true”}";
+                    if (parseInt(level) > 0) {
+                        $("#Select").append(
+                            '<option value="0">请选择还款期数</option>' +
+                            '<option value="4">4周</option>'
+                        ).val(4);
+                        $(".pi").text("4周");
+                    }
+                    else {
+                        $("#Select").append(
+                            '<option value="0">请选择还款期数</option>' +
+                            '<option value="2">2周</option>'
+                        ).val(2);
+                        $(".pi").text("2周");
+                    }
+                    break;
+                case "2":
+                    $("#Select").append(
+                        '<option value="0">请选择还款期数</option>' +
+                        '<option value="2">2期</option>'
+                    ).val(2);
+                    break;
+                case "3":
+                    $("#Select").append(
+                        '<option value="0">请选择还款期数</option>' +
+                        '<option value="3">3期</option>'
+                    ).val(3);
+                    break;
+                case "6":
+                    $("#Select").append(
+                        '<option value="0">请选择还款期数</option>' +
+                        '<option value="2">2期</option>' +
+                        '<option value="3">3期</option>' +
+                        '<option value="6">6期</option>'
+                    ).val(6);
+                    break;
+                case "9":
+                    $("#Select").append(
+                        '<option value="0">请选择还款期数</option>' +
+                        '<option value="2">2期</option>' +
+                        '<option value="3">3期</option>' +
+                        '<option value="6">6期</option>' +
+                        '<option value="9">9期</option>'
+                    ).val(9);
+                    break;
+                default:
+                    $("#Select").append(
+                        '<option value="0">请选择还款期数</option>' +
+                        '<option value="2">2期</option>' +
+                        '<option value="3">3期</option>' +
+                        '<option value="6">6期</option>' +
+                        '<option value="9">9期</option>' +
+                        '<option value="12">12期</option>'
+                    ).val(12);
+            }
+
+
+            $("#Number").attr("placeholder", "申请金额最低" + minMoney);
+
+            var sessionid = '{$:sessionid jsencode="true"}';
+            if (sessionid.length > 0) {
+                tondunjs(sessionid);
+            }
+
+            //弹窗
+            var errcode = "{$:errcode jsencode=”true”}";
+            var errmsg = "{$:errmsg jsencode=”true”}";
+            if (/^\d+$/.test(errcode)) {
+                if (errcode || errmsg) {
+                    $("#errmsg").html(errmsg);
+                    if (errcode) {
+                        $("#errcode").html("错误码:" + errcode);
+                    }
+                    $(".modal03").css("display", "block");
+                }
+            }
+
+            $("input").focusin(function () {
+                if ($(this).val().indexOf("请填写") > -1 || $(this).val().indexOf("申请金额") > -1) {
+                    $(this).attr("style", "color:black");
+                    $(this).val("");
+                }
+            });
+
+            $("#Number").focusout(function () {
+                if ($(this).val() < minMoney) {
+                    $(".hmoney").html("最低申请金额不能低于" + minMoney + "元");
+                    $("#errcode").html("");
+                    $(".modal03").css("display", "block");
+                    $(this).val("申请金额最低" + minMoney);
+                    $(this).attr("style", "color:red");
+                }
+            });
+
+            $("#Number").bind('input propertychange', function () {
+                if ($(this).val() == "" || !IsNumber($(this).val())) {
+                    $(this).val("申请金额最低" + minMoney);
+                    $(this).attr("style", "color:red");
+                } else if ($(this).val() > parseInt($(".apptp_mb").html())) {
+                    $(".hmoney").html("最高申请金额不能大于最高贷款额度");
+                    $("#errcode").html("");
+                    $(".modal03").css("display", "block");
+                    $(this).val("申请金额最低" + minMoney);
+                    $(this).attr("style", "color:red");
+                }
+            });
+            $("#Select").bind("focusout change", function () {
+                if ($(this).val() == "0") {
+                    $(this).attr("style", "color:red");
+                } else {
+                    $(this).attr("style", "color:black");
+                }
+            });
+            $("#Number").bind('input propertychange', function () {
+                onsele()
+            })
+            $("#Select").bind('change', function () {
+                onsele()
+            })
+            $("#Submit").on("click", function () {
+                $(".modal04").css("display", "block");
+            });
+            function onsele() {
+                if (IsNumber($("#Number").val()) && $("#Select").val() > 0) {
+                    $("#Submit").attr("class", "pass");
+                    $("#Submit").removeAttr("disabled");
+                } else {
+                    $("#Submit").attr({ "disabled": "", "class": "" });
+                }
+            }
+
+
+        })
+
+        function IsNumber(obj) {
+            Reg = /^\d+$/;
+            if (Reg.test(obj)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+</script>
+</body>
+</html>

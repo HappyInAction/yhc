@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>激活额度订单</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/KaNiu/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="content">
+	<div class="qouta_order_contain">
+		<div class="quota_order">
+			<div class="quota_order_content">
+				<div class="quota_order_content_top">
+					<i class="quota_order_content_icon"></i>
+					<p class="quota_order_content_title">分期X根据您的信用额度确认</p>
+				</div>
+				<div class="quota_order_content_center">
+					<p class="quota_order_content_text">
+						<span class="quota_order_text_left">申请分期金额</span>
+						<span class="quota_order_text_right fenqi_red">{$:loan_money htmlencode="true"}</span>
+					</p>
+					<p class="quota_order_content_text">
+						<span class="quota_order_text_left">分期期数</span>
+						<span class="quota_order_text_right">{$:loan_month htmlencode="true"}</span>
+					</p>
+					<p class="quota_order_content_text border_bottom_cancel">
+						<span class="quota_order_text_left">每期应还金额</span>
+						<span class="quota_order_text_right">￥{$:pay_money htmlencode="true"}</span>
+					</p>
+						<p class="quota_order_text_sub">
+							<span class="quota_order_text_left">每 期 本 金：</span>
+							<span class="quota_order_text_right">{$:left_money htmlencode="true"}</span>
+						</p>
+						<p class="quota_order_text_sub">
+							<span class="quota_order_text_left">每 期 利 息：</span>
+							<span class="quota_order_text_right">{$:interest_money htmlencode="true"}</span>
+						</p>
+						<p class="quota_order_text_sub">
+							<span class="quota_order_text_left">分期手续费：</span>
+							<span class="quota_order_text_right">{$:service_money htmlencode="true"}</span>
+						</p>
+						<p class="quota_order_text_sub">
+							<span class="quota_order_text_left">综合管理费：</span>
+							<span class="quota_order_text_right">{$:administration_money htmlencode="true"}</span>
+						</p>
+				</div>
+				<div class="quota_order_content_buttom clearfix">
+					<p>
+						<span class="fenqi_red">注：</span>
+						<span class="quota_order_content_buttom_tips">1. 申请金额为放款金额<br/>2. 综合管理费=服务费+账户管理费+担保费+融资服务费</span>
+					</p>
+				</div>
+			</div>
+			<div class="quota_order_bg1"></div>
+			<div class="quota_order_bg2"></div>
+			<div class="quota_order_bg3"></div>
+		</div>
+		<div class="clearfix">
+			<p class="modfour_tips quota_order_content_tip ">
+				<i class="modfour_tips_icon"></i>
+				<span class="quota_order_content_tips">提交订单前请仔细核对信息，订单提交成功后，将无法修改。审批通过后系统会自动放款，我们将会以短信的形式通知您。</span>
+			</p>
+		</div>
+		
+		<button class="confirm_button">确认</button>
+	</div>
+</div>
+<!--错误信息弹窗提示-->
+<div class="modal01" style="display:none;">
+    <div class="modal_bg"></div>
+    <div class="modal02_nr">
+        <p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>分期X温馨提示</span></p>
+        <p class="motwo_wz" id="errmsg"></p>
+        <p class="motwo_annv" onClick="$('.modal01').css('display','none');">确定</p>
+    </div>
+</div>
+<!--同意或不同意弹窗-->
+<div class="modal01" style="display:none;">
+    <div class="modal_bg"></div>
+    <div class="modal02_nr">
+        <p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>分期X温馨提示</span></p>
+        <p class="order_confirm_content">
+        	订单确认后将无法修改，不会再次确认。审批通过后，系统自动放款，我们会以短信的形式通知您到账信息
+        </p>
+        <p class="motwo_annv">
+        	<span class="not_agree">不接受</span>
+        	<span class="agree">接受</span>
+        </p>
+    </div>
+</div>
+
+</body>
+<script src="../../js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(function(){
+		$('.confirm_button').on("click",function(){
+			$(".modal01").eq(1).css("display","block");
+		});
+		$(".not_agree").on("click",function(){
+			$.ajax({
+				cache: false,		
+				type: "post",
+				url: "/InterFace/ApplyCenter/CalculationData.ashx", 
+				data:{
+		            "type" : "rejected",
+		            "loanMoney" : "{$:loan_money jsencode=”true”}",
+		            "loanMonth" : "{$:loan_month jsencode=”true”}",
+		            "level" : "{$:level jsencode=”true”}"
+		        },
+				success: function(){
+					location.href = "";
+				},
+				error: function(){
+					alert(2);
+				}
+			});
+			$(".not_agree").css("backgroundColor","#f5f5f5");
+			$(".agree").css("backgroundColor","#fff");
+		});
+		$(".agree").on("click",function(){
+			location.href = "";
+			$(".agree").css("backgroundColor","#f5f5f5");
+			$(".not_agree").css("backgroundColor","#fff");
+		});
+		var errcode = "{$:errcode jsencode=”true”}";
+        var errmsg = "{$:errmsg jsencode=”true”}";
+        if (errcode || errmsg) {
+            $("#errmsg").html(errmsg);
+            if (errcode) {
+                $("#errcode").html("错误码:" + errcode);
+            }
+            $(".modal01").eq(0).css("display", "block");
+        }
+	})
+</script>
+</html>

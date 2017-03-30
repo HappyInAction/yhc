@@ -1,0 +1,588 @@
+@charset "utf-8";
+/* CSS Document */
+.repayjh {
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+	overflow: hidden;
+	padding-top: 1.1rem;
+}
+.repayjh ul li {
+	width: 100%;
+	height: 12.1rem;
+	margin-top: 0.5rem;
+	overflow: hidden;
+}
+.repayjh .repay_lf {
+	position: relative;
+	width: 2rem;
+	height: 12rem;
+	margin-top: 0.18rem;
+}
+.repayjh .repay_lf p {
+	width: 50%;
+	height: 100%;
+	margin-left: -1px;
+	border-right: 1px #ddd solid;
+}
+.repayjh .repay_lf i {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 0.66rem;
+	height: 0.66rem;
+	margin-left: -0.33rem;
+	background: #ddd;
+	border-radius: 50%;
+}
+.record_lf {
+	margin-top: 0.4rem !important;
+}
+.repay_rt {
+	width: 18rem;
+	height: auto;
+	overflow: hidden;
+}
+.repay_rt .repayrt_tt {
+	font-size: 0.9rem;
+	color: #666;
+	margin-bottom: 0.98rem;
+}
+.repay_rt .rert_nr {
+	width: 17.2rem;
+	height: 9.2rem;
+	border: 1px #ddd solid;
+	background: #fff;
+	border-radius: 0.2rem;
+	overflow: hidden;
+}
+.record_tt {
+	width: 18rem;
+	height: 1.6rem;
+	line-height: 1.6rem;
+	margin-bottom: 0.5rem;
+	overflow: hidden;
+}
+.record_tt .repayrt_tt {
+	width: 6.4rem;
+	margin-bottom: 0rem;
+}
+.record_shzt {
+	width: 10rem;
+	height: 100%;
+	font-size: 0.9rem;
+	color: #999;
+	overflow: hidden;
+	margin-right: 0.8rem;
+}
+.record_shzt .wzwz {
+	width: 3.7rem;
+	text-align: right;
+}
+.repayjh ul li {
+	width: 100%;
+	height: 12.1rem;
+	margin-top: 0.5rem;
+	overflow: hidden;
+}
+.repayjh .repay_lf {
+	position: relative;
+	width: 2rem;
+	height: 12rem;
+	margin-top: 0.18rem;
+}
+.fl {
+	float: left;
+}
+.repayjh .repay_lf p {
+	width: 50%;
+	height: 100%;
+	margin-left: -1px;
+	border-right: 1px #ddd solid;
+}
+.fr {
+	float: right;
+}
+.reshzt_pic03 {
+	width: 1.6rem;
+	height: 1.6rem;
+	margin: 0 0 0 0.64rem;
+	background:url(../../images/KaNiu/record01_h.png) center no-repeat;
+	background-size: 100% 100%;
+}
+.reshzt_pic_pass {
+	width: 1.6rem;
+	height: 1.6rem;
+	margin: 0 0 0 0.64rem;
+	background:url(../../images/KaNiu/record05.png) center no-repeat;
+	background-size: 100% 100%;
+}
+.zt_shz {
+	background: url(../../images/KaNiu/record02_shz.png) center no-repeat;
+	background-size: 100% 100%;
+}
+.reshzt_pic02 {
+	width: 1.413rem;
+	height: 1.013rem;
+	margin: 0.29rem 0 0 0.64rem;
+	background: url(../../images/KaNiu/record02.png) center no-repeat;
+	background-size: 100% 100%;
+}
+.reshzt_pic01 {
+	width: 1.6rem;
+	height: 1.6rem;
+	background: url(../../images/KaNiu/record01.png) center no-repeat;
+	background-size: 100% 100%;
+}
+.repay_rt .rert_nr {
+	width: 17.2rem;
+	height: 9.2rem;
+	border: 1px #ddd solid;
+	background: #fff;
+	border-radius: 0.2rem;
+	overflow: hidden;
+}
+.rert_nr .rert_cont {
+	width: 15.6rem;
+	height: 6.4rem;
+	margin: -1px auto 0 auto;
+	border-bottom: 1px #ddd solid;
+}
+.rert_cont .fqlx {
+	width: 4.8rem;
+	height: auto;
+	font-size: 0.9rem;
+	color: #999;
+	text-align: center;
+	overflow: hidden;
+}
+.rert_cont .fqlx p.lxx{ height:1.066rem; overflow:hidden;}
+.fqlx .zf {
+	background: url(../../images/KaNiu/repay_zf.png) center no-repeat;
+	background-size: 100% 100%;
+}
+.fqlx .fqlx_pic {
+	width: 3rem;
+	height: 3rem;
+	margin: 1rem auto 0.4rem auto;
+}
+.rert_cont .fqzlwz {
+	width: 10rem;
+	height: auto;
+	font-size: 0.85rem;
+	margin: 0.65rem 0 0 0.64rem;
+	overflow: hidden;
+}
+.rert_cont .fqzlwz p{ width:100%; height:0.93rem; overflow:hidden;}
+.fqzlwz p {
+	margin-top: 0.64rem;
+}
+.rert_nr .record_bom {
+	width: 15.6rem;
+	height: 2.8rem;
+	line-height: 2.8rem;
+	color: #999;
+	font-size: 0.64rem;
+	margin: 0 auto;
+}
+.record_bom .recbom_wzwz {
+	max-width: 9.2rem;
+	height: 2.8rem;
+	overflow: hidden;
+}
+.recbom_wzwz img {
+	float: left;
+	width: 0.67rem;
+	height: 0.67rem;
+	margin: 1.08rem 0.2rem 0 0;
+}
+/*.recbom_wzwz span {
+	float: left;
+}*/
+.record_bom .recbom_annv {
+	width: 5.6rem;
+	height: 2rem;
+	line-height: 2rem;
+	font-size: 0.8rem;
+	color: #fff;
+	margin-top: 0.4rem;
+	border-radius: 0.2rem;
+	cursor: pointer;
+	background: #f64349;
+}
+.recbom_annv img {
+	float: left;
+	width: 1.04rem;
+	height: 1.04rem;
+	margin: 0.48rem 0.48rem 0 0.48rem;
+}
+.recbom_annv span {
+	float: left;
+}
+.reshzt_pic02 {
+	width: 1.413rem;
+	height: 1.013rem;
+	margin: 0.29rem 0 0 0.64rem;
+	background: url(../../images/KaNiu/record02.png) center no-repeat;
+	background-size: 100% 100%;
+}
+.zt_shz {
+	background: url(../../images/KaNiu/record02_shz.png) center no-repeat;
+	background-size: 100% 100%;
+}
+.reshzt_pic01_h {
+	width: 1.6rem;
+	height: 1.6rem;
+	background: url(../../images/KaNiu/record01_h.png) center no-repeat;
+	background-size: 100% 100%;
+}
+.zt_pass {
+	background: url(../../images/KaNiu/record02_pass.png) center no-repeat;
+	background-size: 100% 100%;
+}
+.zt_over {
+	background: url(../../images/KaNiu/record02_over.png) center no-repeat;
+	background-size: 100% 100%;
+}
+.fqlx .jx {
+	background: url(../../images/KaNiu/repay_jx.png) center no-repeat;
+	background-size: 100% 100%;
+}
+.fqlx .xjd {
+	background: url(../../images/KaNiu/repay_xjd.png) center no-repeat;
+	background-size: 100% 100%;
+}
+/*验证老用户*/
+.add_bank {
+  width: 19.2rem;
+  height: auto;
+  font-size: 0.85rem;
+  padding-left: 0.8rem;
+  background: #fff;
+  overflow: hidden;
+}
+.add_bank ul li {
+  width: 100%;
+  height: 2.67rem;
+  line-height: 2.67rem;
+  border-bottom: 1px #ddd solid;
+  overflow: hidden;
+  position:relative;
+}
+.wid_13 ul li b {
+  width: 4.8rem;
+}
+.wid_13 ul li input {
+  width: 13.7rem;
+  height: 2.6rem;
+}
+.add_bank ul li input {
+  float: left;
+  font-size: 0.85rem;
+  border: none;
+}
+
+.bank_bom {
+  width: 18.4rem;
+  height: auto;
+  font-size: 0.54rem;
+  padding: 0.4rem 0 3rem 0;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.bank_bom p.tips {
+  line-height: 0.7rem;
+  color: #999;
+}
+.bank_bom p {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+.bank_bom p.tips img {
+  float: left;
+  width: 0.43rem;
+  height: 0.43rem;
+  margin: 0.15rem 0 0 0;
+}
+.bank_bom p.tips span {
+  float: right;
+  display: block;
+  width: 17.7rem;
+}
+.bank_bom p {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+.bank_bom p input {
+  width: 100%;
+  height: 2.4rem;
+  font-size: 0.9rem;
+  color: #fff;
+  margin-top: 1.6rem;
+  border: none;
+  border-radius: 0.16rem;
+
+  cursor: pointer;
+}
+.add_bank ul li b {
+  float: left;
+  display: block;
+  font-weight: 100;
+  overflow: hidden;
+}
+.emailspan{ display:block; float:left; width:12rem; height:2.67rem; overflow:hidden;}
+.add_bank ul li .send-mess{ width:4.8rem; height:1.6rem; }
+.add_bank ul li .gcolor-grey{ background: #fff; border:solid 1px #f64349; color:#f64349; }
+
+.add_bank ul li .gcolor{ background: url(../../images/KaNiu/butt_pass.png); color:#fff; }
+/*验证老用户*/
+
+.container{margin: 0 auto;width: 20rem;font-family:pingFang;font-size:0.4266rem;color: #333;background: #f5f5f5;}
+header .title{margin: 0 auto;width:20rem;height: 2.5rem;line-height:2.5rem;font-size:0.88rem;background: #000;text-align: center;color:#fff;}
+header .backBtn{position: absolute;top:0.6rem;left:50%; margin-left: -9rem;width:1.3rem;height:1.3rem;background-image: url(../../images/NEW/back_icon.png);background-size: contain;background-repeat: no-repeat;}
+/*关于我们*/
+
+.title{ width:20rem; height:9.3rem; background:url(../../images/KaNiu/about1.png); margin:0 auto;}
+.box{ width:20rem; margin:0 auto;}
+.box ul{ overflow:hidden;}
+.box ul li{width:3.7rem; margin-top:1rem; margin-bottom:1.33rem;}
+.m140{margin-left:2.8rem;}
+.m60{margin-left:1.6rem;}
+.wh75060{width:20rem; height:1.6rem;}
+.box .fl .text1{ font-size:0.85rem; color:#333; text-align:center; line-height:1.83rem;}
+.box .holder{ background:url(../../images/KaNiu/about5.png);}
+.box .fenqix{ background:url(../../images/KaNiu/about6.png);}
+.holder_box{ width:20rem; height:auto; margin:1.47rem 0 2rem 0;}
+.holder_zlq, .holder_jqtz{ width:18.4rem; margin:auto;height:auto; overflow:hidden}
+.mlrb30{ margin-right:1.07rem;}
+.mlr30{ margin:0 0.8rem 0 0.8rem;}
+.mt30{ margin-top:0.3rem;}
+.wh3.44{ width:3.44rem; height:3.44rem;}
+.holder_box .holder_zlq .zlq_text .text2, .holder_box .holder_jqtz .jqtz_text .text2{ font-size:0.96rem; color:#333; line-height:1.8rem;}
+.holder_box .holder_zlq .zlq_text .text3, .holder_box .holder_jqtz .jqtz_text .text3{ font-size:0.693rem; color:#666; line-height:1.1rem;}
+.jqtz_text{ width:14rem;}
+.m30{ margin-top:0.8rem!important;}
+.mtrb30{ margin-right:0.53rem;}
+.fenqix_box{ width:20rem; height:auto; margin:1rem 0 1.3rem 0;}
+.fenqix_box .text4{ font-size: 0.85rem;color: #333; margin-bottom:0.35rem;}
+.fenqix_box .text5{  font-size: 0.693rem;color: #666;line-height:1.1rem;}
+.mbtext5{margin-bottom:1rem!important;}
+.fenqix_box p{width:18.4rem; margin:auto;height:auto;overflow: hidden;}
+.about_ewm{ width:6.45rem; height:6.45rem;margin:auto; margin-bottom:0.8rem;}
+.about_footer{ width:20rem; height:2.27rem; background:#333;}
+.about_footer .footer_box p{ text-align:center; font-size:0.48rem; color:#6e6e6e; line-height:0.7rem;}
+.footer_box{width:20rem; height:auto; padding-top:0.48rem;}
+/*关于我们*/
+
+/*基本资料*/
+.base1 {
+  width: 20rem;
+  height: 9.06rem;
+  margin: 0 auto;
+  overflow: hidden;
+  background:url(../../images/KaNiu/base1.png) center no-repeat;
+  background-size: 100% 100%;
+}
+.base_nr .nrli {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+.nrli ul li b.base2 {
+  background: url(../../images/KaNiu/base2.png) center no-repeat;
+  background-size: 37% auto;
+}
+.nrli ul li b.base3 {
+  background: url(../../images/KaNiu/base3.png) center no-repeat;
+  background-size: 43% auto;
+}
+.nrli ul li b.base4 {
+  background: url(../../images/KaNiu/base4.png) center no-repeat;
+  background-size: 31% auto;
+}
+.nrli ul li b.base5 {
+  background: url(../../images/KaNiu/base5.png) center no-repeat;
+  background-size: 31% auto;
+}
+.nrli ul li b.base6 {
+  background: url(../../images/KaNiu/base6.png) center no-repeat;
+  background-size: 43% auto;
+}
+.nrli ul li b.base7 {
+  background: url(../../images/KaNiu/base7.png) center no-repeat;
+  background-size: 35% auto;
+}
+.nrli ul li b.base8 {
+  background: url(../../images/KaNiu/base8.png) center no-repeat;
+  background-size: 35% auto;
+}
+.nrli ul li input, .nrli ul li p{
+  float: left;
+  width: 17.34rem;
+  height: 2.6rem;
+  font-size:0.85rem;
+  border-top:none;
+  border-left:none;
+  border-right:none;
+  border-bottom: solid 1px #ddd;
+}
+.base_nr .nrli mtnone {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+.base_footerf5{ background:#f5f5f5 !important;}
+.a9a9a9{ color:#a9a9a9 !important;}
+#base_width{ width:4.8rem; height:1.6rem; background: url(../../images/KaNiu/butt_pass.png); color:#fff; position:absolute; right:0.5rem; top:0.54rem; font-size: 0.8rem;border-radius:0.16rem;display: block;line-height:1.6rem;text-align:center;}
+.base-boder {border-top:1px solid #ddd !important;}
+#base-input {
+    display: block;
+    float: left;
+    width: 12rem;
+    height: 2.67rem;
+    overflow: hidden;
+}
+
+/*基本资料*/
+
+
+/*首页*/
+
+.index_box{ background:#fff; width:20rem; height:auto; margin:auto;}
+.index_bg{ width:20rem; height:19.38rem; margin:auto; background:url(../../images/KaNiu/index1.jpg) center no-repeat; background-size:100% 100%; display:block; position:relative;}
+.8b8b8b{color:#8b8b8b;}
+.index_tips{width:100%; height:0.96rem; margin:0.5rem auto 0 auto; font-size:0.8rem; line-height:0.96rem; overflow:hidden;}
+.index_tips .index_protocal{float:left; padding-left:0.4rem;}
+.index_tips img{float:left;width:0.96rem; height:0.96rem;}
+.index_bom {width: 18.4rem; height: auto;font-size: 0.54rem;margin: 0 auto;overflow: hidden;}
+.index_bom p {width: 100%;height: auto;overflow: hidden;}
+.index_bom p input {width: 100%; height: 2.4rem;font-size: 0.9rem;color: #fff;margin: 0.8rem 0 1.6rem 0;border: none;border-radius: 0.16rem;cursor: pointer; background:url(../../images/KaNiu/butt_star.png);}
+.index_text{width:18.4rem; height:auto; margin:auto;}
+.text_box{width:100%; height:auto; margin:auto;}
+.index_text .text_box .p1{font-size:0.91rem; margin-bottom:0.48rem;}
+.index_text .text_box .p2{font-size:0.69rem; color:#8b8b8b; line-height:1.01rem;}
+.index_nr {width: 100%;height: auto;overflow: hidden;padding-bottom:0.9rem;}
+.index_nr ul li {float: left;width: 33%; min-height: 4.53rem; line-height: 1.4rem;font-size: 0.8rem;color: #333;text-align: center;}
+.img1{width: 2.8rem;height:3.2rem;margin: 0.8rem 0 0 0;}
+.img1 img{width: 2.8rem;height:3.2rem;}
+.img2{width: 2.5rem;height:2.7rem;margin: 1.25rem 0 0 0;}
+.img2 img{width: 2.5rem;height:2.7rem;}
+.img3{width: 2.8rem;height:2.56rem;margin: 1.38rem 0 0 0;}
+.img3 img{width: 2.8rem;height:2.56rem;}
+.index_nr ul li span {display: block;width: 90%;margin: 0 auto;word-wrap: break-word;}
+.index_check{ display:block;}
+.index_check input{ display:none;}
+.index_check label{ display:block; float:left; width:0.96rem; height:0.96rem; background:url(../../images/KaNiu/check01.png) center no-repeat; background-size:100% 100%;}
+.index_check label.pass{ width:0.96rem; height:0.96rem; background:url(../../images/KaNiu/check02.png) center no-repeat; background-size:100% 100%;}
+.index_bg a {position: absolute;top: 0;right: 0;width:20%;height:20%;background: #f00;opacity: 0;}
+
+/*首页*/
+
+#btnemail{ position:absolute; top:0.54rem; right:0.5rem; border-radius:0.2rem; font-size:0.8rem;}
+/*邮箱认证+紧急联系人*/
+.rztab{ width:19.2rem; min-height:2.67rem; background:#fff; padding-left:0.8rem;}
+.rztab .email{ line-height:2.67rem; font-size:0.85rem;}
+.email_nr{ /*height:8.266rem;*/ height:2.66rem; overflow:hidden; border-top:1px #ddd solid;}
+.rztab .email p{ width:18.4rem; height:2.67rem; background:url(../../images/KaNiu/arror-r2.png) right center no-repeat; background-size:0.666rem 0.5rem;}
+
+.contab{ width:100%; min-height:2.67rem; background:#fff;}
+.contab .contacts{ width:19.2rem; line-height:2.67rem; font-size:0.85rem; padding-left:0.8rem; border-top:1px #ddd solid;}
+.contacts_nr{ height:16.8rem; background:#f5f5f5; overflow:hidden;}
+.contab .contacts p{ width:18.4rem; height:2.67rem; }/*background:url(../../images/KaNiu/arror-r1.png) right center no-repeat; background-size:0.666rem 0.5rem;*/
+.email_nr .rz_tips{width: 18.4rem; height: auto; line-height:0.7rem; font-size: 0.54rem; color:#999; padding: 0.4rem 0 1rem 0; margin: 0 auto; overflow: hidden;}
+.email_nr .rz_tips p.tips img { float: left; width: 0.43rem; height: 0.43rem; margin: 0.1rem 0 0 0;}
+.rzem_tp{ width:18.4rem;}
+.rzem_tp ul li .rzem_input{ width:13rem;}
+
+/*邮箱认证*/
+/*紧急联系人认证*/
+.yz_jjperson {
+    width:18.4rem;
+    height: auto;
+    font-size: 0.85rem;
+    padding-left: 1.6rem;
+    background: #fff;
+    overflow: hidden;
+	margin-top:0.3rem;
+}
+.yz_mtnone{ margin-top:0;}
+.yz_jjperson ul {
+    width:18.4rem;
+    height: auto;
+}
+.yz_jjperson ul li {
+    width: 100%;
+    height: 2.67rem;
+    line-height: 2.67rem;
+    border-bottom: 1px #ddd solid;
+    overflow: hidden;
+    position: relative;
+}
+.yz_jjperson ul li *{ float:left;}
+.yz_jjperson ul li  select{ 
+    width:5rem;
+    height: 2.66rem;
+    font-size: 0.85rem;
+    color: #999;
+    border: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: #fff;
+}
+.yz_jjperson ul li i {
+    float: left;
+    display: block;
+    width: 0.56rem;
+    height: 0.56rem;
+    margin: 1.6rem 0 0 -1.56rem;
+    background: url(../../images/KaNiu/select_bg.png) center no-repeat;
+    background-size: 100% 100%;
+}
+.yz_jjperson ul li b {
+	width:5rem;
+	height: 2.66rem;
+	line-height: 2.66rem;
+    display: block;
+    font-weight: 100;
+}
+.yz_jjperson ul li input {
+	width:13.4rem;
+	height: 2.66rem;
+    float: left;
+    font-size: 0.85rem;
+    border: none;
+}
+.information { 
+	width: 80%; 
+	margin: 0.586rem 0 0 0.8rem; 
+	font-size: 0.427rem; 
+	color: #bbbbbb; 
+}
+.information_icon { 
+	display: inline-block; 
+	width: 0.427rem; 
+	height: 0.427rem; 
+	margin-right: 0.293rem; 
+	vertical-align: middle; 
+	background: url(../../images/KaNiu/information.png) no-repeat; 
+}	
+/*紧急联系人认证*/
+
+.banktt{ width:100%; height:1.8rem; line-height:1.8rem; font-size:0.6rem; margin-left:0.8rem; color:#666;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,53 @@
+	ul {
+	background: white;
+	}
+	.item {
+	height: 2rem;
+	width: 85%;
+	/*background: pink;*/
+	border-bottom: 1px solid grey;
+	margin: 0.6rem 0.5rem;
+	font-size: 0.7rem;
+	font-family: inherit;
+	margin-left: 1rem;
+	/*font-weight: 700;*/
+}
+/*.item:nth-child(1) {
+	padding-top:-0.2rem ;
+}*/
+	.item b {
+	display: inline-block;
+	margin: 0 0.5rem;
+	
+	
+	}
+	.item  input {
+		height: 1.5rem;
+		width: 60%;
+		border: none;
+	}
+	.item .verify {
+		width: 40%;
+		
+	}
+	.item:nth-child(5){
+		border-bottom: none;
+	}
+	.btnCode{
+		width: 4.3rem;
+		height: 1.7rem;
+		background: #0099ff;
+		border: 1px solid #ccc;
+		border-radius: 0.5rem;
+		color: white;
+		float: right;
+}
+.both {position: relative;}
+.tips2 {
+	position: absolute;
+	top: 4rem;
+	left:5.5rem;
+}
+.red {
+	color: red;
+}

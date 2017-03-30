@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>认证列表</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+
+<link href="../../css/KaNiu/style.css" rel="stylesheet" type="text/css">
+<link href="../../css/KaNiu/gennal.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="content">
+    <div class="rz_cont">
+        <div id="creid" class="rz_img"><a href="/InterFace/ValidateCenter.ashx?type=Creid"><h2>身份证/居住信息</h2><i></i></a></div>
+        <div id="mobile" class="rz_img fri"><a><h2>手机认证</h2><i></i></a></div>
+        <div id="business" class="rz_img mt20"><a><h2>电商认证</h2><i></i></a></div>
+        <div id="email" class="rz_img fri mt20"><a><h2>其他认证</h2><i></i></a></div>
+    </div>
+    <div class="bank_bom rz_bom">
+        <p><input id="btn" name="" type="button" value="全部填好了"></p>
+    </div>
+    <div class="footer">
+    	<div class="foottp"><i></i><p><img src="../../images/KaNiu/appli03.png"></p></div>
+        <div class="footbom"><p class="fl"><a>联系客服：<span onClick="document.getElementById('guided_mod').style.display='block'">请点击</span></a></p><p class="fr"><a href="">关于我们</a><a class="brtnone" href="">常见问题</a></p></div>
+    </div>
+</div>
+<!--弹窗提示-->
+<div class="modal01" style="display:none;">
+	<div class="modal_bg"></div>
+    <div class="modal02_nr">
+    	<p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>分期X温馨提示</span></p>
+        <p class="motwo_wz" id="errmsg"></p>
+        <p class="motwo_annv" onClick="$('.modal01').css('display','none');">确定</p>
+    </div>
+</div>
+
+<script src="../../js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function (){
+	$.ajax({
+		url:'http://localhost:81/MyHandler.ashx',
+		type: 'get',
+		dataType: 'json',
+		cache: false,
+		success: function (msg) {			
+			var creid = msg.Creid,
+				mobile = msg.Mobile,
+				business = msg.Business,
+				email = msg.Email;
+			judged(creid,mobile,business,email)
+		}
+	});
+	
+	function judged(creid,mobile,business,email){
+		var arr = Array(creid,mobile,business,email);
+		var addarr = Array('creid','mobile','business','email');
+		var errarr = Array();
+
+		if(creid>=1 && mobile>=1 && business>=1 && email>=1){
+			$("#btn").attr("class","pass");
+			$("#btn").removeAttr("disabled");
+		}
+
+		$(arr).each(function(i) {
+			var j = i+1;
+			if(this==2){
+				$(".rz_img").eq(i).removeClass("rz_bg0"+j+"_h");
+				$(".rz_img").eq(i).addClass("pass rz_bg0"+j);
+				$(".rz_img i").eq(i).addClass("rzico");
+				
+			} else if(this==1){
+				$(".rz_img").eq(i).removeClass("rz_bg0"+j+"_h");
+				$(".rz_img").eq(i).addClass("pass rz_bg0"+j);
+			} else {
+				$(".rz_img").eq(i).removeClass("pass rz_bg0"+j);
+				$(".rz_img").eq(i).addClass("rz_bg0"+j+"_h");
+				errarr.push(addarr[i]);
+			}
+			
+		});
+		
+		$("#email a").click(function (){
+			if(arr[0]==0){
+				$("#errmsg").html("请先完成身份证/居住信息认证");
+				$(".modal01").css("display","block");
+				return
+			}
+			if(arr[1]==0){
+				$("#errmsg").html("请先完成手机认证");
+				$(".modal01").css("display","block");
+				return
+			}
+			if(arr[2]==0){
+				$("#errmsg").html('请先完成电商认证');
+				$(".modal01").css("display","block");
+				return
+			}
+			$(this).attr("href","/InterFace/ValidateCenter.ashx?type=Email");
+		})
+		$("#business a").click(function (){
+			if(arr[0]==0){
+				$("#errmsg").html("请先完成身份证/居住信息认证");
+				$(".modal01").css("display","block");
+				return
+			}
+			if(arr[1]==0){
+				$("#errmsg").html("请先完成手机认证");
+				$(".modal01").css("display","block");
+				return
+			}
+			$(this).attr("href","/InterFace/ValidateCenter.ashx?type=Business");
+		})
+		$("#mobile a").click(function (){
+			if(arr[0]==0){
+				$("#errmsg").html("请先完成身份证/居住信息认证");
+				$(".modal01").css("display","block");
+				return
+			}
+			$(this).attr("href","/InterFace/ValidateCenter.ashx?type=Mobile");
+		})
+	}
+
+})
+</script>
+</body>
+</html>

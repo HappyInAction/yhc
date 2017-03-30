@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>我的帐单</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/KaNiu/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="mybill">
+    <div class="mybill_tab">
+        <ul>
+            <li class="active">可还款</li>
+            <li>提前还款</li>
+            <li>逾期</li>
+            <li style="margin-right:0;">已还款</li>
+        </ul>
+    </div>
+    <div class="mybill_nr both">
+        <div class="bill_cont"></div>
+        <div class="bill_cont" style="display:none;"></div>
+        <div class="bill_cont" style="display:none;"></div>
+        <div class="bill_cont" style="display:none;"></div>
+    </div>
+</div>
+<!--modal-->
+<div class="bill_modal">
+    <div class="modal_bg"></div>
+    <div class="bill_mod">
+        <div class="bimod_tp pointer">
+            <ul>
+                <li class="kuaijie"><a>快捷还款</a></li>
+                <li class="weixin bbomnone"><a href="repayment.html">转帐还款</a></li>
+            </ul>
+        </div>
+        <div class="bimod_bom pointer">取消</div>
+    </div>
+</div>
+<script src="../../js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script> 
+<script type="text/javascript">
+$(function(){
+	msg(0);
+	$(".mybill_tab ul li").each(function(i) {
+		$(this).click(function (){
+			$('.bill_cont').empty();
+			msg(i)
+		});
+    });
+
+	function msg(i){
+		var Url = new Array('/InterFace/BillList.ashx?type=repayment','/InterFace/BillList.ashx?type=early_repayment','/InterFace/BillList.ashx?type=overdue','/InterFace/BillList.ashx?type=end');
+		$(".mybill_tab ul li").removeClass("active");
+		$(".mybill_tab ul li").eq(i).addClass("active");
+		$(".bill_cont").css("display","none");
+		$(".bill_cont").eq(i).css("display","block");
+		$.ajax({
+			url: /*Url[i]*/'http://localhost:81/MyHandler.ashx',
+			type: 'get',
+			dataType: 'json',
+			cache: false,
+			success: function(data){
+				var json = eval("(" + data.json + ")");
+				billlist(json,i);
+			}
+		})
+	}
+
+	function billlist (json,i){
+		$.each(json, function (k, v){
+			var left_money = Number(this.left_money),
+				service_money = Number(this.service_money),
+				interest_money = Number(this.interest_money),
+				repay_date = this.repay_date,
+				repayment_money = Number(this.repayment_money),
+				state = this.state,
+				trans_id = this.trans_id,
+				hrefurl = "/InterFace/Repayment.ashx?trans_id="+trans_id;
+			$('.bill_cont').eq(i).append(
+				"<div class='bgf64349 bnone'><div class='cont_nr fr'><div class='bill_cttp'><div class='fl cttp_pic'><p class='fl'><img src='../../images/KaNiu/repay_xjd.png'><span>现金贷</span></p><p class='fr wzjg xml_ypfx'>逾期罚息："+ repayment_money +"元</p></div><div class='fl cttp_wzwz'><p >应还本金(元)<span class='xml_mybill'>"+ left_money +"</span></p><p>服务费(元)<span class='xml_mybill'>"+ service_money +"</span></p><p>利息(元)<span class='xml_mybill'>"+ interest_money +"</span></p></div></div><div class='bill_ctbom'><p class='ctbom_lf fl'><img src='../../images/KaNiu/mybill02.png'><span class='xml_mbtime'>还款时间:"+ repay_date +"</span></p><p class='ctbom_rt fr pointer'><a name='mybill_button'><img src='../../images/KaNiu/mybill01.png'><span>还款</span></a></p></div></div></div>"
+			);
+			if(repayment_money==""){
+				$('.xml_ypfx').eq(k).remove();
+			}
+			if(state==2){
+				$('.ctbom_rt').eq(k).removeAttr('onclick');
+				$('.ctbom_rt span').eq(k).html('已还款');
+				$('.ctbom_rt').eq(k).attr('class','ctbom_rt fr over');
+			} else {
+				$('.ctbom_rt').eq(k).click(function (){
+					$('.bill_modal').css('display','block');
+					$('.kuaijie a').attr('href',hrefurl);
+				})
+			}
+		})
+	}
+
+	$(".bimod_bom").click(function (){
+		$(".bill_modal").css("display","none");
+	})
+})
+
+</script>
+</body>
+</html>

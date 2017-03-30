@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+	<Phone>
+		<regex>^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$</regex>
+		<errmsg>手机号码格式错误</errmsg>
+	</Phone>
+	<Number>
+		<regex>^\d+$</regex>
+		<errmsg>请输入数字</errmsg>
+	</Number>
+	<ID>
+		<regex>^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$</regex>
+		<errmsg>请输入身份证号</errmsg>
+	</ID>
+	<Email>
+		<regex>^\w{3,}@\w+(\.\w+)+$</regex>
+		<errmsg>请输入邮箱</errmsg>
+	</Email>
+</Root>

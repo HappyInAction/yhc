@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>手机认证</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/KaNiu/style.css" rel="stylesheet" type="text/css">
+<link href="../../css/KaNiu/gennal.css" rel="stylesheet" type="text/css">
+<link href="../../css/KaNiu/tianji.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="content">
+    <div class="qhtab">
+        <div class="add_bank wid_13">
+        	<form id="vp_form">
+            <ul>
+                <div class="tel_rztab">
+                    <li>
+                    	<b>手机号码</b><input id="tj_phone" name="Phone" type="text" placeholder="请输入手机号码" disabled="disabled" value='13602439852'><!--{$:Phone htmlencode="true"}-->
+                    </li>
+                    <li>
+                    	<b>服务密码</b><input id="tj_password" name="ServicePwd" type="password" value="" placeholder="请输入服务密码">
+                    </li>
+                    <li id="verifi_message" style="display: none;">
+                    	<b>短信认证</b><input id="tj_message" name="Message_Code" type="text" value="" placeholder="请输入验证码">
+                    	<div class="verifi_message"><span id="get_qr">获取验证码</span>&nbsp;<span class="message_time">90s</span></div >
+                    </li>
+                    <li id="verifi_box" style="display: none;">
+                    	<b>验证码</b><input id="tj_pic" name="Pic_Cod" type="text" value="" placeholder="请输入验证码">
+                    	<div class="verifi_box"><span class="verifi_img"></span><span id="get_verifi_img" class="verifi_change">看不清?</span></div>
+                    </li>
+                </div>
+            </ul>
+            </form>
+        </div>
+        <div id="little_tips" class="little_tips">
+        	<p class="lt_text"></p>
+        </div>
+        <div class="file_linr fff">
+            <div class="tel_table">
+                <p>获取服务密码方法如下：</p>
+                <table border="0" cellspacing="1" cellpadding="0">
+                    <tr class="tt">
+                        <td class="tdwid01"></td>
+                        <td class="tdwid02">1、手机拨号-转人工服务</td>
+                        <td class="tdwid03">2、手机登陆网址-“忘记密码”查询</td>
+                    </tr>
+                    <tr>
+                        <td><p class="pic_yd"></p></td>
+                        <td><a href="tel://10086">10086</a></td>
+                        <td>10086.cn</td>
+                    </tr>
+                    <tr>
+                        <td><p class="pic_lt"></p></td>
+                        <td><a href="tel://10010">10010</a></td>
+                        <td>wap.10010.com</td>
+                    </tr>
+                    <tr>
+                        <td><p class="pic_dx"></p></td>
+                        <td><a href="tel://10000">10000</a></td>
+                        <td>wapzt.189.cn</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="both bank_bom">
+        <p class="tips"><img src="../../images/KaNiu/input_01.png"><span>如有疑问，联系客服:<a onClick="document.getElementById('guided_mod').style.display='block'">请点击</a></span></p>
+        <p>
+            <input name="" id="vp_submit" class="pass" type="button" value="提交认证" >
+        </p>
+    </div>
+</div>
+
+<!--弹窗提示-->
+<div class="modal01 rztel" style="display:none;">
+    <div class="modal_bg"></div>
+    <div class="modal02_nr">
+        <p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>分期X温馨提示</span></p>
+        <p class="motwo_wz" id="msg"></p>
+        <p class="motwo_annv" onClick="$('.modal01').css('display','none');">确定</p>
+    </div>
+</div>
+
+<!--客服引导mod-->
+<div id="guided_mod" class="guided_mod" style="display:none;"> <i class="guimodal_bg" onClick="document.getElementById('guided_mod').style.display='none'"></i>
+    <div class="guimod">
+        <div class="posrela">
+            <div class="kfyd_box">
+                <div class="index02"><img src="../../images/KaNiu/rg_01.png"></div>
+                <div class="ttu"><span class="nuc">1</span>进入分期X微信公众号，直接输入“客服”即可咨询。</div>
+                <div class="kfyd_img"><img src="../../images/KaNiu/rg_03.jpg"></div>
+                <div class="ttu"><span class="nuc">2</span>咨询人工刻度可点击公众号右上角标识进入公众号简介，点击“客服人员”即可。</div>
+                <div class="kfyd_img mb20"><img src="../../images/KaNiu/rg_05.png"></div>
+            </div>
+            <div class="guimod_bom"><a class="over" onClick="document.getElementById('guided_mod').style.display='none'">关闭</a></div>
+        </div>
+    </div>
+</div>
+<script src="../../js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function () {
+	//提交表单信息
+	var meg_code = false,
+		pic_code = false,
+		submitBtn = $("#vp_submit"),
+		tjPasswordInput = $("#tj_password"),
+		tjPhoneInput = $("#tj_phone"),
+		tjMessageInput = $("#tj_message"),
+		tjPicInput = $("#tj_pic"),
+		errPop = $(".modal01").eq(0),
+		errMsg = $("#msg"),
+		ltText = $("#lt_text"),
+		ltPop = $("#little_tips"),
+		messageInput = $("#verifi_message"),
+		picInput = $("#verifi_box"),
+		verfiImg = $(".verifi_img").eq(0),
+		getVerifiImg = $("#get_verifi_img");
+
+	submitBtn.on("click",function(){				
+		if( tjPasswordInput.val()==="" ) //点击前，检查是否已经填写服务密码
+		{
+			errPop.css("display","block");
+			errMsg.html("请填写服务码");
+			return;
+		}
+		
+		if(meg_code) //是否已开启短信验证码
+		{
+			if($("#tj_message").val()==="")
+			{
+				$(".modal01").css("display","block");
+				$("#errmsg").html("请填写短信验证码");
+				return;
+			}
+		}
+		
+		if(pic_code) //是否已开启图片验证码
+		{
+			if($("#tj_pic").val()==="")
+			{
+				$(".modal01").css("display","block");
+				$("#errmsg").html("请填写图片验证码");
+				return;
+			}
+		}
+		
+		//发送请求
+		$.ajax({
+			url: 'http://localhost/test/tianji/ValidatePhone.php',//'/InterFace/ValidatePhone_tianji.ashx',
+			type: 'post',
+			cache: false,
+			data: {
+				"Type": "Login",
+				"Phone": tjPhoneInput.val(),
+				"ServicePwd": tjPasswordInput.val(),
+				"Message_Code": tjMessageInput.val(),
+				"Pic_Cod": tjPicInput.val()
+			},
+			beforeSend:function(){
+                //温馨提示：耐心等待
+                ltText.html("正在提交认证，请耐心等待");
+                ltPop.css("display","block");
+                //锁上“提交认证”按钮
+                submitBtn.attr("disabled",true);
+            },
+			success: function (msg) {
+				var msg = JSON.parse(msg);//测试数据	
+				//console.log(msg);return;
+				//有错误码
+				if (msg.error && msg.error != "200" && msg.error != "506004") {
+				    errPop.css("display", "block");
+				    errMsg.html("错误码:" + msg.error + "<br>错误信息：" + msg.msg);
+				    return;
+				}
+				if( msg.error && msg.error==="506004" )
+				{
+					meg_code = true;
+					messageInput.css("display","block");
+					tjMessageInput.val('');
+					//如果状态码为“506004”，则显示“重新获取验证码”和不要显示“验证码已发送”提示
+					getPic(0,"");
+					return;
+				}
+				//无错误码
+				if( msg.next==="Redirect" ) {
+				    //vpSubmit('#vp_form', msg.Url);
+					location.href = msg.Url;
+					return;
+				}
+				//手机获取短信认证
+				//1、判断是否开启手机短信认证；
+				if(msg.next==="submitMessageCode")
+				{
+					meg_code = true;
+					messageInput.css("display","block");
+					get_msg();
+				}
+				
+				//手机获取图片认证
+				//1、判断是否开启手机图片认证；
+				if(msg.next==="getPicCode")
+				{
+					if(typeof(msg.Pic_code_data)!="undefined")
+					{
+						//已开启图片认证
+						pic_code = true;
+						//请求成功则锁死服务码
+						tjPasswordInput.attr("disabled",true);
+						//展现图片验证码
+						picInput.css("display","block");
+						verfiImg.css("background","url(data:image/png;base64,"+msg.Pic_code_data+") no-repeat 100% 100%");
+						verfiImg.css("background-size","contain");
+						//2、每次点击，则更新图片验证码
+						getVerifiImg.on("click",function(){
+							$.ajax({
+								url:"/InterFace/ValidatePhone_tianji.ashx",
+								data:{
+									"Phone" : tjPhoneInput.val(),
+									"Type":"Get_Pic_Code"
+								},
+								beforeSend:function(){
+					                //温馨提示
+					                ltText.html("正在获取图片验证码，请耐心等待");
+					                ltPop.css("display","block");
+					                //锁上“提交认证”按钮
+					                submitBtn.attr("disabled",true);
+					            },
+								success:function(data){
+									//请求成功则锁死服务码
+									tjPasswordInput.attr("disabled",true);
+									//如果返回错误码，则弹窗，且终止代码;
+									if(data.errcode){
+										errPop.css("display","block");
+										errMsg.html("错误码:" +data.errcode+"<br>错误信息："+data.errmsg);
+										return;
+									}
+									verfiImg.css("background","url(data:image/png;base64,"+msg.Pic_code_data+") no-repeat 100% 100%");
+									verfiImg.css("background-size","contain");
+									//提示短信验证码已下发
+                                    setTimeout(function(){
+                                        ltText.html("图片验证码已下发到你的手机")
+                                        ltPop.css("display","block");
+                                        setTimeout(function(){
+                                            ltPop.css("display","none");
+                                        },3000);    
+                                    },1000);
+                                    submitBtn.attr("disabled",false);
+								},
+                                error:function(XMLHttpRequest, textStatus, errorThrown)
+                                {
+                                    $("#errmsg").html(textStatus);
+                                    $("#errPop").css("display", "block");
+                                }
+							});		
+						});
+					}
+				}
+			},
+			complete:function(){
+                ltPop.css("display","none");
+                //提示验证码已下发
+                setTimeout(function(){
+                    ltText.html("验证码已下发到你的手机")
+                    ltPop.css("display","block");
+                    setTimeout(function(){
+                        ltPop.css("display","none");
+                    },3000);    
+                },1000);
+                //解锁“提交认证”按钮
+                submitBtn.attr("disabled",false);
+            },
+            error:function(XMLHttpRequest, textStatus, errorThrown)
+            {
+                errMsg.html("服务器繁忙，请重新认证");
+                errPop.css("display", "block");
+            }
+		});	
+	});
+	//表单提交函数
+	function vpSubmit(sFormName,sFormUrl){
+		$(sFormName).attr("action",sFormUrl);
+		$(sFormName).submit();
+	}	
+	function get_msg(){	
+		//如需开启短信验证码，则锁死服务码;
+		tjPasswordInput.attr("disabled", true);
+		//限定短信验证码的有效时间
+		var timer = null;
+		(function(num){
+			////如果状态码不为“506004”，提示已发送短信验证码
+			setTimeout(function(){
+				ltText.html("短信验证码已下发到你的手机")
+				ltPop.css("display","block");
+				setTimeout(function(){
+					ltPop.css("display","none");
+				},3000);	
+			},3000);
+
+			timer = setInterval(function(){
+				num--;
+				getPic(num,timer);
+			},1000);		
+		})(90);
+	}
+	function getPic(num,timer){
+		if(num == 0)
+		{
+			clearInterval(timer);
+			$("#get_qr").html("重新获取验证码");
+			$(".message_time").html("");
+			$("#get_qr").on("click",function(){
+				$.ajax({
+					url: "/InterFace/ValidatePhone_tianji.ashx",//'http://localhost/test/tianji/ValidatePhone.php',
+					type: "post",
+					data:{
+						"Phone":$("#tj_phone").val(),
+						"Type":"Get_Validate_Message"
+					},
+					beforeSend:function(){
+		                //温馨提示
+		                ltText.html("正在获取短信验证码，请耐心等待");
+		                ltPop.css("display","block");
+		                //锁上“提交认证”按钮
+		                submitBtn.attr("disabled",true);
+		            },
+					success:function(data){
+						//3、如果返回错误码，则弹窗，且终止代码;
+						if(data.errcode && data.errcode!=0)
+						{
+							errPop.css("display","block");
+							errMsg.html("错误码:" +data.errcode+"<br>错误信息："+data.errmsg);
+							return;
+						}
+						ltPop.css("display","none");
+		                //提示验证码已下发
+		                setTimeout(function(){
+		                    ltText.html("短信验证码已下发到你的手机")
+		                    ltPop.css("display","block");
+		                    setTimeout(function(){
+		                        ltPop.css("display","none");
+		                    },3000);    
+		                },1000);
+		                //解锁“提交认证”按钮
+		                submitBtn.attr("disabled",false);
+					},
+					error:function(oXml, textStatus, errorThrown)
+		            {
+		                errMsg.html("服务器繁忙，请重新获取");
+		                errPop.css("display", "block");
+		            }
+				});
+				get_msg();	
+			});
+			return;
+		}
+		$("#get_qr").html("获取验证码");
+		$(".message_time").html(num+"s");
+		$("#get_qr").off("click");
+
+	}
+
+    //弹窗
+    var error = "{$:error jsencode=”true”}";
+    var msg = "{$:msg jsencode=”true”}";
+    if (msg.indexOf("") == -1) {
+        if (error || msg) {
+            $("#msg").html(msg);
+            $(".modal01").css("display", "block");
+        }
+    }
+});
+</script> 
+</body>
+</html>

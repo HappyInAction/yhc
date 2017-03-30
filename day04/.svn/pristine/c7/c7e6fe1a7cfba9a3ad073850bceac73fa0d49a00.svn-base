@@ -1,0 +1,87 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>简介-分期X</title>
+<meta name="apple-touch-fullscreen" content="YES" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta http-equiv="Expires" content="-1" />
+<meta http-equiv="pragram" content="no-cache" />
+<link rel="stylesheet" href="../../css/KaNiu/style.css">
+<link rel="stylesheet" href="../../css/KaNiu/record.css">
+<!--移动端版本兼容 end -->
+<script type="text/javascript">
+    var phoneWidth = parseInt(window.screen.width);
+    var phoneScale = phoneWidth/720;
+    var ua = navigator.userAgent;
+    if (/Android (\d+\.\d+)/.test(ua)){
+        var version = parseFloat(RegExp.$1);
+        // andriod 2.3
+        if(version>2.3){
+            document.write('<meta name="viewport" content="width=720, minimum-scale = '+phoneScale+', maximum-scale = '+phoneScale+', target-densitydpi=device-dpi">');
+        // andriod 2.3以上
+        }else{
+            document.write('<meta name="viewport" content="width=720, target-densitydpi=device-dpi">');
+        }
+        // 其他系统
+    } else {
+        document.write('<meta name="viewport" content="width=720, user-scalable=no, target-densitydpi=device-dpi">');
+    }
+</script>
+<script src="../../js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+<div class="box">
+    <div class="title"></div>
+    <ul>
+        <li class="fl m60"><img src="../../images/KaNiu/about2.png">
+            <p class="text1">最诚信</p>
+        </li>
+        <li class="fl m140"><img src="../../images/KaNiu/about3.png">
+            <p class="text1">最便捷</p>
+        </li>
+        <li class="fl m140"><img src="../../images/KaNiu/about4.png">
+            <p class="text1">最贴心</p>
+        </li>
+    </ul>
+    <div class="wh75060 holder"></div>
+    <div class="holder_box">
+        <div class="holder_zlq ">
+            <div class="fl wh3.44 mtrb30"> <img src="../../images/KaNiu/about8.png"></div>
+            <div class="fl zlq_text">
+                <p class="text2">曾李青</p>
+                <p class="text3">腾讯创始人，顶级天使投资人。</p>
+            </div>
+        </div>
+        <div class="holder_jqtz mt30 ">
+            <div class="fl wh3.44 mtrb30 m30"> <img src="../../images/KaNiu/about9.png"></div>
+            <div class="fl jqtz_text ">
+                <p class="text2">深圳架桥投资有限公司</p>
+                <p class="text3">原平安集团、平安证券、平安信托资深人士组建的合伙制企业，专注于直接股权投资基金的管理。</p>
+            </div>
+        </div>
+    </div>
+    <div class="wh75060 fenqix"></div>
+    <div class="fenqix_box">
+        <p class="text4">关于分期X</p>
+        <p class="text5 mbtext5">我们为您垫付: 租金/押金,旅游费,驾校学费,教育培训学费等。 
+            我们的目标是让您从此无需面对一次性付款的囊中羞涩，无需面对毕业啃老的内心纠结，无需想旅游、考驾照时到处借钱...... 分期x，给您轻松的生活方式！</p>
+        <p class="text4">我们的价值观</p>
+        <p class="text5 mbtext5">我们重视用户需求，努力为用户提供超出预期的服务；我们视员工为最宝贵的财富，支持员工发展并使之认同；我们以正直和诚信为原则行事，互相尊重，认同优秀的表现；我们充满热情，不断追求进取，相信坚韧和竞争是成功的动力； 我们相信高品质服务是公司发展之源。</p>
+        <p class="text4">我们的愿景</p>
+        <p class="text5">我们以成为"全国最专业、最大、最便捷的分期服务平台"为企业愿景。致力于成为全国最贴心的分期服务专家，最灵动的分期服务搭档、最诚信的分期服务伙伴。</p>
+    </div>
+    <div class="about_ewm"><img src="../../images/KaNiu/about7.png"></div>
+    <div class="about_footer">
+        <div class="footer_box">
+            <p>Copyright © 2015 www.fenqix.com All Rights Reserved</p>
+            <p>粤ICP备14018105号-2</p>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

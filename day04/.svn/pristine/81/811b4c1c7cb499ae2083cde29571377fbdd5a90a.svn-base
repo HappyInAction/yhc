@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>优惠券</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/NEW/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<form id="submit" method="post" action="">
+<div class="content">
+    <div class="coupon">
+        <div class="coupon_can">不使用优惠券</div>
+        <div class="coupon_nr">
+            <ul id="Discount">
+             <div class="myyhj" id="no_discount" style="display: none; width:19.2rem;height:10.8rem;margin:3rem auto;"><img src="../../images/NEW/yhq_empty.png" style="width:100%;height:100%;"></div>
+            </ul>
+        </div>
+        <!---->
+        <div class="coupon_bom both">
+            <p id="total" class="fl">使用一张优惠券<span>0</span>元</p>
+            <input class="fr bg_f64349" name="" type="button" onClick="subbtn()" value="确定">
+            <input id="allTickets" name="" type="hidden" value="">
+        </div>
+    </div>
+</div>
+<!--弹窗-->
+<div id="remind02" class="modal01" style="display:none;">
+    <div class="modal_bg"></div>
+    <div class="modal02_nr">
+        <p class="modtwo_tp"><img src="../../images/NEW/modal01.png"><span>分期X温馨提示</span></p>
+        <p class="motwo_wz"></p>
+        <p class="motwo_wz404"></p>
+        <p class="motwo_annv" onclick="javascript: $('#remind02').css({ 'display': 'none' });">确定</p>
+    </div>
+</div>
+
+</form>
+<script src="../../js/NEW/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+<script src="../../js/NEW/DiscountCenter.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function(){
+	Params.Tickets = "{$:Tickets jsencode=”true”}";
+	Params.ReturnUrl = "{$:ReturnUrl jsencode=”true”}";
+	Params.Fid = "{$:Fid jsencode=”true”}";
+	Params.PayType = "{$:PayType jsencode=”true”}";
+	Params.PlanID = "{$:PlanID jsencode=”true”}";
+	
+	showDiscount(Params.PlanID);
+	
+	//错误弹窗
+	var errcode = "{$:errcode jsencode=”true”}";
+	var errmsg = "{$:errmsg jsencode=”true”}";
+	if(errmsg.indexOf("jsencode") <= -1){
+		if (errcode || errmsg) {
+			errShow({ "errmsg": errmsg, "errcode": errcode });
+		}
+	}
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>信用卡认证</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/KaNiu/style_tianji.css" rel="stylesheet" type="text/css">
+<link href="../../css/KaNiu/gennal.css" rel="stylesheet" type="text/css">
+<link href="../../css/KaNiu/tianji.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="content">
+    <div class="header">
+        <span>信用卡认证</span>
+    </div>
+    <form id="ec_form" name="ec_form" enctype="multipart/form-data">
+        <div class="rzshop">
+            <div class="add_bank wid_13 qhtab">
+                <ul>
+                    <li class=""><b>独立密码</b>
+                        <input name="UserPwd" id="password"  type="password" placeholder="请输入独立密码">
+                    </li>
+                    <li id="verifi_box" style="display: none;">
+                        <b>图片认证</b><input id="tj_pic" name="Pic_Cod" type="text" value="" placeholder="请输入验证码">
+                        <div class="verifi_box"><span class="verifi_img"></span><span id="get_verifi_img" class="verifi_change">看不清?</span></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </form>
+    <!--灰色提示框-->
+    <div id="little_tips" class="little_tips">
+        <p class="lt_text"></p>
+    </div>
+    <div class="both bank_bom">
+        <!-- <p class="tips"><img src="../../images/KaNiu/input_01.png"><span>忘记以上账户登陆密码，请登陆淘宝及京东官网修改。</span></p> -->
+        <p>
+            <input id="form_submit" name="" type="submit" value="开始导入">
+        </p>
+    </div>
+</div>
+<!--加载中-->
+<div id="loading" class="modal01" style="display:none;">
+    <div class="modal_bg"></div>
+    <div class="modal02_nr">
+        <p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>分期X温馨提示</span></p>
+        <p class="modloading"><img src="../../images/KaNiu/loading.gif"><br>正在提交资料中...</p>
+    </div>
+</div>
+<!--弹窗提示-->
+<div class="modal01" id="errPop" style="display:none;">
+    <div class="modal_bg"></div>
+    <div class="modal02_nr">
+        <p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>分期X温馨提示</span></p>
+        <p class="motwo_wz" id="errmsg"></p>
+        <p class="motwo_annv" onClick="$('.modal01').css('display','none');">确定</p>
+    </div>
+</div>
+<script src="../../js/KaNiu/jquery-1.10.2.7.min.js" type="text/javascript"></script> 
+<script src="../../js/KaNiu/chkHelper.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        var input2 = $("#password"),
+            input3 = $("#tj_pic"),
+            submitBtn = $("#form_submit"),
+            picBlag = false，
+            userErrFlag = false;
+        input2.on({
+            input: function(){
+                if(chk_gt6char($(this).val()))
+                {
+                    submitBtn.attr({
+                        "class": "pass"
+                    });
+                }
+            }
+        });
+        input3.on({
+            input: function(){
+                if( chk_gt4char($(this).val()) && chk_gt6char(input2.val()) )
+                {
+                    submitBtn.attr({
+                        "class": "pass",
+                        "disabled": false
+                    });
+                }
+            }
+        });
+        submitBtn.on("click",function(){
+            $(this).attr("disabled",true);
+            if( input2.val()==="" )
+            {
+                $(this).attr("disabled",false);
+                $("#errmsg").html("请填写您的独立密码");
+                $(".modal01").css("display", "block");
+                return;
+            }
+            if( picBlag )
+            {
+                if($("#tj_pic").val()==="")
+                {
+                    $("#errmsg").html("请完整填写图片验证码");
+                    $(".modal01").css("display", "block");
+                    $(this).attr("disabled",false);
+                    return;
+                }
+                else
+                {
+                    $("#loading").css("display","block");
+                    $.ajax({
+                        url: "/InterFace/ValidateEmail_TJ.ashx",//"http://localhost/test/index2.php",
+                        type: "post",
+                        data: {
+                            Type: "pic_codelanding",
+                            dulipassCrawl: input2.val(),
+                            password: $("#password").val(),
+                            etoken: _eToken
+                        },
+                        success: function(msg){
+                            $("#loading").css("display","none");
+                            //切换状态
+                            if( msg.errmsg==="请输入独立密码" || msg.errmsg==="请输入验证码" )
+                            {
+                                picFlag = false;
+                                userErrFlag = true;
+                                _eToken = msg.token;
+                                if( msg.errmsg==="请输入验证码" )
+                                {
+                                    openErrPopup(msg.errcode,"验证码错误");
+                                }
+                                else
+                                {
+                                    openErrPopup(msg.errcode,"独立密码错误"); 
+                                }
+                                return;
+                            }
+                            //msg = JSON.parse(msg);
+                            alert(msg);
+                            location.href = msg.url+"?etoken="+_eToken;
+                        },
+                        error: function(err){
+                            alert(err.statusText);
+                        }
+                    }); 
+                }
+            }
+            else
+            {
+                $("#loading").css("display","block");
+                //如果独立密码或验证码错误，则改变请求数据
+                if(!userErrFlag)
+                {
+                    var data = {
+                        Type: "dulipasslanding",
+                        dulipassCrawl: input2.val(),
+                        etoken: GetQueryString(etoken)
+                    };
+                }
+                else
+                {
+                    var data = {
+                            Type: "dulipasslanding",
+                            dulipassCrawl: input2.val(),
+                            pic_code: $("#tj_pic").val(),
+                            etoken: GetQueryString(etoken)
+                        };         
+                }
+                $.ajax({
+                    url: "/InterFace/ValidateEmail_TJ.ashx",//"http://localhost/test/index2.php",
+                    type: "post",
+                    data: {
+                        Type: "dulipasslanding",
+                        dulipassCrawl: input2.val(),
+                        etoken: GetQueryString(etoken)
+                    },
+                    success: function(msg){
+                        $("#loading").css("display","none");
+                        $("#form_submit").attr("disabled",false);
+                        //msg = JSON.parse(msg);
+                        _eToken = msg.etoken;
+                        if(userErrFlag)
+                        {
+                            if( msg.errmsg==="请输入验证码" )
+                            {
+                                openErrPopup("","验证码错误");
+                                return;
+                            }
+                            else if( msg.errmsg==="请输入独立密码" )
+                            {
+                                openErrPopup("","独立密码错误");
+                                return;
+                            }
+                            else
+                            {
+                                /*if( msg.errmsg==="登陆成功" )
+                                {
+                                    location.href = msg.url+"?etoken="+_eToken;
+                                }*/
+                                location.href = msg.url+"?etoken="+_eToken;
+                                return;
+                            }
+                        }
+                        if( msg.errmsg!="请输入验证码" )
+                        {
+                            openErrPopup(msg.errcode,msg.errmsg);
+                            return;
+                        }
+                        //判断是否需要图片验证
+                        if( msg.errcode==="请输入验证码" )
+                        {
+                            picBlag = true;
+                            $("#verifi_box").css("display","block");
+                            $(".verifi_img").css({
+                                "background": "url("+msg.pic_code+")",
+                                "background-size": "contain"
+                            });
+                            $("#get_verifi_img").on("click",function(){
+                                $.ajax({
+                                    url: "/InterFace/ValidateEmail_TJ.ashx",//"http://localhost/test/index2.php",
+                                    type: "post",
+                                    data: {
+                                        etoken: _eToken
+                                    },
+                                    success: function(msg){
+                                        $(".verifi_img").css({
+                                            "background": "url("+msg.PicCode+")",
+                                            "background-size": "contain"
+                                        });
+                                    },
+                                    error: function(err){
+                                        alert(err.statusText);
+                                    }
+                                });
+                            });
+                        }
+                    },
+                    error: function(err){
+                        alert(err.statusText);
+                    }
+                });
+            }
+        });
+        //弹窗
+        function openErrPopup(errcode,errmsg)
+        {
+            if (errmsg) {
+                $("#errmsg").html(errmsg);
+                $(".modal01").css("display", "block");
+            }
+        }
+        //获取地址栏参数
+        function GetQueryString(name)
+        {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)return  unescape(r[2]); return null;
+
+        }
+    })
+</script>
+</body>
+</html>

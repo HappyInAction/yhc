@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>我的帐单</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/NEW/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<form id="formsub" method="post" action="">
+    <div class="mybill">
+        <div class="mybill_tab">
+            <ul>
+                <li class="active">可还款</li>
+                <li>提前还款</li>
+                <li>已逾期</li>
+                <li class="brtnone">已还完</li>
+            </ul>
+        </div>
+        <div class="mybill_nr both"></div>
+    </div>
+</form>
+<!--支付选择-->
+<div class="Paymodal">
+    <div id="modalzz" style="display:"></div>
+    <div class="modal_per" id="perDiv">
+        <ul class="xsbg-con">
+            <li class="byt lianlianinterest" channel="0" onClick="payChoose(this)">
+                <img class="LLicon" src="../../images/NEW/ServiceRates02.png">
+                <p>连连支付</p>
+                <p id="LLinterest" class="ServiceRates">手续费为<span></span>%<i></i></p>
+            </li>
+            <li class="byx weixininterest" channel="1" onClick="payChoose(this)">
+                <img class="WXicon" src="../../images/NEW/ServiceRates03.png">
+                <p>微信支付</p>
+                <p id="WXinterest" class="ServiceRates">手续费为<span></span>%<i></i></p>
+            </li>
+            <li class="byb aplipayinterest" channel="2" onClick="payChoose(this)">
+                <img class="AliPayicon" src="../../images/NEW/ServiceRates04.png">
+                <p>支付宝支付</p>
+                <p id="aplipayinterest" class="ServiceRates">手续费为<span></span>%<i></i></p>
+            </li>
+            <li class="qux" id="perRemove">取 消</li>
+        </ul>
+        <input name="" type="hidden" value="">
+    </div>
+</div>
+<!--弹窗-->
+<div id="remind02" class="modal01" style="display:none;">
+    <div class="modal_bg"></div>
+    <div class="modal02_nr">
+        <p class="modtwo_tp"><img src="../../images/NEW/modal01.png"><span>分期X温馨提示</span></p>
+        <p class="motwo_wz"></p>
+        <p class="motwo_wz404"></p>
+        <p class="motwo_annv" onclick="javascript: $('#remind02').css({ 'display': 'none' });">确定</p>
+    </div>
+</div>
+<script src="../../js/NEW/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+<script src="../../js/NEW/WeiXin.js" type="text/javascript"></script>
+<script src="../../js/NEW/BillList.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+var LLinterest = Number("{$:lianlianinterest jsencode='true'}"),
+	WXinterest = Number("{$:weixininterest jsencode='true'}"),
+	aplipayinterest = Number("{$:aplipayinterest jsencode='true'}");
+	
+$(function(){
+	WXOnLoad();
+	
+	wx.ready(function (){
+		wx.showOptionMenu();
+	});
+	
+	Noweixn();
+	
+	AjaxMsg(0);
+
+	//错误弹窗
+	var errcode = "{$:errcode jsencode=”true”}";
+	var errmsg = "{$:errmsg jsencode=”true”}";
+	if(errmsg.indexOf("jsencode") <= -1){
+		if (errcode || errmsg) {
+			errShow({ "errmsg": errmsg, "errcode": errcode });
+		}
+	}
+})
+</script>
+</body>
+</html>

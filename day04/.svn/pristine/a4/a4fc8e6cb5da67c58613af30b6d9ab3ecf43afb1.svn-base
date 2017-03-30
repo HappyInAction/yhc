@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>其他资料</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+
+<link href="../../css/NEW/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="f5">
+<div class="content contpad">
+    <div class="auth_cont">
+        <div class="auth_list otherdiv">
+            <ul>
+                <li class="borbom"><a href="/InterFace/ValidateCenter/ValidateOther.ashx?type=EstateCertificate"><b class="img"><img src="../../images/NEW/auth10.png"></b><span>租凭合同/房产证</span></a><i class="right"></i></li>
+                <li class="borbom"><a href="/InterFace/ValidateCenter/ValidateOther.ashx?type=SocialSecurity"><b class="img"><img src="../../images/NEW/auth12.png"></b><span>社保/公积金</span></a><i class="right"></i></li>
+                <li class="borbom"><a href="/InterFace/ValidateCenter/ValidateOther.ashx?type=StudentPaper"><b class="img"><img src="../../images/NEW/auth13.png"></b><span>学生证明</span></a><i class="right"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="../../js/NEW/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>添加银行卡</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+    <script src="../../js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+    <script src="../../js/KaNiu/jquery.cxselect-new.js" type="text/javascript"></script>
+    <link href="../../css/KaNiu/style.css" rel="stylesheet" type="text/css">
+    <link href="../../css/KaNiu/gennal.css" rel="stylesheet" type="text/css">
+    <link href="../../css/KaNiu/record.css" rel="stylesheet" type="text/css">
+    <link href="../../css/NEW/pages/AddBankCard.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="content HSansGBW">
+   <div class="addBHeader">
+        <!-- <i class="to_back"></i> -->
+        <p>添加银行卡</p>
+    </div>
+ <form id="form" name="form" method="post" action="/InterFace/AddBankCard.ashx"><!-- /InterFace/AddBankCard.ashx -->
+     <p class="banktt">请绑定持卡人本人的银行卡</p>
+     <div class="add_bank wid_13"> 
+		<ul>
+            <li><b>持卡人</b><span id="user_name">rrr</span></li>
+            <li><b>银行卡号</b><input id="bankid" name="bankid" type="text" placeholder="请输入您的银行卡号"></li>
+            <li id="select_bank"><b>所属银行</b>
+                <select class="bank HSansGBW" name="bankcode" ></select>
+            <i class="sele_bg"></i>
+            </li>
+            <li id="select_province"><b>开户行省份</b>
+                <select  class="province HSansGBW" name="bankprov" ></select>
+            <i class="sele_bg"></i>
+            </li>
+            <li class="bbomnone"><b>绑定手机号</b><input id="phone_num" class="phone_num" type="text" name="mobile" placeholder="请输入您的手机号" value="18281601527" ><p id="authcode" class="getCode hide">重新获取</p></li>
+            <li class="bbomnone hide"><b>验证码</b><input id="auth_num" type="text" name="vcode" placeholder="请输入验证码" value="1333"></li>
+        </ul>
+    </div>
+    <div class="both bank_bom HSansGBW">
+        <p class="tipCredit"><span>我已阅读并同意</span><a id="wh_agreement" onclick="toAgree()">《分期X代扣服务协议》</a></p>
+    	<p class="tips"><img src="../../images/KaNiu/input_01.png"><span>您所填写的银行卡必须是您本人的,我们将会把款项打到此银行卡上,并通知您。</span></p>
+        <p>
+            <input id="addbank_button"  class="pass HSansGBW" name="addbank_button" type="button" value="下一步"><!--onclick="$('#form').submit();"  $('#add_card').hide();$('#show_card').show();-->
+            <input id="hidbank" name="bankname" type="hidden" value="" />
+            <input id="hidurl" name="hidurl" type="hidden" value="" />
+            <input id="hidfid" name="hidfid" type="hidden" value="" />
+        </p>
+    </div>
+    </form>
+</div>
+    <!--弹窗提示-->
+   <div id="pop_warn" class="modal01 HSansGBW" style="display:none;">
+        <div class="modal_bg"></div>
+        <div class="modal02_nr">
+            <p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>分期X温馨提示</span></p>
+            <p class="motwo_wz new_style"><span class="errexplain">您所填写的银行卡与姓名不<br />匹配或银行绑定手机不正确<br />请重新检查<br /></span>
+            <p class="motwo_annv" onclick="$('#pop_warn').hide()">确定</p>
+        </div>
+    </div>
+
+    <div id="pop_alarm" class="modal01 HSansGBW" style="display:none;">
+        <div class="modal_bg"></div>
+        <div class="modal02_nr">
+            <p class="cont_img"><img style="height:8.53rem;width:11.33rem;" src="../../images/KaNiu/withholdtry.png" /></p>
+            <p class="motwo_wz"><span class="errexplain" id="errmsg">您所填写的银行卡与姓名不<br />匹配或银行绑定手机不正确<br />请重新检查<br /></span>
+            <span class="tipTimes" style="display:none;">(今日剩余鉴权次数<em class="timesCredit">2</em>次)</span></p>
+            <p class="pop_onesure" onclick="$('#pop_alarm').hide()">确定</p>
+        </div>
+    </div>
+
+    <div id="pop_fail" class="modal01 HSansGBW" style="display:none;">
+        <div class="modal_bg"></div>
+        <div class="modal02_nr">
+            <p class="cont_img"><img style="height:8.53rem;width:11.33rem;" src="../../images/KaNiu/withholdfail.png" /></p>
+            <p class="motwo_wz"><span class="errexplain">客官，您今天的鉴权失败率<br />太高了，请明天再来申请吧<br /></span></p>
+            <p class="pop_onesure" onclick="$('#pop_fail').hide()">确定</p>
+        </div>
+    </div>
+
+    <!-- 搜索失败弹窗 -->
+  <div id="pop" class="pop fam_yh" style="display:none;">
+        <div class="pop_icon" onclick="$('#pop').hide()"></div>
+        <p id="less_input">系统繁忙，请稍后再试</p>
+    </div>
+
+    <script src="../../js/KaNiu/jquery.cxselect.js" type="text/javascript"></script>
+    <script src="../../js/KaNiu/Bank.js" type="text/javascript"></script>
+    <script src="../../js/KaNiu/Area.js" type="text/javascript"></script>
+     <script src="../../js/KaNiu/jquery.cookie.js" type="text/javascript"></script>
+   <script type="text/javascript">
+   var cookflag = true;
+       var time,setTim = "60",T,showTim;
+        var add_flag = true;
+        var errcode = "0";//"{$:errcode jsencode=”true”}";
+        var errmsg =  "{$:errmsg jsencode=”true”}";
+        var retry_times = "0";//"{$:retrytimes jsencode=”true”}";
+        var url = "{$:url jsencode=”true”}";
+        var fid = "{$:fid jsencode=”true”}";
+        var userNm ="12";// "{$:name jsencode=”true”}";
+        var creid = "11233455465657";// "{$:creid jsencode=”true”}";
+        var bankId ="112334554656666";// "{$:bankid jsencode=”true”}";
+        var bankName = "sichuan";//"{$:bankname jsencode=”true”}";
+        var bankCode = "sichuan";//"{$:bankcode jsencode=”true”}";
+        var bankProv = "000000-请选择省";//"{$:bankprov jsencode=”true”}";
+        var phoneNum ="18281601527",
+        origphoneNum ="18281601527";// "{$:mobile jsencode=”true”}";
+    
+      function  toAgree()
+      {
+         var string  = {
+            "cbankid" :$("#bankid").val(),
+            "cbankNm" :$(".bank").eq(0).val(),
+            "cbankPr" :$(".province").eq(0).val(),
+            "cphone" : $("#phone_num").val()
+        };
+        if(!$("#auth_num").parent().hasClass("hide"))
+        {
+            string.ccode = $("#auth_num").val().trim();
+            string.show = "true";
+        }
+        $.cookie("UserMsg",JSON.stringify(string)); 
+        location.href="WithholdAgreement.html" ;
+      }
+
+      if($.cookie("UserMsg") && $.cookie("UserMsg") != "null" && $.cookie("UserMsg") != "undefined")
+             {
+               // alert($.cookie("UserMsg"));
+                var st = eval("("+$.cookie("UserMsg")+")");
+                bankId = st.cbankid;
+                phoneNum =st.cphone;
+                bankCode = st.cbankNm;
+                bankProv = st.cbankPr;
+                if(st.show == "true")
+                {
+                    $("#auth_num").parent().removeClass("hide");
+                    $("#authcode").removeClass("hide").parent().removeClass("bbomnone");
+                    $("#auth_num").val(st.ccode);
+                }
+               /* $("#user_name").html(st.cuserNm);
+                $("#bankid").val(st.cbankid);
+                $(".bank").val(st.cbankNm);
+                $(".province").val(st.cbankPr);
+                $("#phone_num").val(st.cphone);
+                 alert(st.cbankNm);*/
+                 cookflag=false;
+                $.cookie("UserMsg",null);
+                 alert($.cookie("UserMsg"))
+            }
+        $(function () {
+             
+
+              $("#select_bank").cxSelect({
+              //  url:'/InterFace/js/KaNiu/Bank.js',
+                selects: ['bank'],
+                required: true,
+                jsonValue:"v",
+                data:provinceData
+
+            });
+               $("#select_province").cxSelect({
+               // url:'/InterFace/js/KaNiu/Area.js',
+                selects: ['province'],
+                required: true,
+                jsonValue:"v",
+                 data:areaData
+                //IsDisable: false
+            });
+
+            if (url)
+            {
+                $("#hidurl").val(url);
+            }
+            if (fid)
+            {
+                $("#hidfid").val(fid);
+            }
+            if(userNm)
+            {
+                $("#user_name").html(userNm);
+            }
+            if (bankId) {
+                $("#bankid").val(bankId);
+            }
+            if(phoneNum)
+            {
+                $("#phone_num").val(phoneNum);
+                $("#phone_num").css({"color":"#ccc"});
+            }
+            if((errcode || errmsg)&&cookflag)//判断错误信息
+            {
+                if((errcode == "100110033") || (errcode == "100110034"))
+                { 
+                 if(retry_times > "0")//显示次数
+                    {
+                        $("#pop_alarm").show();
+                        $("#pop_alarm .timesCredit").text(retry_times);
+                        $("#pop_alarm .tipTimes").show();
+                    }
+                    else
+                    {
+                       $("#pop_fail").show();
+                       $("#addbank_button").attr({"disabled": "disabled","class": "" });
+                       add_flag = false;
+                    }
+                } 
+                else
+                {
+                    $("#pop_alarm").show();
+                    $("#errmsg").html(errmsg);
+                    $("#pop_alarm .tipTimes").hide();
+                }
+            }
+
+            if(bankCode || bankProv)
+            {
+                get_val();
+                clearInterval(T);
+                T = setInterval("get_val()",20);
+            }
+           
+            $("#bankid,#phone_num").bind("focusin", function () {
+                if($(this).val().indexOf("请输入") > -1)
+                {
+                    $(this).val("");
+                    $(this).attr("style", "color:black");
+                }
+            });
+
+            $("#bankid").bind("focusout change", function () {
+                    if ($(this).val() == "" || !IsNumber($(this).val())) {
+                        $(this).val("请输入您的银行卡号");
+                        $(this).attr("style", "color:red");
+                    } 
+                });
+            $("#phone_num").bind("focusout change", function () {
+                if ($(this).val() == "" || !IsNumber($(this).val())) {
+                    $(this).val("请输入您的手机号");
+                    $(this).attr("style", "color:red");
+                }   
+            });
+
+            $("#phone_num").bind('input propertychange', function () 
+            {
+                 $("#phone_num").css({"color":"#000"});
+                if( IsNumber($("#phone_num").val()) && $("#phone_num").val().length === 11 && add_flag == true && ($("#phone_num").val() != origphoneNum))
+                {
+                    $("#auth_num").parent().removeClass("hide");
+                    $("#authcode").removeClass("hide").parent().removeClass("bbomnone");
+                }
+                else if($("#phone_num").val() == origphoneNum)
+                {
+                    $("#phone_num").css({"color":"#ccc"});
+                    $("#auth_num").parent().addClass("hide");
+                    $("#authcode").addClass("hide").parent().addClass("bbomnone");
+                }
+            });
+
+              $("#bankid").bind('input propertychange', function () {
+                if (IsNumber($("#bankid").val()) && $("#bankid").val().length > 13)
+                  {
+                    request_bankname();
+                  }
+               });
+
+            //点击获取验证码
+            $("#authcode").on("click",function(){
+              get_code();
+            });
+
+            $("#addbank_button").on("click",function(){
+             subm_check();
+            });
+
+       
+        });
+       
+        //验证提交
+        function subm_check()
+        {
+            if(add_flag == false)
+                {
+                    $("#pop_fail").show();
+                    return ;
+                }
+               else if(!IsNumber($("#bankid").val().trim()) || $("#bankid").val().trim().length < 13)
+                   {
+                    show_alert("请填写卡号");
+                    return ;
+                   } 
+                else if(($(".province").val() == "000000-请选择省") || ($(".bank").val() == "00000000"))
+                   {
+                    show_alert("请选择所属银行和省份");
+                    return ;
+                   }
+               else if(!IsNumber($("#phone_num").val()) || $("#phone_num").val().trim().length != 11)
+                   {
+                    show_alert("请填写手机号");
+                    return ;
+                   }
+               else if(!$("#auth_num").parent().hasClass("hide") && (!IsNumber($("#auth_num").val()) || $("#auth_num").val().trim().length != 6 ))
+                   {
+                    show_alert("请填写验证码");
+                    return ;
+                   }
+               else
+               {
+                 $("#hidbank").val($(".bank").find('option:selected').text());
+                
+                 $('#form').submit();
+
+               }
+        }
+        //填写错误提示
+        function show_alert(message)
+        {
+          clearTimeout(showTim);  
+          $("#pop").show();
+          $("#less_input").html(message);
+          $("#pop .pop_icon").animate({"height": "2.24rem","background-size":"1.54rem 1.54rem"},100);
+          $("#pop").animate({"top":"7.84rem","margin-left":"-4.9rem","width":"9.8rem" ,"height":"4.64rem","font-size":"0.7rem","line-height":"2.34rem"},100);
+           showTim = setTimeout("hidden_alert()",1000);
+         }
+
+         function hidden_alert()
+         {
+            $("#pop").hide();
+            $("#pop").css({"top":"6.87rem","margin-left":"-5.87rem","width":"11.74rem" ,"height":"5.6rem","font-size":"0.85rem","line-height":"2.82rem"});
+            $("#pop .pop_icon").css({"height": "2.67rem","background-size":"1.81rem 1.81rem"});
+            clearTimeout(showTim);  
+         }
+        //取得参数
+        function get_val()
+        { 
+         if($(".bank").find("option") && $(".province").find("option") &&  $(".bank").find("option").length >"0"  &&  $(".province").find("option").length >"0")
+          {
+           
+            $(".province").val(bankProv);
+            if(bankCode)
+            {
+                $(".bank").val(bankCode); 
+            }
+            else if(bankId)
+            {
+                request_bankname();
+            }
+            clearInterval(T);
+          }
+        }
+         //验证码
+        function get_code()
+        {
+             if(!IsNumber($("#phone_num").val()) || $("#phone_num").val().trim().length != 11)
+             {
+                show_alert("请填写手机号");
+                return ;
+             }
+            $("#authcode").removeClass("getCode").addClass("waitCode").html('<span style="color:#f64349;">'+setTim+'</span>秒后再发送');
+            $("#phone_num").attr("readonly", "true");
+            $("#authcode").off("click");
+            request_phonecode();
+            clearInterval(time);
+            time = setInterval("count_drowm()",1000);
+            console.log(time);
+        }
+        function count_drowm()
+        {
+            var nowtime = parseInt($("#authcode span").text().trim())-1;
+            $("#authcode span").text(nowtime);
+            if( $("#authcode span").text() === "-1")
+            {
+                clearInterval(time);
+                $("#phone_num").removeAttr("readonly");
+                $("#authcode").removeClass("waitCode").addClass("getCode").html("重新获取");
+                $("#authcode").on("click",function(){
+                  get_code();
+                });
+            }
+        }
+      //验证码
+        function request_phonecode()
+        {
+                $.ajax({
+                    url: "/Interface.ashx",
+                    type: 'get',
+                    dataType: 'text',
+                    cache: false,
+                    data: {
+                        "type": "SenSMS" ,
+                        "NewPhone": $("#phone_num").val().trim()
+                    },
+                    success: function (ErrMeg) {
+                        if (ErrMeg != "False") {
+                            $("#auth_num").val(ErrMeg);
+                            $("#auth_num").attr("style", "color:red");
+                            $("#authcode span").text("5");
+                        } 
+                        else if (ErrMeg == "False") 
+                        {
+                            setTim = 60;
+                        }
+                    }
+                });
+        }
+        //获取卡类型
+          function request_bankname()
+        {
+                $.ajax({
+                    url: "/Interface.ashx",
+                    type: 'get',
+                    dataType: 'text',
+                    cache: false,
+                    data: {
+                        "type": "BankBind" ,
+                        "Card": $("#bankid").val().trim()
+                    },
+                    success: function (msg) {
+                      var msg = eval('('+msg+')');
+                      if (msg.card_type == "借记卡")
+                      {
+                         $(".bank").val(msg.bank_id);
+                      }
+                    }
+                });
+        }
+        function IsNumber(obj) {
+            Reg = /^\d+$/;
+            if (Reg.test(obj)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

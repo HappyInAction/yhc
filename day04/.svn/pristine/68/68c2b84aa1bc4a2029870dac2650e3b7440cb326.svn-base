@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>身份证-居住信息认证</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/KaNiu/style.css" rel="stylesheet" type="text/css">
+<link href="../../css/KaNiu/gennal.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="content">
+    <p class="file_tt">居住信息</p>
+    <form id="form" name="form" method="post" enctype="multipart/form-data" action="/InterFace/kaniuFace.ashx">
+    <div class="add_bank wid_13">
+        <ul>
+            <li><b>现居住地</b>
+                <p class="winwzwz"><i class="mapimg"></i>{$:jzrz_adress htmlencode=”true”}</p>
+            </li>
+            <li class="bbomnone"><b>详细地址</b>
+                <input name="xx_adr" id="xx_adr" type="text" placeholder="请输入您的详细居住地址">
+            </li>
+        </ul>
+    </div>
+    <p class="file_ss">身份证信息</p>
+    <div>
+        <div class="file_up pt40 borderno" style="max-height: 945px;">
+            <div class="jbzl">
+                <p class="upnr upleft fl"><i></i><span class="ft">上传身份证正面</span>
+                    <input type="file" id="file01" name="file" multiple accept="image/jpg, image/jpeg, image/png" >
+                    <b id="preview01"><img id="imghead01" src=''></b>
+                </p>
+                <p class="upnr upright fr"><i></i><span class="ft">上传身份证反面</span>
+                    <input type="file" id="file02" name="file" multiple accept="image/jpg, image/jpeg, image/png" >
+                    <b id="preview02"><img id="imghead02" src=''></b>
+                </p>
+                <p class="upnr upbom fl"><i class="peo"></i><b class="hft">请确保身份证<br>
+                    姓名号码清晰</b><i class="camera"></i><span class="ft">上传手持身份证照片</span>
+                    <input type="file" id="file03" name="file" multiple accept="image/jpg, image/jpeg, image/png" >
+                    <b id="preview03"><img id="imghead03" src=''></b>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    </form>
+    <div class="both bank_bom">
+        <p class="tips"><img src="../../images/KaNiu/input_01.png"><span>您所填写的银行卡必须是您本人的，图片格式暂时支持jpg，jpeg，png　单张图片最大不超过1M。</span></p>
+        <p><input id="subpeo" name="" class="" type="button" value="填好了" disabled="disabled" onclick="checkfile()"></p>
+    </div>
+</div>
+
+
+<script src="../../js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+<script src="../../js/KaNiu/imghelper.js" type="text/javascript"></script>
+<script type="text/javascript">
+	var file01 = document.getElementById("file01");
+	file01.onchange = function () {
+		return filechange.apply(this, [this.files, "imghead01", "front", "/InterFace/ValidateCreid.ashx"])
+	};
+</script>
+</body>
+</html>

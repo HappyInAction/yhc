@@ -1,0 +1,62 @@
+// 事件对象中存储的信息
+// <view id="tapTest" data-hi="WeChat" bindtap="tapName"> Click me! </view>
+// type的信息是： 
+// BaseEvent 基础事件对象属性列表
+// type 事件类型
+// timeStamp 事件生成时的时间戳
+// target 触发事件的组件的一些属性值集合
+// currentTarget 当前组件的一些属性值集合
+{
+  "type": "tap", //事件类型是tap事件 但是tap事件有两种，一种是允许冒泡，一种是catchtap不允许冒泡
+  "timeStamp": 895, //事件生成的时间戳 
+  "target": { // 触发事件的源组件。  触发事件的组件的一些属性的集合
+    "id": "tapTest",
+    "dataset": { // 事件源组件上由data-开头的自定义属性组成的集合
+      "hi": "WeChat"
+    }
+  },
+  //target 和 currentTarget 可以参考上例中，
+  //点击 inner view 时，handleTap3 收到的事件对象 target 和 currentTarget 都是 inner，
+  //而 handleTap2 收到的事件对象 target 就是 inner，currentTarget 就是 middle。
+  //target 是出发事件的 组件 相当于 事件对象的触发源， 利用这个属性可以 事件委派 
+  "currentTarget": { //事件绑定的当前组件。   当前组件的一些属性的集合
+    "id": "tapTest",
+    "dataset": { // dataset中存储的消息是 组件中自定义的一些 data-/// 数据 
+      "hi": "WeChat"
+      //dataset
+      //在组件中可以定义数据，这些数据将会通过事件传递给 SERVICE。 
+      //书写方式： 以data-开头，多个单词由连字符-链接，不能有大写(大写会自动转成小写)如data-element-type，
+      //最终在 event.target.dataset 中会将连字符转成驼峰elementType
+    }
+  },
+  "detail": {
+    "x": 53,
+    "y": 14
+  },
+  //touches
+  //touches 是一个数组，每个元素为一个 Touch 对象
+  //（canvas 触摸事件中携带的 touches 是 CanvasTouch 数组）。
+  // 表示当前停留在屏幕上的触摸点
+  //停留在屏幕上的触摸点可能有多个 ， 怎么划分？ 根据时间排序吗？ 
+  "touches": [ //touches中的每个元素是 一个 touche对象
+    {
+      "identifier": 0,
+      "pageX": 53,
+      "pageY": 14,
+      "clientX": 53,
+      "clientY": 14
+    }
+  ],
+  //changedTouches
+  //changedTouches 数据格式同 touches。 表示有变化的触摸点，如从无变有（touchstart），
+  //位置变化（touchmove），从有变无（touchend、touchcancel）。
+  "changedTouches": [
+    {
+      "identifier": 0,
+      "pageX": 53,
+      "pageY": 14,
+      "clientX": 53,
+      "clientY": 14
+    }
+  ]
+}

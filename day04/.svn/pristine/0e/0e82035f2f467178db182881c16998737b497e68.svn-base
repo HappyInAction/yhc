@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>还款</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="expires" content="">
+<style type="text/css">
+	html {
+		font-size: 16px;
+	}
+	.f5 {
+	    background: #f5f5f5;
+	}
+	.fff {
+	    background: #fff !important;
+	}
+	.content {
+	    width: 20rem;
+	    height: auto;
+	    margin: 0 auto;
+	    overflow: hidden;
+	}
+	#repay_bg {
+		width: 14.2933rem;
+		height: 9.9733rem;
+		margin: 1.12rem auto;
+		background: url(../../images/KaNiu/repay_success.png) no-repeat;
+		background-size: contain;
+	}
+	#repay_text {
+		height: 1rem;
+		font-size: 0.86rem;
+		font-family: "Hiragino Sans GB W3";
+		color: #fba304;
+		text-align: center;
+	}
+	.repay_btn {
+		width: 90%;
+		height: 2.4533rem;
+		font-size: 0.86rem;
+		color: #fff;
+		text-align: center;
+		line-height: 2.4533rem;
+		margin: 3.0933rem auto 0;
+		background-color: #f64349;
+	}
+</style>
+</head>
+
+<body class="f5 fff">
+<div class="content">
+	<div id="repay_bg"></div>
+	<p id="repay_text"></p>
+	<p id="repay_btn" class="repay_btn">返回个人中心</p>
+</div>
+<script type="text/javascript">
+window.onload=function(){
+	new function() {
+        var q = this;
+        q.width = 750;
+        q.fontSize = 37.5;
+        q.widthProportion = function() {
+            var n = (document.body && document.body.clientWidth || document.getElementsByTagName("html")[0].offsetWidth) / q.width;
+            return 1 < n ? 1 : .4 > n ? .4 : n
+        };
+        q.changePage = function() {
+            document.getElementsByTagName("html")[0].setAttribute("style", "font-size:" + q.widthProportion() * q.fontSize + "px !important")
+        };
+        q.changePage();
+        window.addEventListener("resize", function() {
+            q.changePage()
+        }, !1);
+    };
+	var oBg = document.getElementById("repay_bg");
+	var oText = document.getElementById("repay_text");
+	(function repayRate(sNum){
+		switch(sNum)
+		{
+			case 1:
+				oBg.style['background'] = "url(../../images/KaNiu/repay_success.png) no-repeat";
+				oText.innerHTML = "还款金额: $403";
+				oText.style['color'] = "#fba304";
+			break;
+			case 2:
+				oBg.style['background'] = "url(../../images/KaNiu/repay_fail.png) no-repeat";
+				oText.innerHTML = "还款失败，请检查网络重新还款";
+				oText.style['color'] = "#999999";
+			break;
+			default:
+				oBg.style['background'] = "url(../../images/KaNiu/repay_wait.png) no-repeat";
+				oText.innerHTML = "已提交申请，等待还款处理";
+				oText.style['color'] = "#999999";
+				$.ajax({
+					url: '/InterFace/PayResult.ashx',
+					data: {
+						Type:"DoQuery"
+					},
+					success:function(sNum){
+						repayRate(sNum);
+					}
+				});
+		}
+		oBg.style['background-size'] = "contain";
+	})('{$:sNum jsencode=“true”}')
+	//个人中心跳转
+	var oBtn = document.getElementById("repay_btn");
+	oBtn.addEventListener("click",function(){
+		location.href = "http://www.baidu.com/";
+	});
+}
+</script>
+</body>
+</html>

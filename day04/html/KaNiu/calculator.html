@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,maximum-scale=1, user-scalable=no">
+<title>计算器</title>
+<meta name="apple-touch-fullscreen" content="YES" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta http-equiv="Expires" content="-1" />
+<meta http-equiv="pragram" content="no-cache" />
+
+<link rel="stylesheet" href="../../css/KaNiu/style.css">
+</head>
+<body>
+<div class="calcul_cont">
+	<div class="calcont_tt">
+    	<ul>
+        	<li class="caltt_jk">
+                <p>月还本金</p>
+                <p class="jk_wz">￥<span id="displayPrice" class="display-box">0</span></p>
+            </li>
+            <li class="caltt_qx"><p>利息</p><p class="qx_wz">￥<span id="displayDay" class="display-box">0</span></p></li>
+            <li class="caltt_hk"><p>服务费</p><p class="hk_wz">￥<span id="displayCalculation" class="display-box">0</span></p></li>
+        </ul>
+    </div>
+    <div class="yfth_nr both">
+        <div class="yfth_yjzj" style="background:url(../../images/KaNiu/Calculator/yfth_bg.png) 0 0.746rem no-repeat; background-size:1.2rem 3.386rem;"><p>申请金额</p><input class="jeinput" name="" type="text" value="1500"><span class="fr">(元)</span></div>
+        <div class="yfth_fqqx" style="background:url(../../images/KaNiu/Calculator/yfth_bg.png) 0 -1.386rem no-repeat; background-size:1.2rem 3.386rem;">
+            <p>分期期限</p>
+            <select id="qxselect" name="">
+                <option value="6">6个月</option>
+                <option value="9">9个月</option>
+                <option value="12" selected>12个月</option>
+            </select>
+        </div>
+    </div>
+    <div class="cal_wzwz both">
+        <ul>
+        	<li class="mt40"><span>*</span>以上计算结果仅供参考。</li>
+        	<li><span>*</span>月综合利率：<span style="color:rgba(255,0,4,1.00)">1.2%-2.0%</span>之间，最终的利息和服务费取决于审核的结果。</li>
+        </ul>
+    </div>
+    <div class="both bank_bom">
+        <p><input class="pass" name="" type="button" value="返回"></p>
+    </div>
+</div>
+
+<!--弹窗提示-->
+<div id="cal_mod" class="modal01" style="display:none;">
+	<div class="modal_bg" onClick="$('#cal_mod').css('display','none');"></div>
+    <div class="modal02_nr">
+    	<p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>分期X温馨提示</span></p>
+        <p class="motwo_wz" id="errmsg" style="margin:1rem 0;">借款金额为1500-50000元</p>
+        <p class="motwo_annv" onClick="$('.modal01').css('display','none');">确定</p>
+    </div>
+</div>
+<script src="../../js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+<script src="../../js/KaNiu/calculator.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function(){
+	var minmoney = 1500;
+	$(".jeinput").click(function (){
+		if($(this).val()==minmoney){
+			$(this).val("");
+		}
+	})
+	calculator(1500,50000,0.02,0.016,0.012)
+});
+</script>
+</body>
+</html>

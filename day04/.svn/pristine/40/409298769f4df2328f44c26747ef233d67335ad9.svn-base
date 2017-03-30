@@ -1,0 +1,228 @@
+@charset "utf-8";
+/* CSS Document */
+
+.login-form .us {
+	display: block;
+	height: 2.67rem;
+	line-height: 2.67rem;
+	width: 18.33rem;
+	margin: 0 auto;
+	border: none;
+	background-color: #fff;
+	font-size: 0.83rem;
+	text-indent: 1.67rem;
+	color: #333;
+	background-image: url(../images/icon.png);
+	background-repeat: no-repeat;
+	background-size:2.8rem auto;
+	outline: none;
+}
+.login-form a.all {
+	height: 2.61rem;
+	line-height: 2.61rem;
+}
+.form-zd {
+	border-bottom: 1px solid #ddd !important;
+	background-position: 0px -12.03rem;
+}
+.form-hk {
+	border-bottom: 1px solid #ddd !important;
+	background-position: 0px 0.58rem;
+}
+.form-jl {
+	background-position: 0px -2.17rem;
+}
+.form-yhj{background-position: 0px -33.19rem; border-bottom: 1px solid #ddd !important;}
+.form-cx {
+	border-bottom: 1px solid #ddd !important;
+	background-position: 0px -5.14rem;
+}
+.form-cx1 {
+	background-position: 0px -5.14rem;
+	border-bottom: 1px solid #ddd !important;
+
+}.form-zll {
+	background-position: 0px -20.08rem;
+	border-bottom: 1px solid #ddd !important;
+
+}
+.form-aqsz {
+	background-position: 0px -14.53rem;
+}
+.form-aqsz-xg {
+	background-position: 0px -16.7rem;
+}
+.form-aqsz-mb {
+	background-position: 0px -23.3rem;
+}.form-aqsz-tel {
+	background-position: 0px -25.8rem;
+}
+.form-aqsz-mail {
+	background-position: 0.1388rem -36.95rem;
+}
+.form-aqsz-wx {
+	background-position: 0.1388rem -39.6rem;
+}
+.form-xxs {
+	background-position: 0px -8.3rem;
+}
+
+.news {
+	position: absolute;
+	width: 0.77rem;
+	height: 0.77rem;
+	display: block;
+	border-radius:50%;
+	background:#ccc;
+	text-align:center;
+	top: 0.97rem;
+	right: 0.83rem;
+	background: url(../images/news.png);
+	background-size:100% 100%;
+}
+.jtt-down {
+	position: absolute;
+	width: 0.69rem;
+	height: 0.53rem;
+	display: block;
+	border-radius: 50%;
+	background: #ccc;
+	text-align: center;
+	top:1.03rem;
+	right: 0;
+	background: url(../images/arror-r1.png);
+	background-size:100% 100%;
+}
+.jtt, .jtt_01, .jtt_02 {
+	position: absolute;
+	width: 0.53rem;
+	height: 0.69rem;
+	display: block;
+	border-radius:50%;
+	background: #ccc;
+	text-align: center;
+	top: 1.15rem;
+	right: 0;
+	background: url(../images/arror-r.png);
+	background-size:100% 100%;
+}
+.jtt_01 {
+	background: url(../images/arror-t.png);
+	width: 0.69rem;
+	height:0.53rem;
+	background-size:100% 100%;
+}
+.jtt_02 {
+	background: url(../images/arror-b.png);
+	width: 0.69rem;
+	height:0.53rem;
+	background-size:100% 100%;
+}
+.bg {
+	background: url(../images/aboutp.png) no-repeat center top; background-size:100% 100%;
+	height: 9.17rem;
+}
+.cur-t1 h1.jss {
+	text-align: center;
+	font-size: 0.83rem;
+	color: #f64349;
+}
+section.cur-t2.cur-t2 p.cur-t4 span {
+	color: #f64349;
+}
+section.cur-t2.cur-t2 h3 {
+	color: #f64349;
+	font-size: 0.66rem;
+}
+.mt30 {
+	margin-top: 0.83rem;
+}
+.login-form .tin {
+	text-indent: 0px;
+!important;
+}
+.login-input p.answer {
+	font-size: 0.66rem;
+	line-height: 1rem;
+	padding: 0.55rem 0px;
+	border-top: solid #ddd 1px;
+	border-bottom: solid #ddd 1px;
+}
+.que, .anw {
+	background: #ff6400;
+	color: #fff;
+	height: 0.83rem;
+	line-height: 0.83rem;
+	width: 0.83rem;
+	display: inline-block;
+	text-align: center;
+	margin-right: 0.27rem;
+	border-radius: 5px;
+}
+.anw {
+	background: #f64349;
+}
+.line {
+	border-bottom: 1px solid #ddd !important;
+}
+.bgnone {
+	background: none!important;
+}
+.bill-text1 {
+	font-size:0.83rem;
+	color: #333;
+}
+.bill-text2 {
+	font-size:0.66rem;
+	color: #0b0b0b;
+}
+.gree {
+	background-color: #f2fbf7!important;
+}
+.yqq {
+	border-radius:50%;
+	background: #ff6500;
+	font-size:0.55rem;
+	color: #fff;
+	font-style: normal;
+	height: 0.77rem;
+	width: 0.77rem;
+	display: inline-block;
+	text-align: center;
+	line-height:0.77rem;
+	vertical-align:top;
+	position:absolute;
+	top: 1rem;
+	right: 1rem;
+	z-index:9;
+}
+/*直接转账*/
+.zjzz-text2{ font-size:32px;color:#ff6500;}
+.ml58{ margin-left:58px;}
+.ml117{ margin-left:117px;}
+.notic{ margin-top:0.83rem; margin-bottom:1.11rem; height:1.67rem; overflow:hidden;}
+.look{ position:absolute; left:0; top:0; width:0.86rem; height:0.86rem; background:url(../images/notic.png); background-size:100% 100%;}
+.notic p{ position:absolute; left:9%; top:0; color:#999; font-size:0.72rem; line-height:0.88rem;}
+.jxk {
+  width:16.67rem;
+  margin: auto;
+  border: 3px solid #f6f6f6;
+  border-radius:0.14rem;
+  position: relative;
+  /* margin-top: 10.83rem; */
+  padding:0.27rem;}
+.jxk img{ width:18.611rem; height:7.472rem; margin: 0 auto;
+  display: block;}
+.color-zjzz{ color:#999;
+  height:2.67rem;
+  width:3.86rem;
+  display: inline-block;
+}
+.login-form .u {
+
+  height:2.67rem;
+  line-height:2.67rem;
+  width:18.3rem;
+  font-size:0.83rem;
+
+}

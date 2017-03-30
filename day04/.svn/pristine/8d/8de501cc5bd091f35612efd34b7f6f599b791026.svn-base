@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title></title>
+    <meta charset="utf-8"/>
+    <link href="../../CSS/KaNiu/style_tianji.css" rel="stylesheet" type="text/css">
+    <link href="../../CSS/KaNiu/gennal.css" rel="stylesheet" type="text/css">
+    <link href="../../CSS/KaNiu/tianji.css" rel="stylesheet" type="text/css">
+    <script src="../../JS/KaNiu/jquery-1.10.2.7.min.js"></script>
+    <script src="../../JS/KaNiu/chkHelper.js"></script>
+    <style>
+        .modal_comfirm {
+            display: block;
+            width: 13.3867rem;
+            height: 2.0267rem;
+            border: none;
+            background-color: #f64349;
+            border-radius: 37.5rem;
+            font-size: 0.96rem;
+            color: #ffffff;
+            margin: 1.1733rem auto 0;
+        }
+        .modal_inpu_lock {
+            background: url(../../images/KaNiu/modal_input_lock.jpg) no-repeat left center;
+            background-size: 2rem 1rem;
+        }
+        .modal_inpu_msg {
+            background: url(../../images/KaNiu/modal_input_msg.jpg) no-repeat left center;
+            background-size: 2rem 1rem;
+        }
+        .modal_input {
+            width: 100%;
+            height: 1.8667rem;
+            border: none;
+            background-color: #e5e5e5;
+            border-radius: 0.2667rem;
+            display: inline-block;
+            color: #707070;
+            font-size: 0.7467rem;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .modal_input_img {
+            width: 6.56rem;
+        }
+        .modal_v_img {
+            width: 4.3rem;
+            height: 1.7rem;
+            display: none;
+            vertical-align: middle;
+            margin-left: 0.2667rem;
+            border-radius: 0.08rem;
+            border: 0.0267rem solid #b5b5b5;
+        }
+        .xieyi_email {
+            width: 18.4rem;
+            margin: 0 auto;
+        }
+        .xieyi_email p {
+            height: 0.64rem;
+            margin-top: 0.64rem; 
+            font-size: 0.5866rem;
+        }
+        .xieyi_email_detail {
+            color: #74a5e5;
+        }
+        .xieyi_icon {
+            display: inline-block;
+            width: 0.7733rem;
+            height: 0.64rem; 
+            margin-right: 0.4266rem;
+            vertical-align: top;
+        }
+        .xieyi_icon_right {
+            background: url(../../images/KaNiu/selectBg2.png) no-repeat center center;
+            background-size: contain; 
+        }
+        .xieyi_icon_err {
+            background: url(../../images/KaNiu/selectBg1.png) no-repeat center center;
+            background-size: contain; 
+        }
+    </style>
+</head>
+<body class="f5">
+    <div class="content">
+        <!-- <div class="header">
+            <span>信用卡认证</span>
+        </div> -->
+        <form id="flogin">
+            <div class="rzshop">
+                <div class="add_bank wid_13 qhtab">
+                    <ul>
+                        <li>
+                            <b>账单邮箱</b>
+                            <input name="username" type="text" id="username" placeholder="请输入账单邮箱" value="">
+                        </li>
+                        <li class="bbnone">
+                            <b>邮箱密码</b>
+                            <input name="password" type="password" id="password" placeholder="请输入邮箱密码" value="">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="xieyi_email">
+                <p class="xieyi_bottom">
+                    <span class="xieyi_top_text">请导入您接收信用卡账单的邮箱</span>
+                </p>
+                <p class="xieyi_top">
+                    <i id="xieyi_icon1" class="xieyi_icon xieyi_icon_right" data-value="1"></i><span class="xieyi_top_text">同意<a class="xieyi_email_detail">《分期X邮箱账单协议》</a></span>
+                </p>
+                <!-- <p class="xieyi_bottom">
+                    <i id="xieyi_icon2" class="xieyi_icon xieyi_icon_right" data-value="1"></i><span class="xieyi_top_text">开启智能收取账单</span>
+                </p> -->
+            </div>
+        </form>
+        <!--灰色提示框-->
+        <div id="little_tips" class="little_tips">
+            <p class="lt_text"></p>
+        </div>
+        <div class="both bank_bom">
+            <form id="finput" style="display: none;">
+                <input type="hidden" id="input_value" name="Input_value" />
+                <input type="hidden" id="task_id" name="task_id" />
+                <input type="hidden" id="api_token" name="api_token" />
+            </form>
+            <p>
+                <input class="pass" type="button" value="登录" id="btnLogin"/>
+            </p>
+        </div>
+    </div>
+    <!--加载中-->
+    <div id="loading" class="modal01" style="display:none;">
+        <div class="modal_bg"></div>
+        <div class="modal02_nr">
+            <p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>分期X温馨提示</span></p>
+            <p class="modloading"><img src="../../images/KaNiu/loading.gif"><br>正在提交资料中...</p>
+        </div>
+    </div>
+    <!--弹窗提示-->
+    <div class="modal01" id="errPop" style="display:none;">
+        <div class="modal_bg"></div>
+        <div class="modal02_nr">
+            <p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>分期X温馨提示</span></p>
+            <p class="motwo_wz" id="errmsg"></p>
+            <p class="motwo_annv">确定</p>
+        </div>
+    </div>
+    <!--密码-->
+    <div class="modal01" id="pwdPop" style="display:none;">
+        <div class="modal_bg"></div>
+        <div class="modal02_nr" style="width: 14.4rem; height: 7.5733rem;">
+           <p style="width: 11.20rem; margin: 1.50rem auto 0;">
+            <input class="modal_inpu_lock modal_input" id="" type="password" placeholder="独立密码" /><i class="modal_v_img"></i>
+           </p> 
+           <p><button class="modal_comfirm">确定</button></p>
+        </div>
+    </div>
+   <script>
+        /*使用严格模式*/
+        "use strict";
+        var domain = "/";
+        var _timer;//定时器
+        var btnLogin = $('#btnLogin'),
+            oImg = $('.verifi_img').eq(0),
+            userInput = $("#username"),
+            pwdInput = $("#password"),
+            pwdComfirm = $('.modal_comfirm').eq(0),
+            imgBase = $('.modal_v_img').eq(0),
+            verifiInput = $("#input_value"),
+            verifiFlag = false,
+            index_img = 0,
+            index_sms = 0,
+            index_idpPass = 0;
+        /*获取保存在浏览器中的session用户邮箱信息，然后自动填充信息*/
+        if (sessionStorage.UserEmail !== '' && sessionStorage.UserEmail!==undefined) {
+            userInput.val(sessionStorage.UserEmail);
+        }
+
+        /*优化用户填写体验*/
+        userInput.on('change', function () {
+            if (!chk_email($(this).val())) {
+                $(this).css('color', '#f64349');
+                $(this).val('');
+                $(this).attr('placeholder', '请输入正确邮箱账号');
+            } else {
+                $(this).css('color', 'black');
+            }
+        });
+        userInput.on('input', function () {
+            if (chk_email($(this).val())) {
+                $(this).css('color', 'black');
+            }
+        });
+        btnLogin.on('click', function () {
+            sessionStorage.UserEmail = userInput.val();
+            verifiFlag ? inputcode() : login();
+        });
+        //协议切换按钮
+        changeStatus($('#xieyi_icon1'));
+        changeStatus($('#xieyi_icon2'));
+        function login() {
+        if( $('#xieyi_icon1').data('value')!=1 ){
+                        Alert(true, '', '请先同意分期X邮箱协议', false);
+                        return;
+        }
+            if (chk_email($('#username').val())) {
+                btnLogin.attr("disabled", true);
+                btnLogin.removeClass('pass');
+                AjaxSubmitByCallBack("flogin", domain + "interface/moxie/moxie_email_do.ashx?type=createtask", function (res) {
+                    var email_id = res.email_id;
+                    var task_id = res.task_id;
+                    $('#task_id').val(task_id);
+                    $('#api_token').val(res.api_token);
+                    console.log('loginData:', res);
+                    _timer = setInterval('loader()', 2000);
+                });
+            } else {
+                $('#username').css('color', '#f64349');
+                $('#username').val('');
+                $('#username').attr('placeholder', '请输入正确邮箱账号');
+                setFocus($('#username'));
+            }
+        }
+        //轮询状态
+        function loader() {
+            var task_id = $('#task_id').val();
+            var api_token = $('#api_token').val();
+            var pwdPop_input = $('#pwdPop').find('input').eq(0);
+            AjaxUrlByCallBack(domain + "interface/moxie/moxie_email_do.ashx?type=gettaskstatus&task_id=" + task_id + "&api_token=" + api_token, function (res) {
+                console.log('loaderData:', res);
+                if (res.type == "0")    //正在执行
+                {
+                    Loading(false);
+                    Loading(true);
+                }
+                else if (res.type == "1")  //需要输入
+                {
+                    window.clearInterval(_timer);
+                    _timer = null;
+                    Loading(false);
+                    verifiFlag = true;
+                    //alert(res.Input_type);
+                    if (res.Input_type == "sms") {
+                        //smsInput.show();
+                        index_sms++;
+                        if (index_sms == 1)
+                        {
+                            showsmspop(pwdPop_input);
+                        }
+                        else
+                        {
+                            Alert(true, '', '手机验证码错误', function () {
+                                showsmspop(pwdPop_input);
+                            });
+                        }
+                         
+                    } else if (res.Input_type == "img") {
+                        //imgInput.show();
+
+                        index_img++;
+                        if (index_img == 1) {
+                            showimgpop(pwdPop_input, res);
+                        }
+                        else {
+                            Alert(true, '', '图片验证码错误', function () {
+                                showimgpop(pwdPop_input, res);
+                            });
+                        }
+
+                    } else if (res.Input_type == "idpPass") {
+
+                        index_idpPass++;
+                        if (index_idpPass == 1) {
+                                showidpPasspop(pwdPop_input, res);
+                        }
+                        else {
+                            Alert(true, '', '独立验证码错误', function () {
+                                showidpPasspop(pwdPop_input, res);
+                            });
+                        }
+                    }
+                }
+                else if (res.type == "2") //可以跳转
+                {
+                    Loading(false);
+                    Alert(true, '', '认证成功', function () {
+                        _timer = window.clearInterval(_timer);
+                        location.href = '/InterFace/ValidateCreid.ashx';
+                    });
+                }
+                else if (res.type == "3") //失败
+                {
+                    var msg = res.resultMsg == '尝试手动转发账单' ? '登录失败,请重试' : res.resultMsg;
+                    Loading(false);
+                    _timer = window.clearInterval(_timer);
+                    Alert(true, '', msg, function () {
+                        document.location.reload();
+                    });
+                }
+                else if (res.type == "4") //超时
+                {
+                    Loading(false);
+                    _timer = window.clearInterval(_timer);
+                    Alert(true, '', "操作超时，请重试", function () {
+                        document.location.reload();
+                    });
+                }
+                else {
+                    Loading(false);
+                    _timer = window.clearInterval(_timer);
+                    Alert(true, '', res.errmsg, function () {
+                        document.location.reload();
+                    });
+                }
+                //解锁
+                btnLogin.attr("disabled", false);
+                btnLogin.addClass('pass');
+            });
+        }
+        //输入验证码
+        function inputcode() {
+            if ($('#img_input_value').val() != undefined && $('#img_input_value').val() != '') 
+                {
+                    verifiInput.val($('#img_input_value').val());
+                }
+            else if ($('#sms_input_value').val() != undefined && $('#sms_input_value').val() != '') 
+                {
+                    verifiInput.val($('#sms_input_value').val());
+                }
+            else if ($('#idppass_input_value').val() != undefined && $('#idppass_input_value').val() != '') 
+                {
+                    verifiInput.val($('#idppass_input_value').val());
+                }
+            else{
+                    $('#doerror_fen_qi_x').val(ssd);//此版本强制报错，阻止向下运行
+                }
+           
+            
+            AjaxSubmitByCallBack("finput", domain + "interface/moxie/moxie_email_do.ashx?type=inputcode", function (res) {
+                if (res.errmsg) {
+                    Alert(true, '', res.errmsg, function () {
+                        document.location.reload();
+                    });
+                  
+                    return;
+                }
+                //Alert(true, '', "提交成功", function () {
+                btnLogin.attr("disabled", false);
+                btnLogin.removeClass("pass");
+                Loading(true);
+                _timer = setInterval('loader()', 2000);
+                //});
+            });
+        }
+        //提示框
+        function Alert(bFalg, errCode, errMsg, callback) {
+            if (bFalg) {
+                $("#errPop").css("display", "block");
+                $("#errmsg").html(errMsg);
+                $(".motwo_annv").eq(0).off("click");
+                $(".motwo_annv").eq(0).on("click", function () {
+                    $('#errPop').css('display', 'none');
+                    if (callback) {
+                        callback();
+                    }
+                });
+            }
+        }
+        //正在加载
+        function Loading(bFlag) {
+            if (bFlag) {
+                $("#loading").css("display", "block");
+            }
+            else {
+                $("#loading").css("display", "none");
+            }
+        }
+        function AjaxSubmitByCallBack(id, url, callback) {
+            var f = "";
+            if (id != "") {
+                f = "#" + id;
+            }
+            else {
+                f = "form";
+            }
+            $.ajax({
+                url: url,
+                type: "Post",
+                data: $(f).serialize(),
+                //   async: false,
+                success: function (res) {
+                    callback(res);
+                },
+                cache: false,
+                error: function () {
+                    //Alert(true, XHR.status, TS);
+                    alert("连接服务器失败,请重试");
+                }
+            });
+        }
+        function AjaxUrlByCallBack(url, callback) {
+            $.ajax({
+                url: url,
+                type: "Get",
+                success: function (res) {
+                    callback(res);
+                },
+                cache: false,
+                complete: function (XHR, TS) {
+                },
+                error: function () {
+                    alert("连接服务器失败,请重试");
+                }
+            });
+        }
+        //邮箱验证
+        function chk_email(obj) {
+            var reg = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if (obj == undefined || obj == "" || !reg.test(obj)) {
+                return false;
+            }
+            return true;
+        }
+        //获取焦点后光标在字符串后
+        function setFocus(obj) {
+            var val = obj.val();
+            obj.val("").focus().val(val);
+        }
+        function changeStatus(obj){
+                obj.flag = false;
+                obj.on('click',function(){
+                    if(obj.flag)
+                    {
+                        obj.data('value','1');
+                        obj.removeClass('xieyi_icon_err');
+                        obj.addClass('xieyi_icon_right');
+                    }
+                    else
+                    {
+                        obj.data('value','0');
+                        obj.removeClass('xieyi_icon_right');
+                        obj.addClass('xieyi_icon_err');
+                    }
+                    obj.flag = !obj.flag;
+                });
+        }
+        function showsmspop(pwdPop_input)
+        {
+        // alert('showsmspop');
+         pwdPop_input.val('');
+         $('#pwdPop').show();
+         imgBase.hide();
+         pwdPop_input.removeClass('modal_inpu_lock modal_input_img');
+         pwdPop_input.attr({
+             'id': 'sms_input_value',
+             'type': 'text',
+             'placeholder': '请输入短信验证码'
+         });
+         pwdPop_input.addClass('modal_input_msg modal_input');
+         pwdComfirm.off('click');
+         pwdComfirm.on('click', function () {
+             inputcode();
+             $('#pwdPop').hide();
+         });
+        }
+        function showimgpop(pwdPop_input, res)
+        {
+        // alert('showimgpop');
+         pwdPop_input.val('');
+         $('#pwdPop').show();
+         pwdPop_input.removeClass('modal_inpu_lock');
+         imgBase.css({
+             "display": "inline-block",
+             "background": "url(data:image/gif;base64," + res.Input_value + ") no-repeat",
+             "background-size": "contain"
+         });
+         pwdPop_input.attr({
+             'id': 'img_input_value',
+             'type': 'text',
+             'placeholder': '请输入验证码'
+         });
+         pwdPop_input.addClass('modal_input modal_input_img');
+         pwdComfirm.off('click');
+         pwdComfirm.on('click', function () {
+             inputcode();
+             $('#pwdPop').hide();
+         });
+        }
+        function showidpPasspop(pwdPop_input)
+        {
+        // alert('showidpPasspop');
+         pwdPop_input.val('');
+         $('#pwdPop').show();
+         imgBase.hide();
+         pwdPop_input.removeClass('modal_input_img');
+         pwdPop_input.attr({
+             'id': 'idppass_input_value',
+             'type': 'password',
+             'placeholder': '请输入独立密码'
+         });
+         pwdPop_input.addClass('modal_inpu_lock modal_input');
+         pwdComfirm.off('click');
+         pwdComfirm.on('click', function () {
+             inputcode();
+             $('#pwdPop').hide();
+         });
+        }
+
+    </script>
+</body>
+</html>

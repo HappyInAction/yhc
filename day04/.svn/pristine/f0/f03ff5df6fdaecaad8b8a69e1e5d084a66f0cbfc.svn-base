@@ -1,0 +1,70 @@
+.modal_comfirm {
+    display: block;
+    width: 13.3867rem;
+    height: 2.0267rem;
+    border: none;
+    background-color: #f64349;
+    border-radius: 37.5rem;
+    font-size: 0.96rem;
+    color: #ffffff;
+    margin: 1.1733rem auto 0;
+}
+.modal_inpu_lock {
+    background: url(../../../images/KaNiu/modal_input_lock.jpg) no-repeat left center;
+    background-size: 2rem 1rem;
+}
+.modal_inpu_msg {
+    background: url(../../../images/KaNiu/modal_input_msg.jpg) no-repeat left center;
+    background-size: 2rem 1rem;
+}
+.modal_input {
+    width: 100%;
+    height: 1.8667rem;
+    border: none;
+    background-color: #e5e5e5;
+    border-radius: 0.2667rem;
+    display: inline-block;
+    color: #707070;
+    font-size: 0.7467rem;
+    text-align: center;
+    vertical-align: middle;
+}
+.modal_input_img {
+    width: 6.56rem;
+}
+.modal_v_img {
+    width: 4.3rem;
+    height: 1.7rem;
+    display: none;
+    vertical-align: middle;
+    margin-left: 0.2667rem;
+    border-radius: 0.08rem;
+    border: 0.0267rem solid #b5b5b5;
+}
+.xieyi_email {
+    width: 18.4rem;
+    margin: 0 auto;
+}
+.xieyi_email p {
+    height: 0.64rem;
+    margin-top: 0.64rem; 
+    font-size: 0.5866rem;
+}
+.xieyi_email_detail {
+    color: #74a5e5;
+}
+.xieyi_icon {
+    display: inline-block;
+    width: 0.7733rem;
+    height: 0.64rem; 
+    margin-right: 0.4266rem;
+    vertical-align: top;
+}
+.xieyi_icon_right {
+    background: url(../../../images/KaNiu/selectBg2.png) no-repeat center center;
+    background-size: contain; 
+}
+.xieyi_icon_err {
+    background: url(../../../images/KaNiu/selectBg1.png) no-repeat center center;
+    background-size: contain; 
+}

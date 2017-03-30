@@ -1,0 +1,208 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>邮箱验证</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="cleartype" content="on">
+
+    <link href="../../css/NEW/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="f5">
+    <form action="/InterFace/ValidateCenter/ValidateEmail.ashx" method="post">
+        <div class="content">
+            <div class="rztab tab_email">
+                <div class="email"><p id="email">邮箱认证</p></div>
+                <div class="email_nr" style="height: 2.66rem;">
+                    <div class="add_bank wid_13 rzem_tp">
+                        <ul>
+                            <li><b>邮箱</b><span class="f64349 emailspan"></span>
+                                <input type="hidden" name="yxrz_mail" id="yxrz_mail" value="" />
+                            <!--<input id="btnemail" class="send-mess gcolor" name="" type="button" value="发送邮件">
+                            <input id="hidinput" name="hidinput" type="hidden" value="0">-->
+                            </li>
+                            <!--<li class="rzyzm"><b>验证码</b><input id="yzm" name="Coder" class="rzem_input" type="text" placeholder="请输入验证码"></li>-->
+                        </ul>
+                    </div>
+                    <!--<div class="both rz_tips">
+                        <p class="tips"><img src="/InterFace/images/kaniu/input_01.png"><span>您会收到一封邮件，用于验证您的邮箱，我们不会将您的邮箱泄露给任何人！</span></p>
+                    </div>-->
+                </div>
+            </div>
+            <div class="contab tab_contacts">
+                <div class="contacts"><p id="contacts">紧急联系人认证</p></div>
+                <div class="contacts_nr">
+                    <div class="yz_jjperson yz_mtnone">
+                        <ul>
+                            <li><select name="role01" id="role01"><option value="父母">父母</option><option value="配偶">配偶</option></select><i></i><input id="name01" name="name01" type="text" placeholder="请输入姓名"></li>
+                            <li class="bbomnone"><b>手机号码</b><input id="phone01" name="phone01" type="text" placeholder="请输入您手机号码"></li>
+                        </ul>
+                    </div>
+                    <div class="yz_jjperson">
+                        <ul>
+                            <li><select name="role02" id="role02"><option value="朋友">朋友</option><option value="男女朋友">男女朋友</option></select><i></i><input id="name02" name="name02" type="text" placeholder="请输入姓名"></li>
+                            <li class="bbomnone"><b>手机号码</b><input id="phone02" name="phone02" type="text" placeholder="请输入您手机号码"></li>
+                        </ul>
+                    </div>
+                    <div class="yz_jjperson">
+                        <ul>
+                            <li><select name="role03" id="role03"><option value="同事">同事</option><option value="同学">同学</option></select><i></i><input id="name03" name="name03" type="text" placeholder="请输入姓名"></li>
+                            <li class="bbomnone"><b>手机号码</b><input id="phone03" name="phone03" type="text" placeholder="请输入您手机号码"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="both bank_bom">
+                <p><input name="" id="rzbtn" class="" disabled="disabled" type="submit" value="确定"></p>
+            </div>
+            <div class="footer foor_ab" style="display:none;">
+                <div class="foottp"><i></i><p class="base_footerf5"><img src="../../images/NEW/appli03.png"></p></div>
+                <div class="footbom"><p class="fl"><a>联系客服：<span onclick="document.getElementById('guided_mod').style.display='block'">请点击</span></a></p><p class="fr"><a href="">关于我们</a><a class="brtnone" href="">常见问题</a></p></div>
+            </div>
+        </div>
+
+        <input type="hidden" name="type" value="submit" />
+        <!--<div class="content">
+            <div class="add_bank wid_13">
+                <ul>
+                    <li><b>邮箱</b><span class="f64349 emailspan">{$:yxrz_mail htmlencode=”true”}</span><input id="btnemail" class="send-mess gcolor" name="" type="button" value="发送邮件"></li>
+                    <li class="bbomnone"><b>验证码</b><input id="yzm" name="Coder" type="text" placeholder="请输入验证码"></li>
+                </ul>
+            </div>
+            <div class="both bank_bom">
+                <p class="tips"><img src="/InterFace/images/kaniu/input_01.png"><span>您会收到一封邮件，用于验证您的邮箱，我们不会将您的邮箱泄露给任何人！</span></p>
+                <p><input id="emailbtn" name="" type="submit" value="确定" ></p>
+            </div>
+            <div class="footer foor_ab">
+                <div class="foottp"><i></i><p class="base_footerf5"><img src="images/appli03.png"></p></div>
+                <div class="footbom"><p class="fl"><a href="tel://4008272232">400-8272-232<span>(9:00-19:00)</span></a></p><p class="fr"><a href="">关于我们</a><a class="brtnone" href="">常见问题</a></p></div>
+            </div>
+        </div>-->
+
+    </form>
+    <!--手机认证提示02-->
+    <div id="remind02" class="modal01" style="display:none;">
+        <div class="modal_bg"></div>
+        <div class="modal02_nr">
+            <p class="modtwo_tp"><img src="../../images/NEW/modal01.png"><span>分期X温馨提示</span></p>
+            <p class="motwo_wz"></p>
+            <p class="motwo_wz404"></p>
+            <p class="motwo_annv" onclick="javascript: $('#remind02').css({ 'display': 'none' });">确定</p>
+        </div>
+    </div>
+
+    <!--客服引导mod-->
+    <div id="guided_mod" class="guided_mod" style="display:none;">
+        <i class="modal_bg" onclick="document.getElementById('guided_mod').style.display='none'"></i>
+        <div class="guimod">
+            <div class="posrela">
+                <div class="kfyd_box">
+                    <div class="index02"><img src="../../images/NEW/rg_01.png"></div>
+                    <div class="ttu"><span class="nuc">1</span>进入分期X微信公众号，直接输入“客服”即可咨询。</div>
+                    <div class="kfyd_img"><img src="../../images/NEW/rg_03.jpg"></div>
+                    <div class="ttu"><span class="nuc">2</span>咨询人工客服可点击公众号右上角标识进入公众号简介，点击“客服人员”即可。</div>
+                    <div class="kfyd_img mb20"><img src="../../images/NEW/rg_05.png"></div>
+                </div>
+                <div class="guimod_bom"><a class="over" onclick="document.getElementById('guided_mod').style.display='none'">关闭</a></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/NEW/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+    <script src="../../js/NEW/ValidateEmail.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            showMsg();
+
+            //select
+            $("#role01,#role02,#role03").change(function () {
+                var id = $(this).attr("id");
+                var index = id.substr(id.length-1,1);
+                $("#name0" + index + ",#phone0" + index).attr("style", "color:black");
+                if ($(this).val() != params[id]) {
+                    $("#name0" + index).val("");
+                    $("#phone0" + index).val("");
+                } else {
+                    chasele();
+                }
+            });
+
+
+            $("#email,#contacts").click(function () {
+                var id = $(this).attr("id");
+                $('.' + id + '_nr').css('transition', 'height ease-in-out 1s');
+                if ($('.' + id + '_nr').height() == 0) {                  
+                    $(this).css({ 'background': 'url(../../images/NEW/arror-r2.png) right center no-repeat', 'background-size': '0.666rem 0.5rem' });
+                    if (id == "email") {
+                        $('.email_nr').css({ 'height': params.emlhei, 'border-top': '1px #ddd solid' });
+                        $('.contacts_nr').css({ 'height': '0', 'border-top': 'none' });
+                    }else{
+                        $('.email_nr').css({ 'height': '0', 'border-top': 'none' });
+                        $('.contacts_nr').css({ 'height': params.conhei, 'border-top': '1px #ddd solid' });
+                    }
+                } else {
+                    $('.' + id + '_nr').css({ 'height': '0', 'border-top': 'none' });
+                    $(this).css({ 'background': 'url(../../images/NEW/arror-r1.png) right center no-repeat', 'background-size': '0.666rem 0.5rem' });
+                }
+            });
+
+            $("input").focusin(function () {
+                if ($(this).val().indexOf("请输入") > -1 || $(this).val().indexOf("手机号码") > -1) {
+                    $(this).attr("style", "color:black");
+                    $(this).val("");
+                }
+            });
+
+            $("#name01,#name02,#name03").focusout(function () {
+                if ($(this).val() == "" || !IsGB($(this).val())) {
+                    $(this).val("请输入姓名");
+                    $(this).attr("style", "color:red");
+                }
+            });
+            $("#phone01,#phone02,#phone03").focusout(function () {
+                if ($(this).val() == "" || !IsPhone($(this).val())) {
+                    $(this).val("请输入手机号码");
+                    $(this).attr("style", "color:red");
+                }
+            });
+            $("input[type=text]").bind('input propertychange', function () {
+                if ($(this).val() == "") {
+                    $(this).attr("style", "color:black");
+                }
+                if(IsPhone($("#phone01").val()) || IsPhone($("#phone02").val()) || IsPhone($("#phone03").val())){
+                    if ($("#phone01").val() != "" && $("#phone01").val() == $("#phone02").val()){
+                        $("#phone02").val("手机号码不能重复");
+                        $("#phone02").attr("style", "color:red");
+                    } else if ($("#phone03").val() != "" && ($("#phone01").val() == $("#phone03").val() || $("#phone02").val() == $("#phone03").val())) {
+                        $("#phone03").val("手机号码不能重复");
+                        $("#phone03").attr("style", "color:red");
+                    }
+                }
+                if (IsGB($("#name01").val()) && IsGB($("#name02").val()) && IsGB($("#name03").val()) && IsPhone($("#phone01").val()) && IsPhone($("#phone02").val()) && IsPhone($("#phone03").val())) {
+                    $("#rzbtn").attr("class", "pass");
+                    $("#rzbtn").removeAttr("disabled");
+                } else {
+                    $("#rzbtn").attr({ "disabled": "", "class": "" });
+                }
+            })
+
+            //弹窗
+            var errcode = "{$:errcode jsencode=”true”}";
+            var errmsg = "{$:errmsg jsencode=”true”}";
+            if (errmsg.indexOf("jsencode") <= -1) {
+                if (errcode || errmsg) {
+                    errShow({ "errmsg": errmsg, "errcode": errcode });
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

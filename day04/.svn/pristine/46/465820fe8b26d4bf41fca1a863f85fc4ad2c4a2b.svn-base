@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>我的快捷支付卡</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/KaNiu/style.css" rel="stylesheet" type="text/css">
+<link href="../../css/KaNiu/gennal.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="content">
+    <div class="quickpay">
+        <div class="quicknr">
+            <div class="fl quick_lf">
+                <p class="qulf_tt"><span>快捷支付卡</span><img src="../../images/KaNiu/bank02.jpg"></p>
+                <p>便捷：无需登录网银，一步完成支付</p>
+                <p>安全：支付密码+手机验证码，双重保护</p>
+            </div>
+            <a href="">
+            <div class="fr quick_rt"><img src="../../images/KaNiu/bank03.png"><br>
+                立即添加</div>
+            </a> </div>
+        <div class="both bank_bom">
+            <p class="tips"><img src="../../images/KaNiu/input_01.png"><span>目前仅支持储蓄卡绑定，后期会陆续增加信用卡绑定！尽请期待！</span></p>
+        </div>
+    </div>
+</div>
+<script src="../../js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+</body>
+</html>

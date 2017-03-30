@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>查看进度</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/KaNiu/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="content">
+    <div class="schedule_zl">
+        <p class="schtp"></p>
+        <div class="schtp_nr">
+            <p class="schnr_bg"></p>
+            <div class="schnr_cont">
+                <div class="schcont_zl">
+                    <p class="fl zl_pic"><img src="../../images/KaNiu/peocent10.png"></p>
+                    <div class="fl zl_wzwz">
+                        <p class="wztt">{$:user_name htmlencode=”true”}</p>
+                        <p><b>申请时间：</b><span>{$:create_time htmlencode=”true”} </span></p>
+                        <p><b>申请项目：</b><span class="sj_zf">现金贷</span></p>
+                        <p><b>协　　议：</b><span class="checkxy" onClick="document.getElementById('modal').style.display='block'">查看协议</span></p>
+                    </div>
+                </div>
+                <div class="schcont_sj">
+                    <p>申请金额<br>
+                        <span>{$:loan_money htmlencode=”true”}</span></p>
+                    <p>申请期数<br>
+                        <span class="sj_zf">{$:loan_month htmlencode=”true”}期</span></p>
+                </div>
+            </div>
+        </div>
+        <p class="schnr_bombg"></p>
+    </div>
+    <div class="sche_cont sche_padd">
+        <div class="cont_tt">
+            <p class="fl">审核进度</p>
+            <p class="fr">如有疑问请咨询：<a class="red" onClick="document.getElementById('guided_mod').style.display='block'">请点击</a></p>
+        </div>
+        <div class="cont_nr">
+            <ul>
+                <li>
+                    <div class="fl contnr_lf">
+                        <p></p>
+                        <i class=""></i></div>
+                    <div class="fr contnr_rt">
+                        <div class="nrrt_bz">
+                            <p class="fl">资料已提交</p>
+                            <p class="fr"></p>
+                        </div>
+                        <p class="nrrt_wzwz hide">资料提交成功，请耐心等待审核</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="fl contnr_lf">
+                        <p></p>
+                        <i class=""></i></div>
+                    <div class="fr contnr_rt">
+                        <div class="nrrt_bz">
+                            <p class="fl">进入初审阶段</p>
+                            <p class="fr"></p>
+                        </div>
+                        <p class="nrrt_wzwz hide">进入初审阶段，请耐心等待审核</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="fl contnr_lf">
+                        <p></p>
+                        <i class=""></i></div>
+                    <div class="fr contnr_rt">
+                        <div class="nrrt_bz">
+                            <p class="fl">风控评审</p>
+                            <p class="fr"></p>
+                        </div>
+                        <p class="nrrt_wzwz hide">进入风控评审，请耐心等待审核</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="fl contnr_lf">
+                        <p></p>
+                        <i class=""></i></div>
+                    <div class="fr contnr_rt bbomnone">
+                        <div class="nrrt_bz">
+                            <p class="fl last_reco">审核通过并放款</p>
+                            <p class="fr"></p>
+                        </div>
+                        <p class="nrrt_wzwz hide last_tips">恭喜您，审核通过了，已经放款请注意查收！</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <!--底部-->
+    <div class="sche_foot">
+        <p class="fl foot_pic"></p>
+        <p class="fl shtime">客服QQ：2897923012 、2938809318、3451150552</p>
+    </div>
+</div>
+
+<!--协议-->
+<div id="modal" class="xieyi" style="display:none;"> <i class="modal_bg"></i>
+    <div class="protocols">
+        <div class="protop borbom">
+            <p class="fl">分期X借款协议</p>
+        </div>
+        <div class="procont">
+            <div class="pronr">
+                <section class="cur-t2">
+                    <p class="cur-t44">本借款协议（ 以下简称“本协议”）由以下两方于　年　月　日在中华人民共和国_____市签署并履行 </p>
+                    <p class="cur-t44">甲方（借款人） ：<br>
+                        身份证号码：</p>
+                    <p class="cur-t44">乙方（出借人） ：张利<br>
+                        身份证号码：620104197406191571 </p>
+                    <p class="cur-t44">鉴于：<br>
+                        1、甲方有指定用途（□租房、□驾照培训、□教育培训、□旅游、□其他____）的借款需求；<br>
+                        2、乙方有一定闲余资金； 双方经友好协商，就以下条款达成一致；</p>
+                    <h3>第一条 借款的审核与发放 </h3>
+                    <p class="cur-t4">1、甲方的借款申请获得深圳市五一贷金融服务有限公司审核通过，<span class="org">深圳市五一贷金融服务有限公司推荐及乙方认可后，深圳市五一贷金融服务有限公司会采用短信（或邮件）等方式通知甲方。甲方最终所获之借款额度、还款期限、月还款额等取决于深圳市五一贷金融服务有限公司审核结果、推荐及乙方认可，以深圳市五一贷金融服务有限公司对甲方的短信（或邮件）通知内容为准。本《借款协议》自将相应款项打入甲方指定账户后生效。甲方认可短信（或邮件）告知内容后，深圳市五一贷金融服务有限公司将载有与短信（或邮件）告知一致内容的 《借款客户告知书》 通过邮寄、电子邮件、微信等方式送达甲方，若甲方无应答，则默认为甲方已同意乙方所有条款。乙方有权要求甲方在包括但不限于下列情况下将剩余款项一次性还清，包括：恶意逾期、乙方认定甲方发生可能存在恶意逾期的行为等。</span>乙方自主自愿依据《借款客户告知书》规定的内容向甲方出借款项，将出借款项定向支付给甲方的银行账号，此款项用于甲方支付购买指定产品或服务的全部或部分费用。出借人付款履行付款责任后，由甲方自行处理与产品提供商的有关事宜。</p>
+                    <p class="cur-t4">2、<span class="org">甲方确认系自愿选择支付购买指定产品或服务，乙方对产品质量、售后服务或其它相关事宜不承担任何责任，无论甲方与产品提供商之间的争议过程和结果如何，甲方必须按照本协议条款的规定按时履行还款义务，不得中断或终止还款，任何情况下，甲方都必须如期还款。</span></p>
+                    <h3  class="mt30">第二条 借款的偿还 </h3>
+                    <p class="cur-t4">1、甲方按月向乙方偿还本金和利息，借款人对本借款项下的本金、利息、罚息、违约金的费用承担无限连带责任。</p>
+                    <p class="cur-t4">2、甲方同意委托乙方放款到甲方指定的银行账户或《转账授权委托书》中产品服务提供商的银行账号。 </p>
+                    <p class="cur-t4">3、甲方须在每月还款当日（不得迟于 18：00）或之前将月偿还本息数额转入乙方指定的银行账号（具体参考微信或APP相关页面）。不论在任何情况下，甲方均保证按时足额还款，若因甲方操作失败而导致扣款失败，由甲方自行承担责任。 </p>
+                    <p class="cur-t4">4、还款日期以“个人中心-还款计划”中的还款日期为准。如还款日遇到法定假日或公休日，还款日期不进行顺延。 若甲方由于个人原因未及时查看个人中心，则由此产生的损失由甲方全部承担。</p>
+                    <h3  class="mt30">第三条 罚息和逾期违约金计算方法如下：</h3>
+                    <p class="cur-t4">1、逾期违约金：按照当月应还本息的 5%计算，不低于 50 元，每月单独计算。 </p>
+                    <p class="cur-t4">2、罚息：每日支付所有未还本息总和的 0.05%，每月单独计算，每月的未还本息总和为当期及以后各期的未还本息总和。 </p>
+                    <p class="cur-t4">3、如当月部分还款，则当月用以计算罚息的未还本息总和不变，直至甲方把当月所有款项结算（包括本息、罚息和逾期违约金）。</p>
+                    <p class="cur-t4">4、若甲方偿还金额不足，偿还顺序按照先后顺序为咨询费、审核费、服务费、 罚息、逾期违约金、应还利息、应还本金。 </p>
+                    <p class="cur-t4">5、甲方在剩余还款期数为六个月以上（含六个月）的情况下，可以在本协议项下规定的还款日的 10 个工作日前提出申请，并在征得同意后三日内，一次性将剩余本金还清，同时支付提前还款违约金，违约金的数额按协议约定的尚未偿还的本金利息和相应费用总和的 5%收取。 </p>
+                    <h3  class="mt30">第四条 借款专用用途：</h3>
+                    <p class="cur-t4">1、甲方应按照《转账授权委托书》或本借款协议文首指明的用途使用借款，不得挪作它用。改变借款用途将被视为根本违反本协议约定，乙方有权随时终止合同并要求甲方提前返还全部借款本金、利息及所有相应费用。乙方保留将甲方违约失信的相关信息在媒体披露的权利。因甲方逃避还款而带来的调查及诉讼费用由甲方承担。 </p>
+                    <h3  class="mt30">第五条 利率及费用 </h3>
+                    <p class="cur-t4">甲乙双方协商一致同意，深圳市五一贷金融服务有限公司有权依据甲方资信状况的不同设定不同水平的利率，具体以深圳市五一贷金融服务有限公司向甲方出具的《客户告知书》或微信APP系统平台为准。</p>
+                    <h3  class="mt30">第六条 债权转让 </h3>
+                    <p class="cur-t4">乙方可以根据自己的意愿进行本协议下其对甲方债权的对外转让，无须通知甲方。在乙方的债权转让后，甲方需对债权受让人继续履行本协议下其对乙方的还款义务，不得以未接到债权转让通知为由拒绝履行还款义务。</p>
+                    <h3  class="mt30">第七条 变更通知 </h3>
+                    <p class="cur-t4">甲方有义务在下述信息变更三日内提供更新信息给乙方或自行通过微信（APP）进行修改更新；<span class="org">常用手机、常用邮箱、工作单位、居住地址、父母家人联系电话等</span>。对于因甲方未及时准确提供相关信息给乙方造成的任何损失，由甲方自行承担。 </p>
+                    <h3  class="mt30">第八条 隐私保护 </h3>
+                    <p class="cur-t4">8.1本协议所指的“隐私”包括《电信和互联网用户个人信息保护规定》第4条规定的用户个人信息的内容以及未来不时制定或修订的法律法规中明确规定的隐私应包括的内容。</p>
+                    <p class="cur-t4">8.2保护用户隐私和个人数据是分期X公司的一项基本制度，分期X公司将采取各种制度、安全技术和程序等措施来保护用户隐私和个人数据不被未经授权的访问、使用或泄漏，并保证不会将单个用户的注册资料及用户在使用分期X服务时存储在分期X公司的非公开内容向除合作单位以外的第三方公开或用于任何非法的用途，但下列情况除外：</br>
+                        (1) 事先获得用户的明确授权；</br>
+                        (2) 根据有关法律法规的要求；</br>
+                        (3) 按照相关政府主管部门的要求；</br>
+                        (4) 为维护社会公众的利益；</br>
+                        (5) 用户侵害本协议项下问吧公司的合法权益的情况下而为维护问吧公司的合法权益所必须。</p>
+                    <h3 class="mt30">第九条  其他</h3>
+                    <p class="cur-t4">1、甲乙双方签署本协议后，本协议文首所载日期成立，自甲方认可深圳市五一贷金融服务有限公司短信（或邮件）通知及乙方按照《借款客户告知书》及《转账授权委托书》要求完成付款生效后。甲方将本协议下全部本金、利息、平台服务费（咨询费、审核费、服务费、罚息、违约金等）全部偿还完毕之日，本协议自动失效。 </p>
+                    <p class="cur-t4">2、借款人必须承担本借款项下所有法律责任与义务。借款人均不得因与其他人之间发生任何法律纠纷或争议，借款人的死亡、伤残、丧失民事行为能力、丧失还款能力等为由拒绝归还本借款。 </p>
+                    <p class="cur-t4">3、本协议条款履行中如发生纠纷，各方应协商解决，协商不成，应在本协议签署人民法院提起诉讼。 </p>
+                    <p class="cur-t4">4、甲方签署的《转账授权委托书》以及《借款客户告知书》等相关文本均为本协议的重要组成部分，具有与本协议同等的法律效力。</p>
+                    <p class="cur-t4">5、各方确认，本协议的签署，生效和履行以不违反中国法律法规为前提。如本协议中任一条款违反适用的法律法规，则该条款将被视为无效，但该无效条款并不影响本协议其它条款的效力。</p>
+                    <h3 class="mt30">第十条  转账委托</h3>
+                    <p class="cur-t4">1、甲方_____身份证号_____________现委托同意乙方将此次借款金额转账至下面银行账户：<br>
+                        户名：_____________<br>
+                        账号：_____________<br>
+                        开户行：_____________<br>
+                        以上情况属实，若由此引起纠纷，由甲方负全责。</p>
+                    <p class="cur-t4">2、甲方_____身份证号_____________现委托同意乙方全权代理甲方完成网上商城的分期商品购买，并在乙方付款成功时默认为甲乙双方的债务关系正式成立。若甲方对网上商城的商品不满意，需要退货，则需要额外缴纳剩余还款金额的5％；若甲方需要换货等，则参照本协议第一条第二款执行。</p>
+                    <p class="cur-t4">甲方（借款人）签字：&nbsp;&nbsp;&nbsp;（手印）日期：</p>
+                    <p class="cur-t4">乙方（出借人）签章：&nbsp;&nbsp;&nbsp;&nbsp;日期：</p>
+                </section>
+            </div>
+        </div>
+        <div class="probom"><a class="over" onClick="document.getElementById('modal').style.display='none'">关闭</a></div>
+    </div>
+</div>
+
+<!--客服引导mod-->
+<div id="guided_mod" class="guided_mod" style="display:none;"> <i class="guimodal_bg" onClick="document.getElementById('guided_mod').style.display='none'"></i>
+    <div class="guimod">
+        <div class="posrela">
+            <div class="kfyd_box">
+                <div class="index02"><img src="../../images/KaNiu/rg_01.png"></div>
+                <div class="ttu"><span class="nuc">1</span>进入分期X微信公众号，直接输入“客服”即可咨询。</div>
+                <div class="kfyd_img"><img src="../../images/KaNiu/rg_03.jpg"></div>
+                <div class="ttu"><span class="nuc">2</span>咨询人工刻度可点击公众号右上角标识进入公众号简介，点击“客服人员”即可。</div>
+                <div class="kfyd_img mb20"><img src="../../images/KaNiu/rg_05.png"></div>
+            </div>
+            <div class="guimod_bom"><a class="over" onClick="document.getElementById('guided_mod').style.display='none'">关闭</a></div>
+        </div>
+    </div>
+</div>
+<script src="../../js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script> 
+<script type="text/javascript">
+$(function (){
+	$.ajax({
+		url: 'http://localhost/test/jindu.php',//'http://localhost:81/MyHandler.ashx',
+		type: 'get',
+		//dataType: 'json',
+		cache: false,
+		success: function(data){
+            //console.log(typeof(data));
+            var data = eval("("+data+")")
+			var state = Number(data.state),
+				modify_time = data.modify_time;
+			RecordDetail(state,modify_time)
+		}
+	})
+	function RecordDetail(state,modify_time){
+		var p;
+		if(state!=2) {
+			if(state>=-1){
+				p = 1;
+				if(state>=0){
+					p = 2;
+					if(state>=3){
+						p = 3;
+						if(state>=8 && state!=9){
+							p = 4;
+						}
+						if(state==9){
+							p = 4;
+							$('.last_reco').html('审核通过但放款失败');
+							$('.last_tips').html('如有疑问请联系客服:400-8272-232）');
+						}
+					}
+				}
+			}
+		}
+		for (var i=0; i<p; i++){
+			$(".contnr_lf i").eq(i).addClass("pass");
+			$(".nrrt_bz").eq(i).addClass("passzl");
+			$(".nrrt_wzwz").eq(i).removeClass("hide");
+			if(i==p-1){
+				$('.nrrt_bz p.fr').eq(i).html(modify_time);
+			}
+		}
+	};
+	
+})
+
+</script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>手机/电商认证</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="content contpad">
+    <div class="other_list">
+        <div class="other_div">
+            <div class="online othdiv_cont">
+                <div class="online_tab">
+                    <ul>
+                        <li class="active">淘宝</li>
+                        <li>京东</li>
+                    </ul>
+                </div>
+                <div class="intbank">
+                    <ul>
+                        <li><b>账号</b>
+                            <input id="DSaccount" name="" type="text" placeholder="请输入账号">
+                        </li>
+                        <li><b>密码</b>
+                            <input id="DSpassword" name="" type="password" placeholder="请输入相应的登陆密码">
+                        </li>
+                    </ul>
+                </div>
+                <div class="online_bom pabom">
+                    <p class="tt">上传交易截图</p>
+                    <div class="bankfile">
+                        <p class="bt">注：至少上传六个月交易记录</p>
+                        <ul>
+                            <li class="upflpic"><img src="images/404.png"><i></i></li>
+                            <li class="upflpic"><img src="images/404.png"><i></i></li>
+                            <li class="upflpic"><img src="images/404.png"><i></i></li>
+                            <li class="upflpic"><img src="images/404.png"><i></i></li>
+                            <li class="upflpic"><img src="images/404.png"><i></i></li>
+                            <li class="upflpic"><img src="images/404.png"><i></i></li>
+                            <li class="uppic">
+                                <input name="" type="file" accept="image/*">
+                                <img src="images/rz_06.png"> </li>
+                        </ul>
+                    </div>
+                    <p class="tt rd">交易截图示例</p>
+                    <div class="online_tips">
+                        <p class="wzwz">注：你可以选择提供账号密码给我们，也可以选择自己上传记录；我们不会泄露你的任何信息！淘宝和京东任选其一；忘记密码可登陆官网找回。</p>
+                        <p class="img"><img src="images/auth12.jpg"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal01" style="display:none;"> <i class="other_bg" onClick="$(this).parent('div').css('display','none')"></i>
+    <div class="other_mod"><img src="images/auth18.jpg"></div>
+    <i class="close" onClick="$(this).parent('div').css('display','none')"></i> </div>
+<script src="js/jquery-1.10.2.7l.min.js" type="text/javascript"></script> 
+<script type="text/javascript">
+$(function (){
+	//tab
+	$('.online_tab ul li').each(function(i) {
+        $(this).click(function (){
+			$('.online_tab ul li').removeClass('active');
+			$(this).addClass('active');
+		})
+    });
+	//sbgjj_tab
+	$('.sbgjj_tab ul li').each(function(i) {
+        $(this).click(function (){
+			$('.sbgjj_tab ul li').removeClass('active');
+			$(this).addClass('active');
+		})
+    });
+	//
+	var TBaccount = ''/*'{$:TBaccount jsencode=”true”}'*/,
+		TBpassword = ''/*'{$:TBpassword jsencode=”true”}'*/,
+		JDaccount = 'cccccccccc'/*'{$:JDaccount jsencode=”true”}'*/,
+		JDpassword = 'dddddddddd'/*'{$:JDpassword jsencode=”true”}'*/,
+		
+		SBaccount = ''/*'{$:TBaccount jsencode=”true”}'*/,
+		SBpassword = ''/*'{$:TBpassword jsencode=”true”}'*/,
+		GJJaccount = 'sdget23rsdf32rf'/*'{$:JDaccount jsencode=”true”}'*/,
+		GJJpassword = 'dst34tdfgsdf'/*'{$:JDpassword jsencode=”true”}'*/,
+		
+		Studentaccount = 'asfewfgcxfgerf'/*'{$:JDaccount jsencode=”true”}'*/,
+		Studentpassword = 'dst34tdfgsdf'/*'{$:JDpassword jsencode=”true”}'*/;
+	if(TBaccount){
+		$('.online_tab ul li:first').click();
+		$('#DSaccount').val(TBaccount);
+	} else if(JDaccount) {
+		$('.online_tab ul li:last').click();
+		$('#DSaccount').val(JDaccount);
+	}
+	if(TBpassword){
+		$('#DSpassword').val(TBpassword);
+	} else if(JDpassword){
+		$('#DSpassword').val(JDpassword);
+	}
+	
+	if(SBaccount){
+		$('.sbgjj_tab ul li:first').click();
+		$('#SBGJJaccount').val(SBaccount);
+	} else if(GJJaccount) {
+		$('.sbgjj_tab ul li:last').click();
+		$('#SBGJJaccount').val(GJJaccount);
+	}
+	if(SBpassword){
+		$('#SBGJJpassword').val(SBpassword);
+	} else if(GJJpassword){
+		$('#SBGJJpassword').val(GJJpassword);
+	}
+	
+	if(Studentaccount){
+		$('#Stuaccount').val(Studentaccount);
+	}
+	if(Studentpassword){
+		$('#Stupassword').val(Studentpassword);
+	}
+
+
+})
+</script>
+</body>
+</html>

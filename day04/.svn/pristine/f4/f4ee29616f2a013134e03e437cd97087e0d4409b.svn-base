@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>电商认证</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/KaNiu/style.css" rel="stylesheet" type="text/css">
+<link href="../../css/KaNiu/gennal.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="content">
+    <form id="user" name="user" method="post" enctype="multipart/form-data" action="/InterFace/kaniuFace.ashx">
+        <div class="rzshop">
+            <div class="add_bank wid_13">
+                <ul>
+                    <li class="yzfs"> <b>验证方式</b>
+                        <div class="fl yzfs_rt">
+                            <input id="yzfs01" name="yzfsname"  type="radio" checked value="" >
+                            <label class="pass" for="yzfs01">淘宝帐号</label>
+                            <input id="yzfs02" name="yzfsname"  type="radio" value="">
+                            <label for="yzfs02">京东帐号</label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="add_bank wid_13 qhtab">
+                <ul>
+                    <li class=""><b>账号</b>
+                        <input name="accounts" type="text"  id="accounts" placeholder="请输入对应的账号">
+                    </li>
+                    <li class="bbomnone"><b>密码</b>
+                        <input name="password" id="password"  type="text" placeholder="请输入对应的登陆密码">
+                    </li>
+                </ul>
+            </div>
+            <p class="file_ss">上传淘宝/京东交易记录截图</p>
+            <p class="file_tips">注：最近6个月淘宝/京东交易截屏（必须看到收货人、地址和电话）</p>
+            <div class="upfile both">
+                <ul>
+                    <li class="uppic"> <a id="file01" class="bg btn" href="javascript:openCamera('imghead01');" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;z-index: 99;opacity: 0;filter: alpha(opacity=0);z-index: 99;"></a> <img src="../../images/KaNiu/rz_06.png"></li>
+                </ul>
+            </div>
+            <p class="tt">图片实例图</p>
+            <p class="examplesimg"><img src="../../images/KaNiu/auth12.jpg"></p>
+            <p class="examplesimg" style="display:none"><img src="../../images/KaNiu/auth121.jpg"></p>
+        </div>
+    </form>
+    <div class="both bank_bom">
+        <p class="tips"><img src="../../images/KaNiu/input_01.png"><span>忘记以上账户登陆密码，请登陆淘宝及京东官网修改。</span></p>
+        <p>
+            <input class="pass" name="" type="submit" value="填好了" onclick="$('#user').submit()">
+        </p>
+    </div>
+</div>
+
+<!--弹窗提示-->
+<div class="modal01" style="display:none;">
+    <div class="modal_bg"></div>
+    <div class="modal02_nr">
+        <p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>分期X温馨提示</span></p>
+        <p class="motwo_wz" id="errmsg"></p>
+        <p class="motwo_annv" onClick="$('.modal01').css('display','none');">确定</p>
+    </div>
+</div>
+<script src="../../js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script> 
+<script type="text/javascript">
+        $(function () {
+            $(".upflpic i").each(function (i) {
+                $(this).click(function () {
+                    $(this).parent().remove();
+                })
+            });
+            window.onReceivePhoto = function (imageString, jsonStr) {
+                var imgsrc = "data:image/png;base64," + imageString;
+                var imgname = 'business_';
+                var has = $(".img:last").attr("id");
+                var type_detail;
+                if (has) {
+                    var imgcunt = has.split('_')[1];
+                    imgcunt++;                   
+                    imgname += imgcunt;
+                    type_detail = imgcunt;
+                } else {
+                    imgname += '1';
+                    type_detail = 1;
+                }
+                $(".uppic").before("<li  class='upflpic'><img  id='" + imgname + "' src='' class='img' style='width:100%; height:100%;'><i type_detail='" + type_detail + "' onclick='imgClose(this)'></i><>");
+                uploadfile.apply(this, [imgsrc, imgname + ".png", imgname, imgname, "/InterFace/ValidateBusiness.ashx"])
+            };
+
+            $.ajax({
+                url: '/InterFace/ValidateBusiness.ashx?type=pic',
+                type: 'get',
+                dataType: 'json',
+                cache: false,
+                success: function (msg) {
+                    var account = msg.account,
+                        passwd = msg.password,
+                         picarr = Array(),
+                        json = eval(msg.Img),
+                        yzfsname = msg.yzfsname;
+                    tablab(yzfsname)
+                    if (account && passwd) {
+                        $("#accounts").val(account);
+                        $("#password").val("********");
+                        $("#accounts,#password").attr("readonly", "readonly");
+                    }
+                    $.each(json, function (k, v) {
+                        picarr.push(v);
+                    });
+                    picshow(picarr)
+                }
+            });
+
+            function picshow(picarr) {
+                picarr.reverse();
+                for (var i = 0; i < picarr.length; i++) {
+                    if (picarr[i].state == "1") {
+                        $(".uppic").before("<li class='upflpic'><img id='business_" + picarr[i].type_detail + "' src='" + picarr[i].Img + "' class='img' style='width:100%; height:100%;'></li>");
+                    } else {
+                        $(".uppic").before("<li class='upflpic'><img id='business_" + picarr[i].type_detail + "' src='" + picarr[i].Img + "' class='img' style='width:100%; height:100%;'><i onclick='imgClose(this)' type_detail='" + picarr[i].type_detail + "'></i></li>");
+                    }
+                }
+            }
+
+            function tablab(tabval) {
+                if (tabval == 1) {
+                    $("#yzfs01").removeAttr("checked");
+                    $(".yzfs_rt label").attr("class", "");
+                    $(".yzfs_rt label").eq(1).addClass("pass");
+                }
+            }
+
+            //
+            $(".yzfs_rt label").each(function (i) {
+                $(this).click(function () {
+                    if (!$(".yzfs_rt input").eq(i).is(":checked")) {
+                        $(".yzfs_rt label").attr("class", "");
+                        $(".yzfs_rt label").eq(i).addClass("pass");
+						$(".rzshop .examplesimg").css("display","none");
+						$(".rzshop .examplesimg").eq(i).css("display","block");
+                    }
+                })
+            });
+
+            //弹窗
+            var errcode = "{$:errcode jsencode=”true”}";
+            var errmsg = "{$:errmsg jsencode=”true”}";
+            if (errmsg.indexOf("") == -1) {
+                if (errcode || errmsg) {
+                    $("#errmsg").html(errmsg);
+                    $(".modal01").css("display", "block");
+                }
+            }
+
+        })
+       
+        function imgClose(obj) {
+            var type_detail = $(obj).attr("type_detail");
+            $(obj).parent().remove();
+            if (type_detail == "") {
+                return;
+            }
+            $.ajax({
+                url: '/InterFace/ValidateBusiness.ashx',
+                type: 'post',
+                dataType: 'txt',
+                cache: false,
+                data: { "type": "delete", "type_detail": type_detail },
+                success: function () { }
+            });
+        }
+        function check() {
+            var yzfsname = $("input:radio[name='yzfsname']:checked").val();
+            var account = $("#accounts").val();
+            var password = $("#password").val();
+            if (yzfsname == "" || accounts == "" || password=="") {
+                $("#errmsg").html("请完善信息！");
+                $(".modal01").css("display", "block");
+            }
+            else if ($(".img").length==0) {
+                $("#errmsg").html("请上传六个月的交易记录截图");
+                $(".modal01").css("display", "block");
+            }
+			else if($(".img").length<3) {
+				$("#errmsg").html("请至少上传三张截图");
+                $(".modal01").css("display", "block");
+			}
+            else {
+                window.location.href = "/InterFace/ValidateBusiness.ashx?yzfsname=" + yzfsname + "&account=" + account + "&password=" + password;
+            }
+           
+        }
+    </script>
+</body>
+</html>

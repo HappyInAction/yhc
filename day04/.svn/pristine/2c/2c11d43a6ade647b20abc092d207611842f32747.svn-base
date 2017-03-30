@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>申请记录</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/KaNiu/style.css" rel="stylesheet" type="text/css">
+<link href="../../css/KaNiu/record.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="content">
+    <div class="repayjh">
+        <ul>
+        </ul>
+    </div>
+</div>
+<!--弹窗提示-->
+<div class="modal01 Record" style="display:none;">
+    <div class="modal_bg"></div>
+    <div class="modal02_nr">
+        <p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>分期X温馨提示</span></p>
+        <p class="motwo_wz" id="errmsg"></p>
+        <p class="motwo_annv" onClick="$('.Record').css('display','none');">确定</p>
+    </div>
+</div>
+<script src="../../js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script> 
+<script type="text/javascript">
+$(function(){
+	$.ajax({
+		url:'http://localhost:81/MyHandler.ashx',
+		type: 'get',
+		dataType: 'json',
+		cache: false,
+		//async: false,
+		success: function (msg) {
+			var json = eval("(" + msg.Img + ")");
+			arrfun(json);
+		}
+	});
+	function arrfun(json){
+		$.each(json, function (k, v) {
+			var create_time = this.create_time,
+				modify_time = this.modify_time,
+				loan_money = Number(this.loan_money/100),
+				loan_month = this.loan_month,
+				left_money = Number(this.left_money/100),
+				type = this.type,
+				state = Number(this.state),
+				trans_id = this.trans_id;
+			$(".repayjh ul").append(
+				"<li><div class='fl repay_lf record_lf'><p></p><i></i></div><div class='fl repay_rt'><div class='record_tt'><p class='fl repayrt_tt'>"+ modify_time +"</p><div class='fr record_shzt'><p class='fr wzwz'>不通过</p><p class='fr reshzt_pic03'></p><p class='fr reshzt_pic02 zt_over'></p><p class='fr reshzt_pic01'></p></div></div><div class='rert_nr'><div class='rert_cont'><div class='fl fqlx'><p class='fqlx_pic xjd'></p><p class='lxx'>现金贷</p></div><div class='fl fqzlwz'><p>分期金额:<span>"+ loan_money +"元</span></p><p>期　　数:<span>"+ loan_month +"</span></p><p>每月还款:<span>"+ left_money +"元</span></p></div></div><div class='record_bom'><p class='fl recbom_wzwz'><img src='../../images/KaNiu/mybill02.png'><span>申请时间:"+ create_time +"</span></p></div></div></div></li>"
+			)
+			if(state<=7 && state!=2){
+				$(".record_shzt p.wzwz").eq(k).html("审核中");
+				$(".record_bom").eq(k).append('<p class="fr recbom_annv"><img src="../../images/KaNiu/record04.png"><span>取消申请</span></p>');
+			} else if(state==2 || state==100){
+				$(".record_shzt p.wzwz").eq(k).html("不通过");
+				$(".reshzt_pic01").eq(k).attr("class","fr reshzt_pic01_h");
+			} else if(state>7 && state!=100){
+				$(".record_shzt p.wzwz").eq(k).html("通过");
+			}
+			$(".recbom_annv").click(function (){
+				$(this).parent().parent().parent().find("p.wzwz").html("不通过");
+				$(this).parent().parent().parent().find("p.reshzt_pic01").attr("class","fr reshzt_pic01_h");
+				$(this).remove();
+			})
+			//查询进度
+			$(".rert_cont").eq(k).click(function (){
+				if(state==2){
+					$("#errmsg").html("该申请已被拒绝");
+					$(".Record").css("display","block");
+				
+				} else {
+					window.location='/InterFace/RecordDetail.ashx?trans_id=' + trans_id;
+				}
+			})
+		});
+	}
+	
+})
+</script>
+</body>
+</html>

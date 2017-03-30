@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>添加银行卡</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+    <script src="../../js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+    
+    <script src="../../js/jquery.cxselect-new.js" type="text/javascript"></script>
+    <link href="../../css/kaniu/style.css" rel="stylesheet" type="text/css">
+    <link href="../../css/kaniu/gennal.css" rel="stylesheet" type="text/css">
+    <link href="../../css/kaniu/record.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="content">
+ <form id="form" name="form" method="post" action="/InterFace/AddBankCard.ashx">
+     <p class="banktt">请绑定持卡人本人的银行卡</p>
+     <div class="add_bank wid_13">
+		<ul>
+            <li><b>持卡人</b><span>{$:Name htmlencode="true"}</span></li>
+            <li><b>银行卡号</b><input id="bankid" name="bankid" type="text" placeholder="请输入您的银行卡号"></li>
+            <!--<li id="select_bank" class="bbomnone">
+                <b>银行名称</b>
+                <select id="bank" class="bank" name=""></select>
+            <i class="sele_bg"></i>
+            </li>-->
+        </ul>
+    </div>
+    <div class="both bank_bom">
+    	<p class="tips"><img src="../../images/kaniu/input_01.png"><span>您所填写的银行卡必须是您本人的,我们将会把款项打到此银行卡上。</span></p>
+        <p>
+            <input id="addbank_button" name="addbank_button" type="button" value="确定添加" disabled="disabled" onclick="$('#form').submit()">
+            <input id="hidbank" name="hidbank" type="hidden" value="" />
+            <input id="hidurl" name="hidurl" type="hidden" value="" />
+            <input id="hidfid" name="hidfid" type="hidden" value="" />
+            <input id="hidApplyOrRepay" name="ApplyOrRepay" type="hidden" value="" />
+            <input id="hidPlanID" name="PlanID" type="hidden" value=""/>
+        </p>
+    </div>
+    </form>
+    <div class="footer foor_ab">
+    	<div class="foottp"><i></i><p  class="base_footerf5"><img src="../../images/kaniu/appli03.png"></p></div>
+        <div class="footbom">
+            <p class="fl"><a>联系客服：<span onclick="document.getElementById('guided_mod').style.display='block'">请点击</span></a></p>
+            <p class="fr"><a href="">关于我们</a><a class="brtnone" href="">常见问题</a></p>
+        </div>
+    </div> 
+</div>
+
+    <!--弹窗提示-->
+    <div class="modal01" style="display:none;">
+        <div class="modal_bg"></div>
+        <div class="modal02_nr">
+            <p class="modtwo_tp"><img src="../../images/kaniu/modal01.png"><span>分期X温馨提示</span></p>
+            <p class="motwo_wz" id="errmsg"></p>
+            <p class="motwo_annv" onclick="$('.modal01').css('display','none');">确定</p>
+        </div>
+    </div>
+
+
+    <!--客服引导mod-->
+    <div id="guided_mod" class="guided_mod" style="display:none;">
+        <i class="modal_bg" onclick="document.getElementById('guided_mod').style.display='none'"></i>
+        <div class="guimod">
+            <div class="posrela">
+                <div class="kfyd_box">
+                    <div class="index02"><img src="../../images/kaniu/rg_01.png"></div>
+                    <div class="ttu"><span class="nuc">1</span>进入分期X微信公众号，直接输入“客服”即可咨询。</div>
+                    <div class="kfyd_img"><img src="../../images/kaniu/rg_03.jpg"></div>
+                    <div class="ttu"><span class="nuc">2</span>咨询人工客服可点击公众号右上角标识进入公众号简介，点击“客服人员”即可。</div>
+                    <div class="kfyd_img mb20"><img src="../../images/kaniu/rg_05.png"></div>
+                </div>
+                <div class="guimod_bom"><a class="over" onclick="document.getElementById('guided_mod').style.display='none'">关闭</a></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+
+            var errcode = "{$:errcode jsencode=”true”}";
+            var errmsg = "{$:errmsg jsencode=”true”}";
+            if (errcode || errmsg) {
+                $("#errmsg").html("错误代码:" + errcode + "," + errmsg);
+                $(".modal01").css("display","block");
+            }
+
+            var ApplyOrRepay = "{$:ApplyOrRepay jsencode=”true”}";
+            var PlanID = "{$:PlanID jsencode=”true”}";
+            var url = "{$:url jsencode=”true”}";
+            var fid = "{$:fid jsencode=”true”}";
+
+            if(ApplyOrRepay){
+                $("#hidApplyOrRepay").val(ApplyOrRepay);
+            }
+            if(PlanID){
+                $("#hidPlanID").val(PlanID);
+            }
+
+            if (url)
+            {
+                $("#hidurl").val(url);
+            }
+            if (fid)
+            {
+                $("#hidfid").val(fid);
+            }
+
+            var showid = "{$:showid jsencode=”true”}";
+            if (showid) {
+                $("#bankid").val(showid);
+                $("#addbank_button").attr("class", "pass");
+                $("#addbank_button").removeAttr("disabled");
+            }
+
+            $("#bankid").bind("focusin", function () {
+                if($(this).val().indexOf("请输入") > -1)
+                {
+                    $(this).val("");
+                    $(this).attr("style", "color:black");
+                }
+            });
+
+            $("#bankid").bind("focusout change", function () {
+                    if ($(this).val() == "" || !IsNumber($(this).val())) {
+                        $(this).val("请输入您的银行卡号");
+                        $(this).attr("style", "color:red");
+                    }	
+                });
+           
+            $("#bankid").bind('input propertychange', function () {
+                if (IsNumber($("#bankid").val()) && $("#bankid").val().length > 13) {
+                        $("#addbank_button").attr("class", "pass");
+                        $("#addbank_button").removeAttr("disabled");
+                    } else {
+                        $("#addbank_button").attr({ "disabled": "", "class": "" });
+                    }
+                });
+        })
+
+        function IsNumber(obj) {
+            Reg = /^\d+$/;
+            if (Reg.test(obj)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

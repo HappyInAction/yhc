@@ -1,0 +1,904 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*添加银行卡 start*/
+
+.add_bank {
+	width: 19.2rem;
+	height: auto;
+	font-size: 0.85rem;
+	padding-left: 0.8rem;
+	background: #fff;
+	overflow: hidden;
+}
+.add_bank ul li {
+	width: 19.2rem;
+	height: 2.67rem;
+	line-height: 2.67rem;
+	border-bottom: 1px #ddd solid;
+	overflow: hidden;
+}
+.add_bank ul li b {
+	float: left;
+	display: block;
+	font-weight: 100;
+	overflow: hidden;
+}
+.wid_13 ul li b {
+	width: 4.8rem;
+}
+.add_bank ul li input {
+	float: left;
+	font-size: 0.85rem;
+	border: none;
+}
+.wid_13 ul li input, .wid_13 ul li select {
+	width: 13.7rem;
+	height: 2.6rem;
+}
+.add_bank ul li select {
+	float: left;
+	font-size: 0.85rem;
+	border: none;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	background:#fff;
+}
+.wid_13 ul li input, .wid_13 ul li select {
+	width: 13.7rem;
+	height: 2.6rem;
+}
+.add_bank ul li .sele_bg {
+	float: left;
+	display: block;
+	width: 0.56rem;
+	height: 0.56rem;
+	margin: 1.6rem 0 0 -0.56rem;
+	background: url(../../images/KaNiu/select_bg.png) center no-repeat;
+	background-size: 100% 100%;
+}
+.bank_bom {
+	width: 18.4rem;
+	height: auto;
+	font-size: 0.54rem;
+	padding: 0.4rem 0 3rem 0;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.bank_bom p.tips {
+	line-height: 0.7rem;
+	color: #999;
+}
+.bank_bom p.tips span {
+	float: right;
+	display: block;
+	width: 17.7rem;
+}
+.bank_bom p {
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+}
+.bank_bom p input {
+	width: 100%;
+	height: 2.4rem;
+	font-size: 0.9rem;
+	color: #fff;
+	margin-top: 0.8rem;
+	border: none;
+	border-radius: 0.16rem;
+	background: url(../../images/KaNiu/butt_star.png);
+	cursor: pointer;
+}
+/*添加银行卡 end*/
+
+
+/*我的快捷支付卡 start*/
+.quickpay {
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+}
+.quickpay .quicknr {
+	width: 100%;
+	height: 7rem;
+	margin-top: 0.54rem;
+	border-top: 1px #ddd solid;
+	border-bottom: 1px #ddd solid;
+}
+.quicknr .quick_lf {
+	width: 15rem;
+	height: 100%;
+	background: #fff;
+}
+.quick_lf p {
+	width: 14.2rem;
+	height: auto;
+	line-height: 1.7rem;
+	font-size: 0.75rem;
+	color: #999;
+	overflow: hidden;
+	margin-left: 0.8rem;
+}
+.quick_lf p.qulf_tt {
+	margin-top: 1rem;
+}
+.quicknr .quick_rt {
+	width: 5rem;
+	height: 100%;
+	text-align: center;
+	color: #238fff;
+	font-size: 0.8rem;
+}
+.quicknr .quick_rt a {
+	display: block;
+	color: #238fff;
+}
+.quick_rt img {
+	width: 0.88rem;
+	height: 0.88rem;
+	margin: 2.3rem 0 0.2rem 0;
+}
+.quick_lf p.qulf_tt img {
+	float: left;
+	width: 3.04rem;
+	height: 1.17rem;
+	margin: 0.2rem 0 0 0.2rem;
+}
+.quick_lf p.qulf_tt span {
+	float: left;
+	font-size: 0.9rem;
+	color: #333;
+}
+/*我的快捷支付卡 end*/
+
+/*我的银行卡 start*/
+
+.bank_succ {
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	padding-bottom: 5rem;
+}
+.bank_succ .bank_tt {
+	height: 1.86rem;
+	line-height: 1.86rem;
+	border-bottom: 1px #ddd solid;
+	padding-left: 0.8rem;
+	font-size: 0.7rem;
+	color: #999;
+}
+.bank_succ .bank_nr {
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	background: #fff;
+}
+.bank_nr ul li {
+	width: 20rem;
+	height: 5.06rem;
+	overflow: hidden;
+	border-bottom: 1px #ddd solid;
+}
+.bank_nr ul li p.bank_pic {
+	width: 3.12rem;
+	height: 1.68rem;
+	margin: 1.65rem 0.64rem;
+}
+.bank_pic img, .bank_pic02 img {
+	width: 100%;
+	height: 100%;
+}
+.bank_nr ul li p.bank_nrwz {
+	width: 11rem;
+	font-size: 0.8rem;
+	line-height: 1.5rem;
+	color: #999;
+	padding: 1rem 0;
+	overflow: hidden;
+}
+.mybank_wh {
+	font-size: 0.8rem!important;
+	color: #999!important;
+	max-height: 1.5rem;
+    overflow: hidden;
+}
+.bank_nrwz span {
+	display: block;
+	font-size: 0.96rem;
+	color: #333;
+}
+.bank_nr ul li p.bank_pic02 {
+	width: 3.04rem;
+	height: 1.17rem;
+	margin: 1.9rem 0.6rem 0 0;
+}
+.bank_foot {
+	position: fixed;
+	bottom: 0;
+	left: 50%;
+	width: 20rem;
+	height: 2.8rem;
+	line-height: 2.8rem;
+	color: #238fff;
+	font-size: 1.12rem;
+	margin-left: -10rem;
+	background: #fff;
+	border-top: 1px #f64349 solid;
+}
+.bank_foot img {
+	float: left;
+	width: 0.88rem;
+	height: 0.88em;
+	margin: 0.9rem 0.5rem 0 6.5rem;
+}
+.bank_foot span {
+	float: left;
+}
+.xml_bankname{max-height:1.7rem;overflow:hidden;}
+/*我的银行卡 end*/
+
+/*我的帐单-待还款 start*/
+
+.xml_height530{max-height:5.3rem;}
+.xml_backbill{max-height:1.61rem; max-width:7rem; overflow:hidden;}
+.bili_tp {
+	width: 20rem;
+	height: 10.9rem;
+	font-size: 0.64rem;
+	color: #fff;
+	margin: 0 auto;
+	overflow: hidden;
+	background: url(../../images/KaNiu/bili01.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+.bili_tp ul li.text01 {
+	font-size: 1.12rem;
+	margin-top: 1.6rem;
+}
+.bili_tp ul li {
+	width: 100%;
+	height: auto;
+	text-align: center;
+	overflow: hidden;
+}
+.bili_tp ul li.text02 {
+	font-size: 2.13rem;
+	line-height: 5.3rem;
+	margin-bottom: 0.6rem;
+}
+.bili_tp ul li {
+	width: 100%;
+	height: auto;
+	text-align: center;
+	overflow: hidden;
+}
+.bili_tp ul li.text03 img {
+	float: left;
+	width: 0.666rem;
+	height: 0.666rem;
+	margin: 0 0.2rem 0 4.26rem;
+}
+.bili_tp ul li.text03 span {
+	float: left;
+	color: #ffbb9d;
+}
+.bili_cont {
+	width: 20rem;
+	height: auto;
+	font-size: 0.8rem;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.bili_cont .cont_tab {
+	width: 100%;
+	height: 4.26rem;
+	color: #807f84;
+	font-size: 1.22rem;
+	font-weight: bold;
+	background: #fff;
+	overflow: hidden;
+}
+.cont_tab ul li {
+	float: left;
+	width: 33.3%;
+	height: 2.66rem;
+	text-align: center;
+	margin: 0.8rem -1px 0.8rem 0;
+	border-right: 1px #ddd dashed;
+}
+.cont_tab .span01 {
+	margin-bottom: 0.4rem;
+	color: #999;
+	font-size: 0.8rem;
+	font-weight: 100;
+}
+.cont_tab ul li span {
+	display: block;
+}
+.bili_cont .bili_ctli {
+	width: 100%;
+	height: auto;
+	font-size: 0.85rem;
+	margin-top: 0.54rem;
+	background: #fff;
+	overflow: hidden;
+}
+.bili_ctli ul li {
+	position: relative;
+	width: 100%;
+	height: auto;
+	line-height: 2.72rem;
+	overflow: hidden;
+}
+.bili_ctli ul li i {
+  position: absolute;
+  top: 0.922rem;
+  right: 0.827rem;
+  display: block;
+  width: 0.48rem;
+  height: 0.8266rem;
+  background: url(../../images/KaNiu/peocent08.png) center no-repeat;
+  background-size: 100% 100%;
+}
+.bili_ctli ul li b {
+	display: block;
+	float: left;
+	width: 2.66rem;
+	height: 2.67rem;
+}
+.bili_ctli ul li b.fx {
+	background: url(../../images/KaNiu/bili02.png) center no-repeat;
+	background-size: 50% auto;
+}
+.bili_ctli ul li a {
+	float: left;
+	display: block;
+	width: 15.6rem;
+	height: 2.6rem;
+	padding-right: 1.74rem;
+	border-top: 1px #ddd solid;
+}
+.bili_ctli ul li span.je{ width:6rem; height:2.6rem; overflow:hidden;}
+.bili_ctli ul li.bankcard{}
+.bankcard p{ padding:0.3rem 0;}
+.bankcard p span{ display:block; font-size:0.7rem; line-height:1rem;}
+
+
+
+
+
+
+/*我的帐单-待还款 end*/
+
+
+
+/*我的账单-还款成功 start*/
+
+.monsucc {
+	width: 20rem;
+	height: auto;
+	overflow: hidden;
+	margin: 0 auto;
+	padding-bottom: 3rem;
+}
+.monsucc p, .monsucc p.tj {
+	width: 9.34rem;
+	height: 7.92rem;
+	margin: 3rem auto;
+	background: url(../../images/KaNiu/bili05.png) center no-repeat;
+	background-size: 100% 100%;
+}
+.monsucc p.tj {
+	background: url(../../images/KaNiu/bili05-1.png) center no-repeat;
+	height: 8.72rem;
+	margin: 3rem auto 0rem auto;
+	background-size: 100% 100%;
+}
+.mes {
+	font-size: 0.59rem;
+	color: #999;
+	line-height: 0.96rem;
+	text-align: center;
+	margin: 1.6rem auto;
+}
+.mes a{ color:#f64349; text-decoration:underline;}
+.monsucc .rclk {
+	display: block;
+	width: 18.4rem;
+	height: 2.4rem;
+	line-height: 2.4rem;
+	text-align: center;
+	color: #fff;
+	font-size: 0.9rem;
+	background: #f64349;
+	border-radius: 0.3rem;
+	margin: 0 auto;
+}
+/*我的账单-还款成功  end*/
+
+
+/*个人中心 start*/
+
+
+.percen_tp {
+	width: 20rem;
+	height: 9.06rem;
+	margin: 0 auto;
+	overflow: hidden;
+	background: url(../../images/KaNiu/peocent09.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+.percen_tp ul li, .base_tp ul li {
+	font-size: 0.64rem;
+}
+.pertp_cent {
+	width: 6rem;
+	height: auto;
+	overflow: hidden;
+}
+.pertp_cent p.cent_pic {
+	width: 3.92rem;
+	height: 3.92rem;
+	padding: 0.27rem;
+	border-radius: 50%;
+	margin: 1rem auto 0.2rem auto;
+	border: 2px #ed6768 solid;
+}
+.pertp_cent p {
+	text-align: center;
+	font-size: 0.9rem;
+	line-height: 1.5rem;
+	color: #fff;
+}
+.percen_tp ul li.xxzx, .percen_tp ul li.wszl {
+	width: 3rem;
+	height: auto;
+	text-align: center;
+}
+.percen_tp ul li.xxzx {
+	margin: 2.4rem 0 0 4rem;
+}
+.percen_tp ul li a, .base_tp ul li a {
+	display: block;
+	color: #fff;
+}
+.xxzx .xxzl_lf {
+	width: 2.186rem;
+	height: 2.186rem;
+	margin: 0 auto 0.27rem auto;
+	border-radius: 50%;
+	background: url(../../images/KaNiu/peocent01.png) center no-repeat;
+	background-size: 100% 100%;
+}
+.percen_tp ul li.wszl {
+	margin: 2.4rem 4rem 0 0;
+}
+.wszl .xxzl_rt {
+	width: 2.186rem;
+	height: 2.186rem;
+	margin: 0 auto 0.27rem auto;
+	border-radius: 50%;
+	background: url(../../images/KaNiu/peocent02.png) center no-repeat;
+	background-size: 100% 100%;
+}
+.pertp_cent p.cent_pic span {
+	display: block;
+	width: 3.92rem;
+	height: 3.92rem;
+	margin: 0 auto;
+	border-radius: 50%;
+	background: url(../../images/KaNiu/peocent10.png) center no-repeat;
+	background-size: 100% 100%;
+}
+.percen_nr, .base_nr {
+	width: 20rem;
+	height: auto;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.percen_nr .nrtab {
+	width: 100%;
+	height: 4.26rem;
+	background: #fff;
+}
+.nrtab ul li {
+	float: left;
+	width: 50%;
+	height: 2.66rem;
+	text-align: center;
+	margin: 0.8rem -1px 0.8rem 0;
+	border-right: 1px #ddd dashed;
+}
+.nrtab .span01 {
+	margin-bottom: 0.4rem;
+	color: #999;
+	font-size: 0.8rem;
+	font-weight: 100;
+}
+.nrtab ul li span {
+	display: block;
+}
+.nrtab span {
+	font-size: 1.24rem;
+	color: #f64349;
+}
+.nrtab p.hkjh {
+	background: url(../../images/KaNiu/peocent04.png) 2.2rem center no-repeat;
+	background-size: 17% auto;
+}
+.percen_nr .nrli{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	padding-bottom: 3rem;
+}
+.percen_nr .nrli ul {
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	margin-top: 0.54rem;
+}
+.nrli ul li {
+	position: relative;
+	width: 100%;
+	height: 2.67rem;
+	line-height: 2.67rem;
+	font-size: 0.85rem;
+	background: #fff;
+	overflow: hidden;
+}
+.nrli ul li b.yhk, .nrli ul li b.sq, .nrli ul li b.hk, .nrli ul li b.zl {
+	background: url(../../images/KaNiu/peocent05.png) center no-repeat;
+	background-size: 50% auto;
+}
+.nrli ul li b.sq {
+	background: url(../../images/KaNiu/peocent05-new.png) center no-repeat;
+	background-size: 50% auto;
+}
+.nrli ul li b.hk {
+	background: url(../../images/KaNiu/peocent06-new.png) center no-repeat;
+	background-size: 55% auto;
+}
+.nrli ul li b.zl {
+	background: url(../../images/KaNiu/peocent07-new.png) center no-repeat;
+	background-size: 50% auto;
+}
+.nrli ul li b {
+	display: block;
+	float: left;
+	width: 2.66rem;
+	height: 2.67rem;
+}
+.nrli ul li a {
+	float: left;
+	display: block;
+	width: 17.34rem;
+	height: 2.6rem;
+	border-bottom: 1px #ddd solid;
+}
+.nrli ul li b.yhj {
+	background: url(../../images/KaNiu/peocent06.png) center no-repeat;
+	background-size: 50% auto;
+}
+.nrli ul li b.aqsz {
+	background: url(../../images/KaNiu/peocent07.png) center no-repeat;
+	background-size: 50% auto;
+}
+.nrli ul li i {
+	position: absolute;
+	top: 0.922rem;
+	right: 0.827rem;
+	display: block;
+	width: 0.48rem;
+	height: 0.8266rem;
+	background: url(../../images/KaNiu/peocent08.png) center no-repeat;
+	background-size: 100% 100%;
+}
+/*个人中心 end*/
+
+
+
+/*身份-居住信息验证 start*/
+
+.content .file_tt, .content .file_ss {
+	height: 1.87rem;
+	line-height: 1.87rem;
+	font-size: 0.8rem;
+	margin-left: 0.8rem;
+	color: #666;
+	
+}
+.mapimg {
+	float:left;
+	width: 0.746rem;
+	height: 0.986rem;
+	background: url(../../images/KaNiu/map.png) no-repeat;
+	vertical-align: middle;
+	margin: 0.88rem 0.27rem 0 0;
+	background-size:100% 100%;
+}
+.pt40 {
+	padding-top: 1.066rem;
+}
+.borderno {
+	border: none !important;
+}
+.upleft span.ft, .upright span.ft, .upbom span.ft {
+	line-height: 2.67rem;
+	font-size: 0.85rem;
+}
+.upbom b.hft {
+	font-size: 0.85rem;
+}
+.content .file_ss {
+	border-top: #ddd solid 1px;
+	margin: 0px;
+	padding-left: 0.8rem;
+	background: #fff;
+	padding-top: 0.5rem;
+	color: #666;
+}
+.content .file_tips {
+	margin: 0px;
+	background: #fff;
+	padding: 0.2rem 0 0.2rem 0.8rem;
+	color: #f64349;
+	font-size:0.64rem;
+}
+.upbom i.camerabig {
+	position: absolute;
+	top: 4.5rem;
+	left: 6rem;
+	width: 12.49rem;
+	height: 7.14rem;
+	background: url(../../images/KaNiu/file12-big.png) center no-repeat;
+	z-index: 4;
+	background-size:100% 100%;
+}
+.file_up {
+	width: 19.2rem !important;
+	margin: 0 auto;
+	padding: 0 0 0 0.8rem;
+	background: #fff !important;
+	border-top: 1px #ddd solid;
+}
+.file_up .jbzl {
+	width: 18.4rem;
+	height: auto;
+	text-align: center;
+	overflow: hidden;
+	padding-bottom: 0.8rem;
+}
+.jbzl .upleft {
+	width: 8.8rem;
+	height: 5.86rem;
+	overflow:hidden;
+}
+.upnr {
+	position: relative;
+	background: #f5f5f5;
+	border: 1px #ddd solid;
+	border-radius: 0.2rem;
+}
+.upleft i, .upright i {
+	position: absolute;
+	right: 0;
+	bottom: 0.54rem;
+	display: block;
+	width: 5.68rem;
+	height: 4.16rem;
+	background: url(../../images/KaNiu/file12.png) center no-repeat;
+	background-size: 100% 100%;
+	z-index: 2;
+}
+.upleft span, .upright span {
+	position: absolute;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	color: #ccc;
+	z-index: 3;
+}
+.upnr input {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 99;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	z-index:99;
+}
+.jbzl .upright {
+	width: 8.8rem;
+	height: 5.86rem;
+}
+.jbzl .upbom {
+	width: 18.3rem;
+	height: 12.3rem;
+	margin-top: 0.746rem;
+}
+.upbom i.peo {
+	left: 0.3rem;
+	bottom: 0;
+	width: 7.23rem;
+	height: 5.2rem;
+	background: url(../../images/KaNiu/file13.png) center no-repeat;
+	background-size: 100% 100%;
+	z-index: 2;
+}
+.upbom i {
+	position: absolute;
+	display: block;
+}
+element.style {
+}
+.upbom b {
+	position: absolute;
+	top: 8.7rem;
+	left: 7.6rem;
+	line-height: 1.2rem;
+	z-index: 3;
+}
+.upbom b.hft {
+	font-size: 0.5rem;
+}
+.upbom i.camera {
+	position: absolute;
+	top: 4rem;
+	left: 7.6rem;
+	width: 5.68rem;
+	height: 4.16rem;
+	background: url(../../images/KaNiu/file12.png) center no-repeat;
+	background-size: 100% 100%;
+	z-index: 4;
+}
+.upbom span {
+	position: absolute;
+	width: 100%;
+	left: 0;
+	top: 0.6rem;
+	color: #ccc;
+	z-index: 5;
+}
+
+/*身份-居住信息验证 end*/
+
+/*认证 start*/
+.rz_cont{ width:18.4rem; display:inline-block; padding:0.8rem;}
+.rz_img{ position:relative; height:12.88rem; width:8.933rem; display:inline-block;  border:1px solid #ddd; border-radius:0.2rem; position:relative; float: left; background-size:100% 100%;}
+.rz_img a{ display:block; position:absolute; top:0; left:0; width:100%; height:100%; cursor:pointer;}
+
+.rz_bg01_h{background:#fff url(../../images/KaNiu/rz_01_h.png) no-repeat; background-size:100% 100%;}
+.rz_bg02_h{background:#fff url(../../images/KaNiu/rz_02_h.png) no-repeat; background-size:100% 100%;}
+.rz_bg03_h{background:#fff url(../../images/KaNiu/rz_03_h.png) no-repeat; background-size:100% 100%;}
+.rz_bg04_h{background:#fff url(../../images/KaNiu/rz_04_h.png) no-repeat; background-size:100% 100%;}
+
+.rz_bg01{background:#fff url(../../images/KaNiu/rz_01.png) no-repeat; background-size:100% 100%;}
+.rz_bg02{background:#fff url(../../images/KaNiu/rz_02.png) no-repeat; background-size:100% 100%;}
+.rz_bg03{background:#fff url(../../images/KaNiu/rz_03.png) no-repeat; background-size:100% 100%;}
+.rz_bg04{background:#fff url(../../images/KaNiu/rz_04.png) no-repeat; background-size:100% 100%;}
+.rz_img h2{color: #a4a4a4;font-size:0.96rem; text-align: center; margin-top:1.866rem;}
+.rz_img p{color: #e3e3e3;font-size:0.64rem;text-align: center;margin-top:0.266rem;}
+.rzico{ height:1.173rem; width:4.05rem; background:url(../../images/KaNiu/rzico.png) no-repeat; background-size:100% 100%; display:inline-block; position:absolute; right:0px; top:5.066rem;}
+.fri{ float:right !important;}
+.mt20{ margin-top:0.54rem;}
+.rz_bom {padding: 0.4rem 0 1rem 0; }
+.rz_bom input { margin-top:0rem !important;}
+
+/*认证 end*/
+/*征信认证跳转 start*/
+.credit_jump_one { 
+	width: 8.9rem; 
+	height: 7.65rem; 
+	margin: 1.7rem auto; 
+	background: url(../../images/KaNiu/credit_jump.png) no-repeat; 
+	background-size: contain; 
+}
+.credit_jump_two { 
+	font-size: 0.8rem; 
+	line-height: 2; 
+	text-align: center; 
+}
+.credit_jump_three { 
+	font-size: 0.8rem; 
+	margin: 3rem auto; 
+	text-align: center; 
+}
+.credit_jump_four { 
+	text-align: center; 
+}
+.credit_jump_four_button { 
+	width: 90%; 
+	height: 2.4rem; 
+	font-size: 0.9rem; 
+	color: #fff; 
+	margin: 1.7rem auto; 
+	border: none; 
+	border-radius: 0.16rem; 
+	cursor: pointer; 
+	background-color: #f64349;  
+}
+/*征信认证跳转 end*/
+
+/*协议 start*/
+.about_xy {
+width: 20rem;
+height: auto;
+overflow: hidden;
+margin: 0 auto;
+padding-bottom: 3rem;
+background:#fff;
+}
+.about_xy a {
+display: block;
+width: 18.4rem;
+height: 2.4rem;
+line-height: 2.4rem;
+text-align: center;
+color: #fff;
+font-size: 0.9rem;
+background: #f64349;
+border-radius: 0.3rem;
+margin: 0 auto;
+}
+
+.about_xy h1{ color:#f64349; font-size:1.03rem;text-align: center;margin: 1rem 0rem;}
+.about_xy h2{ font-size:0.64rem;text-align: left; line-height:0.96rem;color:#f64349; margin:1rem 0rem 0.5rem 0rem;}
+.about_xy p{ font-size:0.64rem;text-align: left; line-height:0.96rem; margin-bottom:0.69rem}
+
+/*协议 end*/
+
+/**/
+.rzshop{ width:100%; height:auto; overflow:hidden; background:#fff; padding-bottom:1rem;}
+.upfile{ width:19.2rem; height:auto; overflow:hidden; margin-left:0.8rem;}
+.upfile ul li{ float:left; width:4.26rem; height:4.26rem; margin:0.4rem 0.4rem 0 0; background:#fff;}
+.upfile ul li.uppic{ position:relative; text-align:center; border:1px #ddd dashed; cursor:pointer;}
+.upfile ul li.uppic input{ position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; z-index:99;}
+.upfile ul li.uppic img{ position:absolute; top:50%; left:50%; width:2.13rem; height:2.13rem; margin:-1.065rem 0 0 -1.065rem;}
+.upfile ul li.upflpic{ position:relative;}
+.upflpic img{ position:absolute; top:0; left:0; z-index:2;}
+.upflpic i{ position:absolute; top:-0.3rem; right:-0.3rem; width:0.8rem; height:0.8rem; background:url(../../images/KaNiu/rz_07.png) center no-repeat; background-size:100% 100%; cursor:pointer; z-index:9;}
+
+.qhtab{ background:#fff;}
+.rzpd{ padding-bottom:1rem; width:auto; height:auto; overflow:hidden;}
+.rzpd .bg100{ width:auto; height:auto; overflow:hidden;}
+.rzpd .bg100 .fl1,.rzpd .bg100 .fr1{ width:8.66rem; height:9.86rem;}
+.rzpd .bg100 .fl1 img,.rzpd .bg100 .fr1 img{ width:100%; height:100%;}
+
+/*bankico*/
+.Guang_Da_Yin_Xing{ background:url(../../images/KaNiu/bankico/Guang_Da_Yin_Xing.png) center no-repeat; background-size:60% auto;}
+.Bei_Jing_Yin_Xing{ background:url(../../images/KaNiu/bankico/Bei_Jing_Yin_Xing.png) center no-repeat; background-size:60% auto;}
+.BO_Hai_Yin_Xing{ background:url(../../images/KaNiu/bankico/BO_Hai_Yin_Xing.png) center no-repeat; background-size:60% auto;}
+.Dong_Ya_Yin_Xing{ background:url(../../images/KaNiu/bankico/Dong_Ya_Yin_Xing.png) center no-repeat; background-size:60% auto;}
+.Gong_Shang_Yin_Xing{ background:url(../../images/KaNiu/bankico/Gong_Shang_Yin_Xing.png) center no-repeat; background-size:60% auto;}
+.Guang_Fa_Yin_Xing{ background:url(../../images/KaNiu/bankico/Guang_Fa_Yin_Xing.png) center no-repeat; background-size:60% auto;}
+.Hua_Xia_Yin_Xing{ background:url(../../images/KaNiu/bankico/Hua_Xia_Yin_Xing.png) center no-repeat; background-size:60% auto;}
+.Jian_She_Yin_Xing{ background:url(../../images/KaNiu/bankico/Jian_She_Yin_Xing.png) center no-repeat; background-size:60% auto;}
+.Jiao_Tong_Yin_Xing{ background:url(../../images/KaNiu/bankico/Jiao_Tong_Yin_Xing.png) center no-repeat; background-size:60% auto;}
+.Min_Sheng_Yin_Xing{ background:url(../../images/KaNiu/bankico/Min_Sheng_Yin_Xing.png) center no-repeat; background-size:60% auto;}
+.Nan_Jing_Yin_Xing{ background:url(../../images/KaNiu/bankico/Nan_Jing_Yin_Xing.png) center no-repeat; background-size:60% auto;}
+.Ning_Bo_Yin_Xing{ background:url(../../images/KaNiu/bankico/Ning_Bo_Yin_Xing.png) center no-repeat; background-size:60% auto;}
+.Nong_Ye_Yin_Xing{ background:url(../../images/KaNiu/bankico/Nong_Ye_Yin_Xing.png) center no-repeat; background-size:60% auto;}
+.Ping_An_Yin_Xing{ background:url(../../images/KaNiu/bankico/Ping_An_Yin_Xing.png) center no-repeat; background-size:60% auto;}
+.Pu_Fa_Yin_Xing{ background:url(../../images/KaNiu/bankico/Pu_Fa_Yin_Xing.png) center no-repeat; background-size:60% auto;}
+.Shang_Hai_Yin_Xing{ background:url(../../images/KaNiu/bankico/Shang_Hai_Yin_Xing.png) center no-repeat; background-size:60% auto;}
+.Xing_Ye_Yin_Xing{ background:url(../../images/KaNiu/bankico/Xing_Ye_Yin_Xing.png) center no-repeat; background-size:60% auto;}
+.You_Zheng_Chu_Xu{ background:url(../../images/KaNiu/bankico/You_Zheng_Chu_Xu.png) center no-repeat; background-size:60% auto;}
+.Zhao_Shang_Yin_Xing{ background:url(../../images/KaNiu/bankico/Zhao_Shang_Yin_Xing.png) center no-repeat; background-size:60% auto;}
+.Zhong_Guo_Yin_Xing{ background:url(../../images/KaNiu/bankico/Zhong_Guo_Yin_Xing.png) center no-repeat; background-size:60% auto;}
+.Shang_Hai_Yin_Xing{ background:url(../../images/KaNiu/bankico/Shang_Hai_Yin_Xing.png) center no-repeat; background-size:60% auto;}
+
+
+
+
+
+
+
+
+
+
+

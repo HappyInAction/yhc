@@ -1,0 +1,36 @@
+@charset "utf-8";
+/* CSS Document */
+body{margin:0; padding:0; font-size:0.5rem; color:#333;}
+a{ text-decoration:none; cursor:pointer;}
+ul , p{ margin:0; padding:0;}
+li{ list-style-type:none;}
+input{ padding:0; margin:0; outline:none;}
+img{ border:none; max-width:100%;}
+
+
+/*关联失败*/
+.gl_shibai_box{ width:100%; max-width:20rem; height:100%; overflow:hidden; margin:0 auto; background:#b4e7d1;}
+.gl_shibai{ width:20rem; height:19.75rem;background:url(../images/gl_shibai.png) center no-repeat; background-size:100% 100%;margin-top:1.39rem;}
+.gl_font1{ width:20rem; line-height:0.97rem;font-family:"微软雅黑"; font-size:0.69rem;text-align:center; color:#08af66;}
+.mt50{ margin-top:1.39rem;}
+.mb50{ margin-bottom:1.39rem;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

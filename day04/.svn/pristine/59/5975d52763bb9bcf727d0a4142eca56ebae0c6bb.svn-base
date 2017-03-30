@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>我的银行卡</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/NEW/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="f5">
+<div class="content">
+    <div class="bank_succ">
+        <div class="bank_tt">储蓄卡</div>
+        <div class="bank_nr" id="deposit">
+            <ul id="banklist">
+            </ul>
+        </div>
+
+    </div>
+    <div class="bank_foot" onclick="addCard()"><img src="../../images/NEW/bank03.png"><span>添加银行卡</span></div>
+</div>
+
+<div class="dialog" id="dialog" style="display: none;">
+    <div class="dialog-con">
+        <i class="close" onclick="jacascript:$('#dialog').css('display', 'none')"></i>
+        <p class="dialog-text">设为默认银行卡或修改</p>
+        <div class="dialog-confirm">
+            <a href="javascript:;" onclick='javascript:$("#dialog").attr("style","display:none");$("#SafaDlog").attr("style","display:block");'>设为默认卡</a>
+            <a id="BankHref" onclick="modifyCard()">修改</a>
+        </div>
+    </div>
+</div>
+<div class="dialog" id="SafaDlog" style="display: none;">
+    <div class="dialog-con">
+        <div style="position: relative;">
+            <p class="dialog-bank">请输入安全密码验证身份</p>
+            <div class="bank-dialog">
+                <input type="password" id="SafaText"/>
+            </div>
+        </div>
+        <div class="dialog-confirm">
+            <a href="javascript:;" onclick="javascript:$('#SafaDlog').attr('style','display:none');">取消</a>
+            <a href="javascript:;" id="SafaOk" onclick="setDefaultCard()">确定</a>
+        </div>
+    </div>
+</div>
+
+<!--手机认证提示02-->
+<div id="remind02" class="modal01" style="display:none;">
+    <div class="modal_bg"></div>
+    <div class="modal02_nr">
+        <p class="modtwo_tp"><img src="../../images/NEW/modal01.png"><span>分期X温馨提示</span></p>
+        <p class="motwo_wz"></p>
+        <p class="motwo_wz404"></p>
+        <p class="motwo_annv" onclick="javascript: $('#remind02').css({ 'display': 'none' });">确定</p>
+    </div>
+</div>
+
+<input type="hidden" id="hidPlanID">
+<input type="hidden" id="hidFid">
+<input type="hidden" id="hidjumpurl">
+    <script src="../../js/NEW/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+    <script src="../../js/NEW/chkHelper.js" type="text/javascript"></script>
+    <script src="../../js/NEW/bankType.min.js" type="text/javascript"></script>
+    <script src="../../js/NEW/BankCenter.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function(){
+        var PlanID = "{$:PlanID jsencode=”true”}";
+        var jumpurl = "{$:jumpurl jsencode=”true”}";
+        $("#hidPlanID").val(PlanID);
+        $("#hidjumpurl").val(jumpurl);
+        showMsg();
+
+        $("#SafaText").on("focusout", function(){
+            chkPassWord();
+        });
+
+        $("#SafaText").on("focusin", function(){
+            $("#SafaText").val("");
+            $("#SafaText").attr("type", "password");
+            $("#SafaText").css("color", "black");
+        });
+
+        //错误弹窗
+        var errcode = "{$:errcode jsencode=”true”}";
+        var errmsg = "{$:errmsg jsencode=”true”}";
+        var url = "{$:url jsencode=”true”}";
+        if(errmsg.indexOf("jsencode") <= -1){
+            if (errcode || errmsg) {
+                if (url.indexOf("jsencode") <= -1 && url) {
+                    $("#remind02 .motwo_annv").on("click", function () {
+                        window.location.href = url;
+                    });
+                }
+                errShow({ "errmsg": errmsg, "errcode": errcode });
+            }
+        }
+    })
+</script>
+</body>
+</html>

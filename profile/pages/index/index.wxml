@@ -1,0 +1,176 @@
+<!-- index.wxml -->
+<!--<view>Hello {{name}}!</view>
+<!-- bindtap是绑定事件吗？？？ -->
+<button bindtap="changeName">Click me! {{name}}</button>
+<!-- 事件綁定的方式 -->
+<view id="tapTest" data-hi="WeChat" bindtap="tapName">Click me!</view>
+<contact-button type="default-light" size="20" session-from="weapp">{{name}}</contact-button>-->
+<!-- 绑定事件的方式 -->
+<!-- bindtap是绑定点击事件 值在page中是定义成方法 -->
+<!-- 冒泡事件 -->
+<!-- 如在下边这个例子中，点击 inner view 会先后触发handleTap3和handleTap2
+(因为tap事件会冒泡到 middle view，而 middle view 阻止了 tap 事件冒泡，不再向父节点传递)，
+点击 middle view 会触发handleTap2，点击 outter view 会触发handleTap1。 -->
+<!-- bindtap绑定事件，允许冒泡 -->
+<!-- catchtap 绑定点击事件，但是不允许冒泡  阻止冒泡 -->
+<!-- target 和 currentTarget 可以参考上例中，
+点击 inner view 时，handleTap3 收到的事件对象 target 和 currentTarget 都是 inner，
+而 handleTap2 收到的事件对象 target 就是 inner，currentTarget 就是 middle。 -->
+<!--<view id="outter" bindtap="handleTap1">
+  outer view
+  <view id="middle" catchtap="handleTap2">
+  middle view
+    <view id="inner" bindtap="handleTap3">
+  inner view
+    </view>
+</view>
+</view>-->
+<!-- 冒泡事件距离 -->
+<!-- touchstart touchmove touchcancel touchend tap longtap -->
+<!-- 除了这几个事件外，其余的自定义的 事件和
+表单的submit事件和 input的input事件 scroll-view的scroll事件  都是非冒泡事件 -->
+<!-- 事件绑定的写法 与属性的写法类似 -->
+<!-- WXML 提供两种文件引用方式import和include。 -->
+
+<!--<include src="../logs/logs.wxml"  />-->
+
+<!-- import 有作用域的概念，即只会 import 目标文件中定义的 template，
+而不会 import 目标文件 import 的 template。
+
+如：C import B，B import A，在C中可以使用B定义的template，
+在B中可以使用A定义的template，但是C不能使用A定义的template。 -->
+<!--includeinclude可以将目标文件除了<template/>
+的整个代码引入，相当于是拷贝到include位置
+-->
+<!-- wx:if vs hidden
+因为 wx:if 之中的模板也可能包含数据绑定，所有当 wx:if 的条件值切换时，
+框架有一个局部渲染的过程，因为它会确保条件块在切换时销毁或重新渲染。
+
+同时 wx:if 也是惰性的，如果在初始渲染条件为 false，框架什么也不做，
+在条件第一次变成真的时候才开始局部渲染。
+
+相比之下，hidden 就简单的多，组件始终会被渲染，只是简单的控制显示与隐藏。
+
+一般来说，wx:if 有更高的切换消耗而 hidden 有更高的初始渲染消耗。
+因此，如果需要频繁切换的情景下，用 hidden 更好，如果在运行时条件不大可能改变则 wx:if 较好 -->
+
+<!--这个是列表 列表渲染 domo-->
+<!--<switch wx:for="{{objectArray}}" wx:key="unique" style="display: block;"> {{item.id}} </switch>
+<button bindtap="switch"> Switch </button>
+<button bindtap="addToFront"> Add to the front </button>
+
+<switch wx:for="{{numberArray}}" wx:key="*this" style="display: block;"> {{item}} </switch>
+<button bindtap="addNumberToFront"> Add to the front </button>-->
+
+<!--
+什么是组件：
+
+组件是视图层的基本组成单元。
+组件自带一些功能与微信风格的样式。
+一个组件通常包括开始标签和结束标签，属性用来修饰这个组件，内容在两个标签之内
+-->
+
+<!--
+组件是视图层的基本组成单元
+组件自带一些功能与微信风格的样式
+一个组件通常包括开始标签和结束标签 ，属性用来修饰这个组件，内容在两个标签之间
+xml格式的HTML必须有结束标签
+所有组件的属性都是小写 
+handername是page 中定义的事件处理函数名 EventHandler 一个属性的类型 还有boolean  string number array object any
+共同属性： id class style hidden data-// bind//---类型eventhander 值为在page中定义好的方法
+特殊属性 --- 详见各组件的讲解
+
+组件列表： vew 视图容器  
+scroll-view 可滚动视图容器
+swiper 滑块视图容器
+
+-->
+<!--<view class="section">
+  <view class="section__title">flex-direction: row</view>
+  <view class="flex-wrp" style="flex-direction:row;">
+    <view class="flex-item bc_green">1</view>
+    <view class="flex-item bc_red">2</view>
+    <view class="flex-item bc_blue">3</view>
+  </view>
+</view>
+<view class="section">
+  <view class="section__title">flex-direction: column</view>
+  <view class="flex-wrp" style="height: 300px;flex-direction:column;">
+    <view class="flex-item bc_green">1</view>
+    <view class="flex-item bc_red">2</view>
+    <view class="flex-item bc_blue">3</view>
+  </view>
+</view> -->
+
+<!-- swiper -->
+<!--<swiper indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+  <block wx:for="{{imgUrls}}">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image" width="355" height="150"/>
+    </swiper-item>
+  </block>
+</swiper>
+<button bindtap="changeIndicatorDots"> indicator-dots </button>
+<button bindtap="changeAutoplay"> autoplay </button>
+<slider bindchange="intervalChange" show-value min="500" max="2000"/> interval
+<slider bindchange="durationChange" show-value min="1000" max="10000"/> duration-->
+
+<!--icon-->
+<!--<view class="group">
+  <block wx:for="{{iconSize}}">
+    <icon type="success" size="{{item}}"/>
+  </block>
+</view>
+
+<view class="group">
+  <block wx:for="{{iconType}}">
+    <icon type="{{item}}" size="45"/>
+  </block>
+</view>
+
+
+<view class="group">
+  <block wx:for="{{iconColor}}">
+    <icon type="success" size="45" color="{{item}}"/>
+  </block>
+</view>-->
+
+<view class="btn-area">
+  <view class="body-view">
+    <text>{{text}}</text>
+    <button bindtap="add">add line</button>
+    <button bindtap="remove">remove line</button>
+  </view>
+</view>
+
+<progress percent="20" show-info color="orange" active />
+<progress percent="40" stroke-width="12" color="blue"  active />
+<progress percent="60" color="pink" active show-info stroke-width="14" /> 
+<view> dd </view>
+<progress percent="80" active />
+
+<!-- sample.wxml -->
+<view class="btn-area">
+  <navigator url="../button/button" redirect="true"  hover-class="navigator-hover">跳转到新页面</navigator>
+  <navigator url="redirect?title=redirect" open-type="redirect" hover-class="other-navigator-hover">在当前页打开</navigator>
+  <navigator url="index" open-type="switchTab" hover-class="other-navigator-hover">切换 Tab</navigator>
+
+  <navigator url="../button/button">跳转到新页面</navigator>
+  <navigator url="../logs/logs" open-type="redirect">在当前页打开</navigator>
+
+  <!--open-type值为 switchTab时 只能在tab页面之前切换，打开目标tab页面，其余的tab页面关闭 -->
+  <!-- app.json文件中tabBar中注册过的tab页，即为“tabBar页面”-->
+  <navigator url="../button/button" open-type="switchTab">切换到首页Tab</navigator>
+
+  
+</view>
+
+<view>
+  <button bindtap="icon">click me  点击我跳转到icon页面</button>
+</view>
+
+<view>
+  <button bindtap="text">click me  点击我跳转到text页面</button>
+</view>
+

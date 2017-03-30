@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>账单明细</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="cleartype" content="on">
+    <script type="text/javascript" src="../../js/KaNiu/jquery-1.10.2.7l.min.js"></script>
+    <script type="text/javascript" src="../../js/KaNiu/OverHide.js"></script>
+       <script type="text/javascript" src="../../js/KaNiu/AutoPoint.js"></script>
+<!-- <script type="text/javascript" src="../../js/KaNiu/kaniu.js"></script> -->
+<!-- <link href="../../css/style/css/about.css" rel="stylesheet" type="text/css">
+<link href="../../css/style/css/guanlian.css" rel="stylesheet" type="text/css">
+<link href="../../css/style/css/info_1jb.css" rel="stylesheet" type="text/css">
+<link href="../../css/style/css/info_z.css" rel="stylesheet" type="text/css">
+<link href="../../css/style/css/Personal.css" rel="stylesheet" type="text/css">
+<link href="../../css/style/css/style.css" rel="stylesheet" type="text/css"> -->
+<link rel="stylesheet" href="../../css/style/css/shouye.css?2015"> 
+<link href="../../css/style/css/info_ljb.css?2015" rel="stylesheet" type="text/css"> 
+<link href="../../css/style/css/about.css?2015" rel="stylesheet" type="text/css"> 
+<link href="../../css/style/css/info_z.css?2015" rel="stylesheet" type="text/css"> 
+<link href="../../css/style/css/personal.css?2015" rel="stylesheet" type="text/css"> 
+<link href="../../css/style/css/style.css?2015" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../../css/style/css/Billdetails.css">
+</head>
+<body class="login-bg">
+    <!-- <header class="login-header"></header> -->
+           <vt:foreach from="$Datas" item="lst">
+         
+                <div class="login-form-bill bill-text1 mt20 line_t">
+                    <div class="divshow" >
+                        <div class="login-input">
+                            <div class="piaochecked checked_set" style="display:none;">
+                                <input class="radioclass" name="need" type="checkbox" style="width:30px;height:30px;" data-value="1" />
+                             </div>
+                            <div class="us-bill bill-text1"><span class="firstMonth">07月份账单已到，请点击查看</span></div>
+                            <i class='yqq'>{$:lst.count}</i><i class="jtt"></i>
+                            <input type="hidden" name="count" value="{$:lst.count}">
+                            <input type="hidden" name="repayMonth" value="{$:lst.repayMonth}">
+                        </div>
+                    </div>
+                    <vt:foreach from="$Detail" item="sublst">
+
+                    <ul style="display: none;">
+                            <li class="us-bill bill-text2 line_t">微信-现金&nbsp;金额：<label class="siglMoney" name="money">300元</label>&nbsp;还款时间：{$:sublst.time}
+                                <div class="czan-bill ">
+                                   <a href='javascript:PerModal(\"PayDefault\");' name='" + PlanDataList.Rows[i]["Fplan_id"].ToString() + "' class='tixian' data-value="">还款</a>
+                                </div>
+                            </li> 
+                                <!-- 下面是按钮显示方式 -->
+                                <!-- <a href='javascript:;' class='tixian' style='background-color:#aaa'>已付款</a> -->
+                                <!-- <a href='javascript:;' class='tixian' style='background-color:#aaa'>已取消</a> -->
+                                <!-- <a href='javascript:PerModal();' name='" + Dic["Floan_trans_id"].ToString() + "' class='tixian acolor'>还款</a> -->
+                    </ul>
+                 </vt:foreach>
+                </div>
+           </vt:foreach>
+
+            <form class="formSubmit" method="post" action="http://www.baidu.com">
+                <div class="login-form-bill bill-text1 mt20 line_t">
+                    <div class="divshow" >
+                        <div class="login-input">
+                            <div class="piaochecked checked_set" style="display:none;">
+                                <input class="radioclass" name="need" type="checkbox" style="width:30px;height:30px;" data-value="1" />
+                             </div>
+                            <div class="us-bill bill-text1"><span class="firstMonth">07月份账单已到，请点击查看</span></div>
+                            <i class='yqq'>{$:lst.count}</i><i class="jtt"></i>
+                            <input type="hidden" name="id" value="1212212">
+                            <input type="hidden" name="count" value="{$:lst.count}">
+                        </div>
+                    </div>
+                    <vt:foreach from="$Detail" item="sublst">
+                    <ul style="display: none;">
+                            <li class="us-bill bill-text2 line_t">微信-现金&nbsp;金额：<label class="siglMoney" name="money">300元</label>&nbsp;还款时间：{$:sublst.time}
+                                <div class="czan-bill ">
+                                   <a href='javascript:PerModal(\"PayDefault\");' name='" + PlanDataList.Rows[i]["Fplan_id"].ToString() + "' class='tixian' data-value="">还款</a>
+                                </div>
+                                <input type="hidden" name="type" value="{$:sublst.type}">
+                                <input type="hidden" name="money" value="{$:sublst.money}">
+                                 <input type="hidden" name="time" value="{$:sublst.time}">
+                            </li> 
+                                <!-- 下面是按钮显示方式 -->
+                                <!-- <a href='javascript:;' class='tixian' style='background-color:#aaa'>已付款</a> -->
+                                <!-- <a href='javascript:;' class='tixian' style='background-color:#aaa'>已取消</a> -->
+                                <!-- <a href='javascript:PerModal();' name='" + Dic["Floan_trans_id"].ToString() + "' class='tixian acolor'>还款</a> -->
+                    </ul>
+                 </vt:foreach>
+                </div>
+            </form>
+
+             <form class="formSubmit" method="post" action="http://www.baidu.com">
+                <div class="login-form-bill bill-text1 mt20 line_t">
+                    <div class="divshow" >
+                        <div class="login-input">
+                            <div class="piaochecked checked_set" style="display:none;">
+                                <input class="radioclass" name="need" type="checkbox" style="width:30px;height:30px;" data-value="1" />
+                             </div>
+                            <div class="us-bill bill-text1"><span class="firstMonth">07月份账单已到，请点击查看</span></div>
+                            <i class='yqq'>{$:lst.count}</i><i class="jtt"></i>
+                            <input type="hidden" name="count" value="{$:lst.count}">
+                            <input type="hidden" name="count" value="{$:lst.repayMonth}">
+                        </div>
+                    </div>
+                    <vt:foreach from="$Detail" item="sublst">
+                    <ul style="display: none;">
+                            <li class="us-bill bill-text2 line_t">{$:sublst.type}&nbsp;金额：<label class="siglMoney" name="money">300元</label>&nbsp;还款时间：{$:sublst.time}
+                                <div class="czan-bill ">
+                                  <a class='tixian_new acolor'>还款</a> 
+                                  <a class='tixian_new acolor'>延期</a> 
+                                </div>
+                                <input type="hidden" name="type" value="{$:sublst.type}">
+                                <input type="hidden" name="money" value="{$:sublst.money}">
+                                <input type="hidden" name="time" value="{$:sublst.time}">
+                            </li> 
+                                <!-- 下面是按钮显示方式 -->
+                                <!-- <a href='javascript:;' class='tixian' style='background-color:#aaa'>已付款</a> -->
+                                <!-- <a href='javascript:;' class='tixian' style='background-color:#aaa'>已取消</a> -->
+                                <!-- <a href='javascript:PerModal();' name='" + Dic["Floan_trans_id"].ToString() + "' class='tixian acolor'>还款</a> -->
+                    </ul>
+                    <ul style="display: none;">
+                            <li class="us-bill bill-text2 line_t">微信-现金&nbsp;金额：<label class="siglMoney" name="money">300元</label>&nbsp;还款时间：{$:sublst.time}
+                                <div class="czan-bill ">
+                                   <a href='javascript:PerModal(\"PayDefault\");' name='" + PlanDataList.Rows[i]["Fplan_id"].ToString() + "' class='tixian' data-value="">还款</a>
+                                </div>
+                                <input type="hidden" name="type" value="{$:sublst.type}">
+                                <input type="hidden" name="money" value="{$:sublst.money}">
+                                 <input type="hidden" name="time" value="{$:sublst.time}">
+                            </li> 
+                                <!-- 下面是按钮显示方式 -->
+                                <!-- <a href='javascript:;' class='tixian' style='background-color:#aaa'>已付款</a> -->
+                                <!-- <a href='javascript:;' class='tixian' style='background-color:#aaa'>已取消</a> -->
+                                <!-- <a href='javascript:PerModal();' name='" + Dic["Floan_trans_id"].ToString() + "' class='tixian acolor'>还款</a> -->
+                    </ul>
+                 </vt:foreach>
+                </div>
+            </form>
+
+            <!-- 单笔还款方式选择 -->
+           <div id="repay_channelsgl" class="repayChoose hide">
+                <p id="sglrepayfast">快捷还款</p>
+                <p id="sglrepaywx">微信还款</p>
+                <p class="repaycancel" style="margin-top: 12px;">取消</p>
+           </div>
+            <!-- 一键还款 -->
+            <div id="repay_channelmore" class="repayChoose ">
+
+                <p id="morerepayfast" class="morerepayBy hide">快捷还款</p>
+                <p id="morerepayfast" class="morerepayBy hide">微信还款</p>
+                <p class="repayOneClk">
+                   <select class="">
+                   <option>租房</option>
+                   <option>驾校</option>
+                   </select><span id="repay_one">一键还款</span></p>
+                <p class="repaych clearfix hide "><span class="allchecked checked_set"><input type="checkbox" name="" style="width:50px;height:40px;margin-top: 10px;" class="radioall"><lable style="vertical-align: top;" >全选</lable></span><span class="repayTotall">本次仅还：<em id="rep_totallM" class="repTotallM">300元</em></span><a class="repayTo" id="repay_to" onclick="$('.morerepayBy').show()">还款</a></p>
+            </div>
+    
+  <!-- 搜索失败弹窗 -->
+     <div id="pop" class="pop fam_yh" style="display:none;">
+        <div class="pop_icon" onclick="$('#pop').hide()"></div>
+        <p id="less_input">请先还清<span>7</span>月份账单</p>
+    </div>
+
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?7c6a8648887f4d87cb988cdfff3fec75";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+
+        var ISdiv = $(".divshow"),
+            get_montn = $(".firstMonth:first").text();
+        var totallM = chang_totallM = 7234;
+         $(function () {
+        //进入展示及事件绑定
+        show_nonelist();
+        $(".tixian:first").css({"background":"#08af66","color":"white","border":"none"}).on("click",function(){
+           $("#repay_channelmore").css("display","none");
+           $("#repay_channelsgl").css("display","block");
+        });
+        
+         $("#sglrepayfast").on("click",function(){
+            $(".formSubmit:first").submit();
+         }); 
+         $(".tixian").not(":first").on("click",function(){
+            show_alert('请先还清'+get_montn+'月份账单');
+        });
+        //点击单项
+        $(".divshow").click(function () {
+            var gree = $(".divshow").parent();
+            gree.find("i.jtt-down").attr("class", "jtt");
+            gree.find("ul").attr("style", "display:none");
+            gree.attr("class", "login-form-bill bill-text1 mt20 line_t");
+
+            $(this).parent(0).attr("class", "login-form-bill bill-text1 mt20 line_t gree");
+            $(this).find("i.jtt").attr("class", "jtt-down");
+            $(this).next("ul:eq(0)").attr("style", "display:block");
+        });
+         //一键还款选择
+            $("#repay_one").on("click",function(){
+                $(".divshow").off("click");//取消一件还款后恢复绑定
+                show_nonelist();
+                $(this).hide().next().show();
+                $("#rep_totallM").text(totallM+"元");
+                $('.piaochecked').show().next().css("width","620px");
+            });
+            $('.radioclass').on("click",function(){
+                 var siglM =parseFloat($(this).closest(".divshow").next().find("li .siglMoney").text());
+                if($(this).parent().hasClass("checked_set"))
+                {
+                    $(this).parent().addClass("checked_channle").removeClass("checked_set");
+                   chang_totallM = parseFloat(chang_totallM) - parseFloat(siglM);
+                }
+                else
+                {
+                    $(this).parent().addClass("checked_set").removeClass("checked_channle");
+                     chang_totallM = parseFloat(chang_totallM) + parseFloat(siglM);
+                }
+                  $("#rep_totallM").text(chang_totallM+"元");
+            });
+            $(".allchecked").eq(0).on("click",function(){
+                 if($(this).hasClass("checked_set"))
+                {
+                    $(this).addClass("checked_channle").removeClass("checked_set");
+                    $('.piaochecked').addClass("checked_channle").removeClass("checked_set");
+                    chang_totallM = "0";
+                }
+                else
+                {
+                    $(this).addClass("checked_set").removeClass("checked_channle");
+                    $('.piaochecked').addClass("checked_set").removeClass("checked_channle");
+                    chang_totallM = totallM;
+                }
+                $("#rep_totallM").text(chang_totallM+"元");
+            });
+       /* $("a").click(function () {
+            if ($(this).attr("name") != null && $(this).attr("name") != "") {
+                $("#HidPlanid").val($(this).attr("name").toString());
+            }
+
+        });*/
+        });
+       
+       //显示所有列表
+       function show_nonelist()
+       {
+        for (var i = 0; i < ISdiv.length; i++) 
+        {
+            if (ISdiv.eq(i).find("div:eq(2)").text().indexOf("已到") != -1)
+             {
+                var gree = $(".divshow").eq(i).parent();
+                gree.find("i.jtt").attr("class", "jtt-down");
+                gree.find("ul").attr("style", "display:block");
+                gree.attr("class", "login-form-bill bill-text1 mt20 line_t");
+            }
+        }
+       }
+        //定时弹窗
+        function show_alert(message)
+        {
+         // clearTimeout(showTim);  
+          $("#pop").show();
+          $("#less_input").html(message);
+          $("#pop .pop_icon").animate({"height": "2.24rem","background-size":"1.54rem 1.54rem"},{ duration:100});//
+          $("#pop").animate({"top":"7.84rem","margin-left":"-4.9rem","width":"9.8rem" ,"height":"4.64rem","font-size":"0.7rem","line-height":"2.34rem"},{ duration:100});
+           showTim = setTimeout("hidden_alert()",1500);
+         }
+
+         function hidden_alert()
+         {
+            $("#pop").hide();
+            $("#pop").css({"top":"6.87rem","margin-left":"-5.87rem","width":"11.74rem" ,"height":"5.6rem","font-size":"0.85rem","line-height":"2.82rem"});
+            $("#pop .pop_icon").css({"height": "2.67rem","background-size":"1.81rem 1.81rem"});
+            clearTimeout(showTim);  
+         }
+
+          function PerModal(divid) {
+            if (divid == "Payshort") {
+                $("#PayDefault").attr("style", "display:none");
+                var testuser = '<%=TestUser%>';
+                if (testuser == "True") {
+                    $("#HidPayType").val("short");
+                } else {
+                    $("#HidPayType").val("");
+                    window.location.href = "/InterFace/RepayMentCenter/old_ShortExtension.ashx?PlanID=" + $("#HidPlanid").val() + "&LoginID=<%=LoginID%>";
+                }
+            }
+            else {
+                $("#HidPayType").val("");
+                $("#Payshort").attr("style", "display:none");
+            }
+            var perDiv = document.getElementById("perDiv");
+            var modalzz = document.getElementById("modalzz");
+            $("#" + divid).attr("style", "display:block");
+            modalzz.style.display = "block";
+            perDiv.style.bottom = "0";
+            perDiv.style.right = "0";
+        };
+        function perRemove(divid) {
+            document.getElementById(divid).click(modalzz.style.display = "none");
+            document.getElementById(divid).click(perDiv.style.bottom = "-550px");
+        };
+        function zhuan() {
+            window.location.href = '/Tenant/Personal/transaccount.html';
+        };
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>手机验证</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/KaNiu/style.css" rel="stylesheet" type="text/css">
+<link href="../../css/KaNiu/record.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="content">
+    <form id="form" name="form" method="post" action="/InterFace/kaniuFace03.ashx">
+        <div class="add_bank wid_13">
+            <ul>
+                <li><b>手机号码</b><span class="f64349">{$:yzlyh_telphone htmlencode=”true”}</span>
+                    <input id="btnemail" class="send-mess gcolor" name="" type="button" value="获取验证码">
+                </li>
+                <li class="bbomnone"><b>验证码</b>
+                    <input id="oldyz_m" name="oldyz_m" type="text"  id="" placeholder="请输入验证码">
+                </li>
+            </ul>
+        </div>
+        <div class="both bank_bom">
+            <p class="tips"><img src="../../images/KaNiu/input_01.png"><span>您会收到一条短信，验证您的手机号码，我们只想确认您是否是老用户，
+                我们不会将您的号码泄露给任何人！</span></p>
+            <p>
+                <input id="oldyz_button" name="oldyz_button" type="button" value="确定" onclick="$('#form').submit()">
+            </p>
+        </div>
+    </form>
+    <div class="footer foor_ab">
+        <div class="foottp"><i></i>
+            <p class="base_footerf5"><img src="../../images/KaNiu/appli03.png"></p>
+        </div>
+        <div class="footbom">
+            <p class="fl"><a>联系客服：<span onClick="document.getElementById('guided_mod').style.display='block'">请点击</span></a></p>
+            <p class="fr"><a href="">关于我们</a><a class="brtnone" href="">常见问题</a></p>
+        </div>
+    </div>
+</div>
+
+<!--客服引导mod-->
+<div id="guided_mod" class="guided_mod" style="display:none;"> <i class="guimodal_bg" onClick="document.getElementById('guided_mod').style.display='none'"></i>
+    <div class="guimod">
+        <div class="posrela">
+            <div class="kfyd_box">
+                <div class="index02"><img src="../../images/KaNiu/rg_01.png"></div>
+                <div class="ttu"><span class="nuc">1</span>进入分期X微信公众号，直接输入“客服”即可咨询。</div>
+                <div class="kfyd_img"><img src="../../images/KaNiu/rg_03.jpg"></div>
+                <div class="ttu"><span class="nuc">2</span>咨询人工刻度可点击公众号右上角标识进入公众号简介，点击“客服人员”即可。</div>
+                <div class="kfyd_img mb20"><img src="../../images/KaNiu/rg_05.png"></div>
+            </div>
+            <div class="guimod_bom"><a class="over" onClick="document.getElementById('guided_mod').style.display='none'">关闭</a></div>
+        </div>
+    </div>
+</div>
+
+<!--CNZZ-->
+<span style="display:none;"><script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258549877'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1258549877' type='text/javascript'%3E%3C/script%3E"));</script></span>
+							
+<script src="../../js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+var wait = 60;
+function time(o) {
+	if (wait == 0) {
+		o.removeAttribute("disabled");
+		o.value = "获取验证码";
+		wait = 60;
+		o.style.fontSize="0.8rem";
+		o.style.background="#f64349";
+	} else {
+		o.setAttribute("disabled", true);
+		o.value = wait + "秒后重新发送";
+		o.style.fontSize="0.6rem";
+		o.style.background="#ccc";
+		wait--;
+		setTimeout(function() {
+			time(o)
+		},1000)
+	}
+}
+document.getElementById("btnemail").onclick = function() {
+	time(this);
+}
+
+$(function (){
+	$("a:")
+//弹窗
+	var errmsg="{$:errmsg jsencode=”true”}";
+	if(errmsg){
+		$("#errmsg").html(errmsg);
+		$(".modal01").css("display","block");
+	}
+//button pass
+	$("input").bind('input propertychange',function () {
+		if($("#yzm").val()==""){
+			$("#oldyz_button").attr("disabled");
+			$("#oldyz_button").removeClass("pass");
+		} else {
+			$("#oldyz_button").removeAttr("disabled");
+			$("#oldyz_button").addClass("pass");
+		}
+	})
+})
+
+</script>
+</body>
+</html>

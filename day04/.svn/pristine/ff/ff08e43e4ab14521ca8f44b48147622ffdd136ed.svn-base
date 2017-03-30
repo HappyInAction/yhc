@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>再次申请</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/KaNiu/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="fff">
+<form name="again">
+    <div class="content">
+        <div class="appli_tp">
+            <div class="apptp_pic">
+                <ul>
+                    <li class="apptp_mt">最高贷款额度为</li>
+                    <li class="wzwz apptp_mb">{$:Amound htmlencode="true"}元</li>
+                    <li class="apptp_mt">最长期限为</li>
+                    <li class="wzwz">{$:Months htmlencode="true"}个月</li>
+                </ul>
+            </div>
+            <div class="apptp_wzxx both"><span class="first">上次申请金额</span><span class="money">{$:aging_Months htmlencode="true"}</span><span>元</span><i></i></div>
+        </div>
+        <div class="appli_bom both">
+            <ul>
+                <li><b>本次可申请金额</b><span id="sqMoney">{$:Money htmlencode="true"}</span></li>
+                <li><b>还款期数</b>
+                    <select name="" id="Select">
+                        <option value="0">请选择还款期数</option>
+                        <option value="3">3期</option>
+                        <option value="6">6期</option>
+                        <option value="9">9期</option>
+                        <option value="12">12期</option>
+                    </select>
+                    <i></i></li>
+                <li><b>每月还款金额</b><span id="displayCalculation"></span></li>
+            </ul>
+        </div>
+        <div class="both bank_bom">
+            <p class="tips"><img src="../../images/KaNiu/input_01.png"><span>月综合利率：1.5%左右,最终的利率取决于审核的结果。</span></p>
+            <p>
+                <input id="Submit" name="" type="button" value="提交申请" disabled >
+            </p>
+        </div>
+        <!---->
+        <div class="footer">
+            <div class="foottp"><i></i>
+                <p><img src="../../images/KaNiu/appli03.png"></p>
+            </div>
+            <div class="footbom">
+                <p class="fl"><a>联系客服：<span onClick="document.getElementById('guided_mod').style.display='block'">请点击</span></a></p>
+                <p class="fr"><a href="">关于我们</a><a class="brtnone" href="">常见问题</a></p>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!--客服引导mod-->
+<div id="guided_mod" class="guided_mod" style="display:none;"> <i class="guimodal_bg" onClick="document.getElementById('guided_mod').style.display='none'"></i>
+    <div class="guimod">
+        <div class="posrela">
+            <div class="kfyd_box">
+                <div class="index02"><img src="../../images/KaNiu/rg_01.png"></div>
+                <div class="ttu"><span class="nuc">1</span>进入分期X微信公众号，直接输入“客服”即可咨询。</div>
+                <div class="kfyd_img"><img src="../../images/KaNiu/rg_03.jpg"></div>
+                <div class="ttu"><span class="nuc">2</span>咨询人工刻度可点击公众号右上角标识进入公众号简介，点击“客服人员”即可。</div>
+                <div class="kfyd_img mb20"><img src="../../images/KaNiu/rg_05.png"></div>
+            </div>
+            <div class="guimod_bom"><a class="over" onClick="document.getElementById('guided_mod').style.display='none'">关闭</a></div>
+        </div>
+    </div>
+</div>
+<script src="../../js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script> 
+<script type="text/javascript">
+$(function (){
+	$("#Select").change(function (){
+		var jkMoney = parseInt($("#sqMoney").html());
+		var qxMoney = $("#Select").val();
+		var hkMoney = $("#displayCalculation");
+		var yfthValue;
+		yfthValue = (jkMoney * 0.02 *　qxMoney + parseFloat(jkMoney)) / qxMoney;
+		hkMoney.html( Math.round(yfthValue*100)/100 );
+		if( $("#Select").val() != "0"){
+			$("#Submit").attr("class","pass");
+			$("#Submit").removeAttr("disabled");
+		} else {
+			$("#Submit").attr({"disabled":"", "class":""});
+		}
+	})
+})
+</script>
+</body>
+</html>

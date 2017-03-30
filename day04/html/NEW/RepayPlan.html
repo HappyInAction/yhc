@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>还款计划</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/NEW/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="content">
+    <div class="repayjh">
+        <ul id="RepayPlanAdd"></ul>
+        	<!-- <li>
+        	        				<div class="fl repay_lf"><p></p><i></i></div>
+        	        				<div class="fl repay_rt">
+        	        					<p class="repayrt_tt"> DataList[k].repay_month</p>
+        	        					<div class="rert_nr">
+        	        						<div class="rert_cont">
+        	        							<div class="fl fqlx">
+        	        								<p class="fqlx_pic"></p>
+        	        								<p> DataList[k].type</p>
+        	        							</div>
+        	        							<div class="fl fqzlwz">
+        	        								<p>应还本金:<span>DataList[k].left_money元</span></p>
+        	        								<p>利　　息:<span>DataList[k].interest_money元</span></p>
+        	        								<p>服 务 费:<span>DataList[k].service_money元</span></p>
+        	        							</div>
+        	        						</div> 
+        	        						<div class="rert_bom"><img src="../../images/NEW/repay01.png"><span>到期还款时间: DataList[k].repay_date </span></div>
+        	        					</div>
+        	        				</div>
+        	        			</li>
+        	         -->        
+    </div>
+</div>
+<script src="../../js/NEW/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+<script src="../../js/NEW/RepayPlan.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function (){
+	var timer, page = 1;
+	
+	loading(0);
+	
+	$(window).on('touchmove', function() {
+		clearTimeout(timer);
+		timer = setTimeout(function() {
+		if ($(window).height() + $(window).scrollTop() >= $("body").height()) {
+			loading(page);
+			page++
+		}}, 300)
+	})
+
+	//错误弹窗
+	var errcode = "{$:errcode jsencode=”true”}";
+	var errmsg = "{$:errmsg jsencode=”true”}";
+	if(errmsg.indexOf("jsencode") <= -1){
+		if (errcode || errmsg) {
+			errShow({ "errmsg": errmsg, "errcode": errcode });
+		}
+	}
+})
+
+</script>
+</body>
+</html>

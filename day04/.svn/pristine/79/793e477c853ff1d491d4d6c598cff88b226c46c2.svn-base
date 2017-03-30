@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>基本资料</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="expires" content="">
+<link href="../../css/KaNiu/style.css" rel="stylesheet" type="text/css">
+<link href="../../css/KaNiu/record.css" rel="stylesheet" type="text/css">
+<link href="../../css/KaNiu/gennal.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="base1"></div>
+<div class="base_nr both">
+    <form id="form" name="form" method="post" action="/InterFace/kaniuFace03.ashx">
+        <div class="nrli">
+            <ul class="mtnone">
+                <li>
+                    <b class="base2"></b>
+                    <input class="base_input" name="real_name" id="name" type="text" value="{$:real_name htmlencode=”true”}" placeholder="请输入姓名">
+                </li>
+                <li>
+                    <b class="base3"></b>
+                    <input class="base_input" name="card" id="id" type="text" value="{$:card htmlencode=”true”}" placeholder="请输入身份证号">
+                </li>
+                <li>
+                    <b class="base8"></b>
+                    <input class="base_input" name="qq" id="qq" type="text" value="{$:qq htmlencode=”true”}" placeholder="请输入qq号">
+                </li>
+                <li>
+                    <b class="base6"></b>
+                    <input id="base-input" name="email" type="text" placeholder="请输入邮箱" value="{$:email htmlencode=”true”}" style="border-bottom:none;">
+                </li>
+            </ul>
+        </div>
+    </form>
+    <div class="both index_bom">
+        <p>
+            <input id="addbank_button" name="" type="button" value="下一步" disabled="disabled">
+        </p>
+    </div>
+    <div class="footer">
+        <div class="foottp"><i></i>
+            <p class="fno"><img src="../../images/KaNiu/appli03.png"></p>
+        </div>
+        <div class="footbom">
+            <p class="fl"><a>联系客服：<span onClick="document.getElementById('guided_mod').style.display='block'">请点击</span></a></p>
+            <p class="fr"><a href="">关于我们</a><a class="brtnone" href="">常见问题</a></p>
+        </div>
+    </div>
+</div>
+<div id="modal02" class="modal02" style="display:;">
+    <div class="modal_bg"></div>
+    <div class="four_mod newgd">
+        <div class="four_tp">
+            <p class="pic01"><img src="../../images/KaNiu/jbmod.png"></p>
+            <p class="wzwz">分期X根据您的信用记录评估，最高贷款额度为 <span class="f64349">100000</span> 元，最长期限为 <span class="f64349">12</span> 个月</p>
+            <p class="four_annv" onClick="document.getElementById('modal02').style.display='none';">立即激活额度</p>
+            <p class="tips"><span>注</span>：填写的资料必须是真实有效！</p>
+        </div>
+    </div>
+</div>
+<!--错误弹窗提示-->
+<div class="modal01" style="display:none;">
+    <div class="modal_bg"></div>
+    <div class="modal02_nr">
+        <p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>分期X温馨提示</span></p>
+        <p class="motwo_wz" id="errmsg"></p>
+        <p class="motwo_annv" onClick="closeErrMsg()">确定</p>
+    </div>
+</div>
+
+<!--客服引导mod-->
+<div id="guided_mod" class="guided_mod" style="display:none;"> <i class="guimodal_bg" onClick="document.getElementById('guided_mod').style.display='none'"></i>
+    <div class="guimod">
+        <div class="posrela">
+            <div class="kfyd_box">
+                <div class="index02"><img src="../../images/KaNiu/rg_01.png"></div>
+                <div class="ttu"><span class="nuc">1</span>进入分期X微信公众号，直接输入“客服”即可咨询。</div>
+                <div class="kfyd_img"><img src="../../images/KaNiu/rg_03.jpg"></div>
+                <div class="ttu"><span class="nuc">2</span>咨询人工刻度可点击公众号右上角标识进入公众号简介，点击“客服人员”即可。</div>
+                <div class="kfyd_img mb20"><img src="../../images/KaNiu/rg_05.png"></div>
+            </div>
+            <div class="guimod_bom"><a class="over" onClick="document.getElementById('guided_mod').style.display='none'">关闭</a></div>
+        </div>
+    </div>
+</div>
+<script src="../../js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script> 
+ <script type="text/javascript">
+    var errcode = "{$:errcode jsencode=”true”}";
+    var errmsg = "{$:errmsg jsencode=”true”}";
+    if (/^\d+$/.test(errcode)) {
+        if (errmsg) {
+            $("#errmsg").html(errmsg);
+            if (errcode) {
+                $("#errcode").html("错误码:" + errcode);
+            }
+        }
+    }
+    $(function () {
+        var real_name = "{$:real_name jsencode=”true”}";
+        if (real_name) {
+            $("#name").val(real_name);
+            $("#name").attr("readonly", "true");
+        }
+        $("input").focusin(function () {
+            if ($(this).val().indexOf("请输入") > -1) {
+                $(this).attr("style", "color:black");
+                $(this).val("");
+            }
+        });
+        $("#name").focusout(function () {
+            if ($(this).val() == "" || !isName($(this).val())) {
+                $(this).val("请输入姓名");
+                $(this).attr("style", "color:red");
+            }
+        });
+        $("#id").focusout(function () {
+            if ($(this).val() == "" || !Isid($(this).val())) {
+                $(this).val("请输入身份证号");
+                $(this).attr("style", "color:red");
+            }
+        });
+        $("#qq").focusout(function () {
+            if ($(this).val() == "" || !IsNumber($(this).val())) {
+                $(this).val("请输入qq号");
+                $(this).attr("style", "color:red");
+            }
+        });
+        $("#base-input").focusout(function () {
+            if ($(this).val() == "" || !IsEmail($(this).val())) {
+                $(this).val("请输入邮箱");
+                $(this).attr("style", "color:red");
+            }
+        });
+        $("input").bind('input propertychange', function () {
+            if ($("#name").val() != "" && Isid($("#id").val()) && IsNumber($("#qq").val()) && IsEmail($("#base-input").val())) {
+                $("#addbank_button").attr("class", "pass");
+                $("#addbank_button").removeAttr("disabled");
+            } else {
+                $("#addbank_button").attr({ "disabled": "", "class": "" });
+            }
+        })
+
+        $("#addbank_button").on("click", function () {
+            if ($("#name").val() != "" && Isid($("#id").val()) && IsNumber($("#qq").val()) && IsEmail($("#base-input").val())) {
+                $("form").submit();
+            } else {
+                $("#errmsg").html("请先完善信息！");
+                $("#errcode").html("");
+                $(".modal01").css("display", "block");
+                return;
+            }
+        })
+
+    })
+    //关闭错误弹窗
+    function closeErrMsg(){
+        location.href = "";
+        $('.modal01').css('display','none');
+    }
+    //id
+    function Isid(obj) {
+        Reg = /^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X|x)$/;
+        if (Reg.test(obj)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    function IsEmail(obj) {
+        Reg = /^\w{5,}@\w+(\.\w+)+$/;
+        if (Reg.test(obj)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    function IsNumber(obj) {
+        Reg = /^\d+$/;
+        if (Reg.test(obj)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**/
+    function isName(obj) {
+        var reg = /^[\u4e00-\u9fa5]{2,}$/;
+        if (obj == undefined || obj == "" || !reg.test(obj)) {
+            return false;
+        }
+        return true;
+    }
+</script>
+</body>
+</html>

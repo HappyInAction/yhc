@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>我的资料</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/NEW/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="content">
+    <div class="file_cont">
+        <ul>
+            <p class="file_tt">基本信息</p>
+            <li class="cont_li">
+                <div class="file_tab"><b class="address"></b><a>身份证/居住信息</a><i></i></div>
+                <div class="tab_li file_linr">
+                    <ul>
+                        <li><b>姓名</b>
+                            <input name="" type="text" placeholder="请输入您的姓名">
+                        </li>
+                        <li><b>身份证号</b>
+                            <input name="" type="text" placeholder="请输入您的身份证号">
+                        </li>
+                        <li><b>现居住地</b>
+                            <input name="" type="text" placeholder="请输入您的现居住地">
+                        </li>
+                        <li class="bbomnone"><b>详细地址</b>
+                            <input name="" type="text" placeholder="请输入您的详细地址">
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="cont_li">
+                <div class="file_tab"><b class="contact"></b><a>联系人资料</a><i></i></div>
+                <div class="tab_li file_linr">
+                    <ul>
+                        <li>
+                            <select name="">
+                                <option>请选择</option>
+                                <option>父亲</option>
+                                <option>母亲</option>
+                                <option>兄弟姐妹</option>
+                                <option>同学</option>
+                                <option>同事</option>
+                            </select>
+                            <input name="" type="text" placeholder="请输入姓名">
+                        </li>
+                        <li><b>手机号码</b>
+                            <input name="" type="text" placeholder="请输入手机号码">
+                        </li>
+                        <li>
+                            <select name="">
+                                <option>请选择</option>
+                                <option>父亲</option>
+                                <option>母亲</option>
+                                <option>兄弟姐妹</option>
+                                <option>同学</option>
+                                <option>同事</option>
+                            </select>
+                            <input name="" type="text" placeholder="请输入姓名">
+                        </li>
+                        <li><b>手机号码</b>
+                            <input name="" type="text" placeholder="请输入手机号码">
+                        </li>
+                        <li>
+                            <select name="">
+                                <option>请选择</option>
+                                <option>父亲</option>
+                                <option>母亲</option>
+                                <option>兄弟姐妹</option>
+                                <option>同学</option>
+                                <option>同事</option>
+                            </select>
+                            <input name="" type="text" placeholder="请输入姓名">
+                        </li>
+                        <li class="bbomnone"><b>手机号码</b>
+                            <input name="" type="text" placeholder="请输入手机号码">
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="cont_li">
+                <div class="file_tab"><b class="inter"></b><a>互联网信息</a><i></i></div>
+                <div class="tab_li file_linr">
+                    <ul>
+                        <li><b>QQ</b>
+                            <input name="" type="text" placeholder="请输入您的QQ号">
+                        </li>
+                        <li class="yzmli"><b>邮箱</b>
+                            <input name="" type="text" placeholder="请输入您的邮箱">
+                            <p class="yzm">验证邮箱</p>
+                        </li>
+                        <li><b>学新网账号</b>
+                            <input name="" type="text" placeholder="请输入您的学信网账号">
+                        </li>
+                        <li class="bbomnone"><b>密码</b>
+                            <input name="" type="text" placeholder="请输入您的学信网密码">
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="cont_li">
+                <div class="file_tab"><b class="tel"></b><a class="bbomnone">通话资料</a><i></i></div>
+                <div class="tab_li file_linr">
+                    <ul>
+                        <li><b>服务密码</b>
+                            <input name="" type="text" placeholder="请输入您的手机号的服务密码">
+                        </li>
+                    </ul>
+                    <div class="tel_table">
+                        <p>获取服务密码方法如下：</p>
+                        <table border="0" cellspacing="1" cellpadding="0">
+                            <tr class="tt">
+                                <td class="tdwid01"></td>
+                                <td class="tdwid02">1、手机拨号-转人工服务</td>
+                                <td class="tdwid03">2、手机登陆网址-“忘记密码”查询</td>
+                            </tr>
+                            <tr>
+                                <td><p class="pic_yd"></p></td>
+                                <td>10086</td>
+                                <td>10086.cn</td>
+                            </tr>
+                            <tr>
+                                <td><p class="pic_lt"></p></td>
+                                <td>10010</td>
+                                <td>wap.10010.com</td>
+                            </tr>
+                            <tr>
+                                <td><p class="pic_dx"></p></td>
+                                <td>10000</td>
+                                <td>wapzt.189.cn</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </li>
+            <p class="file_tt">学历及工作信息</p>
+            <li class="cont_li">
+                <div class="file_tab"><b class="xueli"></b><a>学历信息</a><i></i></div>
+                <div class="tab_li file_linr">
+                    <ul>
+                        <li><b>学校名称</b>
+                            <input name="" type="text" placeholder="请输入您的学校名称">
+                        </li>
+                        <li><b>学历</b>
+                            <input name="" type="text" placeholder="请输入您的最高学历">
+                        </li>
+                        <li><b>专业</b>
+                            <input name="" type="text" placeholder="请输入您的所学专业">
+                        </li>
+                        <li><b>入学时间</b>
+                            <input name="" type="text" placeholder="请输入您的入学时间">
+                        </li>
+                        <li class="bbomnone"><b>毕业时间</b>
+                            <input name="" type="text" placeholder="请输入您的毕业时间">
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="cont_li">
+                <div class="file_tab"><b class="work"></b><a class="bbomnone">工作信息</a><i></i></div>
+                <div class="tab_li file_linr">
+                    <ul>
+                        <li><b>企业名称</b>
+                            <input name="" type="text" placeholder="请输入您所在企业名称">
+                        </li>
+                        <li><b>企业地址</b>
+                            <input name="" type="text" placeholder="请输入您所在企业地址">
+                        </li>
+                        <li class="bbomnone"><b>企业固话</b>
+                            <input name="" type="text" placeholder="请输入您所在企业固话">
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <p class="file_tt">资料上传</p>
+            <li class="cont_li">
+                <div class="file_tab"><b class="fileupdate"></b><a class="bbomnone">资料上传</a><i></i></div>
+                <div class="tab_li file_up">
+                    <p>基本资料</p>
+                    <div class="jbzl">
+                        <p class="upnr upleft fl"><i></i><span>上传身份证正面</span>
+                            <input type="file" accept="image/*" >
+                        </p>
+                        <p class="upnr upright fr"><i></i><span>上传身份证反面</span>
+                            <input type="file" accept="image/*" >
+                        </p>
+                        <p class="upnr upbom fl"><i class="peo"></i><b>请确保身份证<br>
+                            姓名号码清晰</b><i class="camera"></i><span>上传手持身份证照片</span>
+                            <input type="file" accept="image/*" >
+                        </p>
+                    </div>
+                    <p class="xxzl_tt both">详细资料<i></i></p>
+                    <div class="xxzl">
+                        <ul>
+                            <p>工薪族：</p>
+                            <li>
+                                <p><i class="work"></i></p>
+                                <span>工作证明</span>如：工牌/劳动合同等</li>
+                            <li>
+                                <p><i class="zdht"></i></p>
+                                <span>租赁合同</span>非必要</li>
+                            <li>
+                                <p><i class="lsqd"></i></p>
+                                <span>工资流水</span>如：近半年流水详细</li>
+                            <p class="both">学生：</p>
+                            <li>
+                                <p><i class="xszm"></i></p>
+                                <span>学生证明</span>如：学生证/一卡通等</li>
+                            <li>
+                                <p><i class="sszpz"></i></p>
+                                <span>宿舍自拍照</span>注：必须看到门牌号</li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<script src="../../js/NEW/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function (){
+	$(".file_tab").each(function(i) {
+        $(this).click(function (){
+			if( $(".tab_li").eq(i).height()==0 ){
+				$(".tab_li").css("max-height","0");
+				$(".tab_li").eq(i).css("max-height","945px");
+				$(".file_tab i").css("transform","rotate(0deg)");
+				$(".file_tab i").eq(i).css("transform","rotate(180deg)");
+			} else{
+				$(".tab_li").eq(i).css("max-height","0");
+				$(".file_tab i").eq(i).css("transform","rotate(0deg)");
+			}
+			if( i!==6 ){
+				$(".xxzl").css("height","0");
+				$(".xxzl_tt i").css("transform","rotate(0deg)");
+			}
+		})
+
+    });
+	$(".xxzl_tt").click(function (){
+		if( $(".xxzl").height()<=0 ){
+			$(".file_up").css("max-height","1850px");
+			$(".xxzl").css("height","852");
+			$(".xxzl_tt i").css("transform","rotate(180deg)");
+		} else{
+			$(".file_up").css("max-height","945px");
+			$(".xxzl").css("height","0");
+			$(".xxzl_tt i").css("transform","rotate(0deg)");
+		}
+	})
+})
+</script>
+</body>
+</html>

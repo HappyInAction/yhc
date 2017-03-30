@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>身份-居住信息认证</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="cleartype" content="on">
+    <link href="../../css/kaniu/style.css" rel="stylesheet" type="text/css">
+    <script src="../../js/kaniu/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+</head>
+<body class="f5">
+<div class="content" style="text-align: center;">
+    <img class="wc_dsimg" src="../../images/kaniu/wcdg03.png">
+    <p class="wc_dscon">
+        订单已提交，<span style="color: #f64349;">请补充最终认证<br/>
+        (手机与电商认证)</span>补充后可提<br/>高放款成功率，如不补充可能<br/>导致失败
+    </p>
+    <p class="wc_dstime"><span id="sec">3</span>秒后自动跳转</p>
+
+    <input class="wc_dsbut" type="button" value="立即前往"/>
+</div>
+<script type="text/javascript">
+    window.onload = function(){
+        setTimeout(count,1000);
+        $(".wc_dsbut").click(function(){
+            window.location.href = "";
+        });
+    }
+
+    function count(){
+        var sec = parseInt($("#sec").html());
+        sec--;
+        if(sec == 0){
+            window.location.href = "";
+        }else {
+            $("#sec").html(sec);
+            setTimeout(count, 1000);
+        }
+    }
+</script>
+</body>
+</html>

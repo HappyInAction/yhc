@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>还款中心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="cleartype" content="on">
+    <script type="text/javascript" src="/style/js/jquery-1.10.2.7l.min.js"></script>
+    <script type="text/javascript" src="/style/js/OverHide.js"></script>
+    <link href="../../css/NEW/style1.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../css/NEW/about.css">
+    <script type="text/javascript">
+        $(function () {
+            var havebank = '<%=HaveBank%>';
+            if(havebank=="false"){
+                $("#fuc").css("display","none");
+            }
+            var Have = "<%=HaveDef%>";
+            if (Have == "false") {               
+                if($("#fuc").hasClass("fxbg"))
+                    $("#fuc").removeClass("fxbg");
+            }
+            else if (Have == "true")
+            {
+                $("#Def").attr("style", "display:block");
+                $("#fuc").addClass("fxbg");
+            }
+        });     
+    </script>
+    <script>
+        window.onload = function () {
+            document.getElementById("fuc").onclick = function () { this.style.display = 'none' }
+        }
+    </script>
+</head>
+<body class="login-bg" style="background: #fff;">
+    <form runat="server">
+        <div class="login-form bordern">
+            <a class="zzbg" href="javascript:;" id="fuc" runat="server" style="display:none"></a>
+            <div class="rmbm">
+                <p class="bt">待还金额(元)</p>
+                <p class="cont">
+                    <asp:Literal runat="server" ID="Remoney"></asp:Literal>
+                </p>
+            </div>
+            <div class="lkist">
+                <div class="step2 bror">
+                    <p class="title">本金+综合管理费(元)</p>
+                    <p class="rmb">1000
+                        <asp:Literal runat="server" ID="Principal"></asp:Literal>
+                    </p>
+                </div>
+                <div class="step2 bror">
+                    <p class="title">利息(元)</p>
+                    <p class="rmb">100
+                        <asp:Literal runat="server" ID="Interest_rate"></asp:Literal>
+                    </p>
+                </div>
+                <div class="step2">
+                    <p class="title">服务费(元)</p>
+                    <p class="rmb">10
+                        <asp:Literal runat="server" ID="Service_charge"></asp:Literal>
+                    </p>
+                </div>
+            </div>
+            <div class="fx" id="Def" style="display:none">罚息(元)：<span><asp:Literal runat="server" ID="Default_rate"></asp:Literal></span></div>
+            <div style="border-bottom: #ddd 1px solid;">
+                <div class="login-input lh110 ">
+                    <a href="BankCenter.aspx?PlanID=<%=Fplan_id%>" class="all">
+                        <div class="us bgbn bgnone pre lh">
+                            <asp:Image runat="server" ID="BankImage" />
+                            <div class="numcont">
+                                <p class="num">
+                                    <asp:Literal runat="server" ID="BankCard"></asp:Literal>
+                                </p>
+                                <p class="name">
+                                    <asp:Literal runat="server" ID="BankName"></asp:Literal>
+                                </p>
+                            </div>
+                        </div>
+                        <i class="jtt lh110"></i></a>
+                </div>
+            </div>
+
+            <div style="border-top: #ddd 1px solid; margin-top:0.55rem;" id="LineDiv" runat="server"></div>
+            <div style="border-bottom: #ddd 1px solid;" runat="server" id="DiscountDiv">
+                <div class="login-input lh110 ">
+                    <a href='DiscountCenter.aspx?ReturnUrl=Repayment.aspx&PlanID=<%=Fplan_id%>&Fid=<%=Fid%>' class="all">
+                        <div class="us bgbn bgnone pre lh">
+                            <img src="/Tenant/style/images/quan.png">
+                            <p class="lineh96">优惠券</p>
+                            <p class="yhj_je"><asp:Literal ID="showmoney" runat ="server" Text=""></asp:Literal></p>
+                        </div>
+                        <i class="jtt lh110"></i></a>
+                </div>
+            </div>
+
+            <div class="bordert">
+                <%--<i class="tips"></i>--%>&nbsp;1.用以上银行卡还款？如果不确认，您可以点击右边箭头修改银行卡。<br>
+                &nbsp;2.如果还款金额有任何问题，<a onClick="document.getElementById('guided_mod').style.display='block'">请点击</a>
+            </div>
+            <div class="regist-submit org">
+                <asp:Button runat="server" ID="Com" Text="确定还款" OnClientClick=""  OnClick="Com_Click"></asp:Button>
+            </div>
+        </div>
+
+
+ 
+    </form>
+
+    <!--客服引导mod-->
+<div id="guided_mod" class="guided_mod" style="display:none;">
+    <i class="modal_bg" onClick="document.getElementById('guided_mod').style.display='none'"></i>
+    <div class="guimod">
+    	<div class="posrela">
+        <div class="kfyd_box">
+            <div class="index02"><img src="/Tenant/style/images/rg_01.png"></div>
+            <div class="ttu"><span class="nuc">1</span>进入分期X微信公众号，直接输入“客服”即可咨询。</div>
+            <div class="kfyd_img"><img src="/Tenant/style/images/rg_03.jpg"></div>
+            <div class="ttu"><span class="nuc">2</span>咨询人工客服可点击公众号右上角标识进入公众号简介，点击“客服人员”即可。</div>
+            <div class="kfyd_img mb20"><img src="/Tenant/style/images/rg_05.png"></div>
+        </div>
+        <div class="guimod_bom"><a class="over" onClick="document.getElementById('guided_mod').style.display='none'">关闭</a></div>
+        </div>
+    </div>
+</div>
+
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?7c6a8648887f4d87cb988cdfff3fec75";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</body>
+</html>

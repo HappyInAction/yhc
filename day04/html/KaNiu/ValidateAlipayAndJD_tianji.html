@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>电商认证</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/KaNiu/style_tianji.css" rel="stylesheet" type="text/css">
+<link href="../../css/KaNiu/gennal.css" rel="stylesheet" type="text/css">
+<link href="../../css/KaNiu/tianji.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="content">
+    <form id="vc_form" name="vc_form" enctype="multipart/form-data">
+        <div class="rzshop">
+            <div class="add_bank wid_13 qhtab">
+                <ul>
+                    <li class=""><b>账号</b>
+                        <input name="UserName" type="text"  id="accounts" placeholder="请输入对应的账号">
+                    </li>
+                    <li class=""><b>密码</b>
+                        <input name="UserPwd" id="password"  type="password" placeholder="请输入对应的登录密码">
+                    </li>
+                    <li id="verifi_box" style="display: none;">
+                        <b>图片认证</b><input id="tj_pic" name="Pic_Cod" type="text" placeholder="请输入验证码">
+                        <div class="verifi_box"><span class="verifi_img" style="width: 75px; height: 25px;"></span><span id="get_verifi_img" class="verifi_change">看不清?</span></div>
+                    </li>
+                    <li id="verifi_message" style="display: none;">
+                        <b>短信认证</b><input id="tj_message" name="Code" type="text" placeholder="请输入验证码">
+                        <div class="verifi_message"><span id="get_qr">获取验证码</span>&nbsp;<span class="message_time">90s</span></div >
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </form>
+    <div id="little_tips" class="little_tips">
+        <p class="lt_text">短信验证码已下发到你的手机</p>
+    </div>
+    <div class="both bank_bom">
+        <p class="tips"><img src="/InterFace/images/KaNiu/input_01.png"><span>忘记以上账户登录密码，请登录淘宝及京东官网修改。</span></p>
+        <p>
+            <input id="vc_form_submit" class="pass" name="" type="submit" value="提交认证">
+        </p>
+    </div>
+</div>
+
+<!--弹窗提示-->
+<div class="modal01" id="errPop" style="display:none;">
+    <div class="modal_bg"></div>
+    <div class="modal02_nr">
+        <p class="modtwo_tp"><img src="/InterFace/images/KaNiu/modal01.png"><span>分期X温馨提示</span></p>
+        <p class="motwo_wz" id="errmsg"></p>
+        <p class="motwo_annv" onClick="$('.modal01').css('display','none');">确定</p>
+    </div>
+</div>
+<!--选择电商-->
+<div class="modal01" id="bussele" style="display:block;">
+    <div class="modal_bg"></div>
+    <div class="modal02_nr">
+        <p class="modtwo_tp"><img src="/InterFace/images/KaNiu/modal01.png"><span>电商验证选择</span></p>
+        <div class="onlitab">
+            <div class="onli_yzfs">
+                <input id="yzfs01" name="yzfsname" type="radio" value="">
+                <label id="label01" for="yzfs01">&nbsp;支付宝帐号</label>
+                <input id="yzfs02" name="yzfsname" type="radio" value="">
+                <label id="label02" for="yzfs02">京东帐号</label>
+            </div>
+            <p id="buserr"></p>
+        </div>
+        <p class="motwo_annv" id="ec_select">确定</p>
+    </div>
+</div>
+<script src="../../js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script> 
+<script type="text/javascript">
+    $(function () {
+        //选择电商
+        var input01 = $("#yzfs01"),
+            input02 = $("#yzfs02"),
+            userName = $("#accounts"),
+            userPwd = $("#password"),
+            tjMessageInput = $("#tj_message"),
+            tjPicInput = $("#tj_pic"),
+            valiMsg = $("#verifi_message"),
+            veriMsg = $(".verifi_message").eq(0),
+            submitBtn = $("#vc_form_submit"),
+            getPicBtn = $("#get_qr"),
+            ltPop = $("#little_tips"),
+            ltText = $(".lt_text").eq(0),
+            errPop = $("#errPop"),
+            errMsg = $("#errmsg");
+        (function (bFlag) {
+            $("#label01").on("click", function () {
+                ecSelect($(this), bFlag);
+                $("#label02").attr("class", "");
+                input01.val("1");
+                input02.val("");
+            });
+            $("#label02").on("click", function () {
+                ecSelect($(this), bFlag);
+                $("#label01").attr("class", "");
+                input02.val("1");
+                input01.val("");
+            });
+        })(true)
+        function ecSelect(obj, bFlag) {
+            if (bFlag) {
+                obj.attr("class", "pass");
+            }
+            else {
+                obj.attr("class", "");
+            }
+        }
+        $("#ec_select").on("click", function () {
+            if( input01.val()!="1" && input02.val()!="1" )
+            {
+                return; 
+            }
+            $("#bussele").css("display", "none");
+            var meg_code = false;
+            var pic_code = false;
+            submitBtn.on("click",function(){
+                if(input01.val() === "1") //1,为支付宝验证
+                {
+                    if(meg_code)
+                    {
+                        //短信验证码不为空
+                        if (tjMessageInput.val() === "") {
+                            errMsg.html("请填写短信验证码");
+                            errPop.css("display", "block");
+                            return;
+                        }
+                    }
+                    //支付宝验证
+                    $.ajax({
+                        url: "/InterFace/ValidateAlipay.ashx",//"http://localhost/test/index.php",
+                        type: "post",
+                        cache: false,
+                        data: {
+                            "UserName": userName.val(),
+                            "UserPwd": userPwd.val(),
+                            "Code": tjMessageInput.val(),
+                            "Type": "login"
+                        },
+                        beforeSend:function(){
+                            //温馨提示：耐心等待
+                            ltText.html("正在提交认证，请耐心等待");
+                            ltPop.css("display","block");
+                            //锁上“提交认证”按钮
+                            submitBtn.attr("disabled",true);
+                        },
+                        success:function(msg,status,xhr){
+                            //var msg = $.parseJSON(msg);
+                            //暂时不作200判断
+                            if (msg.error && msg.error!="505002" && msg.error!='200') {
+                                ltPop.css("display","none");
+                                errMsg.html(msg.msg);
+                                errPop.css("display", "block");
+                                return;
+                            }
+                            if (msg.next === "submitMessageCode") {
+                                valiMsg.css("display", "block");
+                                //获取短信验证码
+                                (function get_msg() {
+                                    //提示已发送短信验证码
+                                    if (msg.error === "505002" || msg.error === "200") {
+                                        //标识已开启短信验证
+                                        meg_code = true;
+                                        //提示短信验证码已下发
+                                        setTimeout(function () {
+                                            ltText.html("短信验证码已下发到你的手机")
+                                            ltPop.css("display", "block");
+                                            setTimeout(function () {
+                                                ltPop.css("display", "none");
+                                            }, 3000);
+                                        }, 3000);
+                                        //限定短信验证码的有效时间
+                                        var timer = null;
+                                        (function (num) {
+                                            timer = setInterval(function () {
+                                                num--;
+                                                if (num == 0) {
+                                                    clearInterval(timer);
+                                                    getPicBtn.html("重新获取验证码");
+                                                    $(".message_time").html("");
+                                                    getPicBtn.on("click", function () {
+                                                        $.ajax({
+                                                            url: "/InterFace/ValidateAlipay.ashx",//"http://localhost/test/index.php",
+                                                            type: "post",
+                                                            data: {
+                                                                "UserName": userName.val(),
+                                                                "UserPwd": userPwd.val(),
+                                                                "Code": "",
+                                                                "Type": "login"
+                                                            },
+                                                            success: function (data) {
+                                                                //3、如果返回错误码，则弹窗，且终止代码;
+                                                                if (data.error && data.error != "505002") {
+                                                                    errPop.css("display", "block");
+                                                                    errMsg.html("错误码:" + data.error + "<br>错误信息：" + data.errmsg);
+                                                                    return;
+                                                                }
+                                                            },
+                                                            complete:function(){
+                                                                    //提示短信验证码已下发
+                                                                    setTimeout(function(){
+                                                                        ltText.html("短信验证码已下发到你的手机");
+                                                                        ltPop.css("display","block");
+                                                                        setTimeout(function(){
+                                                                            ltPop.css("display","none");
+                                                                        },3000);    
+                                                                    },1000);
+                                                                },
+                                                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                                                errMsg.html(textStatus);
+                                                                errPop.css("display", "block");
+                                                            }
+                                                        });
+                                                        get_msg();
+                                                    });
+                                                    return;
+                                                }
+                                                getPicBtn.html("获取验证码");
+                                                $(".message_time").html(num + "s");
+                                                getPicBtn.off("click");
+                                            }, 1000);
+                                        })(10);
+                                    }
+                                })();
+                            }
+                            if (msg.next === "Redirect") {
+                                tjPicInput.attr("disabled", true);
+                                tjMessageInput.attr("disabled", false);
+                                $("#vc_form").attr("action", msg.Url);
+                                $("#vc_form").submit();
+                            }
+                        },
+                        complete: function () {
+                            ltPop.css("display", "none");
+                            ltPop.css("display","none");  //change
+                            //解锁“提交认证”按钮
+                            submitBtn.attr("disabled",false);
+                        },
+                        error:function(XMLHttpRequest, textStatus, errorThrown)
+                        {
+                            errMsg.html(textStatus);
+                            errPop.css("display", "block");
+                        }
+                    });
+                }
+                else //2,为京东验证
+                {
+                    if(pic_code)
+                    {
+                        //图片验证码不为空
+                        if( $("#tj_pic").val()==="" )
+                        {
+                            errMsg.html("请填写图片验证码");
+                            errPop.css("display", "block");
+                            return;  
+                        }
+                    }
+                    if(meg_code)
+                    {
+                        //短信验证码不为空
+                        if (tjMessageInput.val() === "") {
+                            errMsg.html("请填写短信验证码");
+                            errPop.css("display", "block");
+                            return;
+                        }
+                        $.ajax({
+                            url: "/InterFace/ValidateJD.ashx",
+                            type: "post",
+                            cache: false,
+                            data: {
+                                "UserName": userName.val(),
+                                "UserPwd": userPwd.val(),
+                                "Code": tjMessageInput.val(),
+                                "Type": "submitMessageCode"
+                            },
+                            beforeSend: function() {
+                                ltText.html("正在提交认证，请耐心等待");
+                                ltPop.css("display","block");
+                                //锁上“提交认证”按钮
+                                submitBtn.attr("disabled",true);
+                            },
+                            success: function(msg) {
+                                //console.info(msg+"11111");
+                                if (msg.errcode && msg.errcode != "201") {
+                                    errMsg.html(msg.errmsg);
+                                    errPop.css("display", "block");
+                                    return;
+                                }
+                                if (msg.next === "Redirect") {
+                                    location.href = msg.Url;
+                                }
+                            },
+                            complete: function() {
+                                ltPop.css("display","none");
+                                //解锁“提交认证”按钮
+                                submitBtn.attr("disabled",false);
+                            },
+                            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                errMsg.html(textStatus);
+                                errPop.css("display", "block");
+                            }
+                        });
+                        return;
+                    }
+                    //京东验证
+                    $.ajax({
+                        url: "/InterFace/ValidateJD.ashx",
+                        type:"post",
+                        cache:false,
+                        data:{
+                            "UserName": userName.val(),
+                            "UserPwd": userPwd.val(),
+                            "picCode": tjPicInput.val(),
+                            "Type":"Login"
+                        },
+                        beforeSend:function(){
+                            ltText.html("正在提交认证，请耐心等待");
+                            ltPop.css("display","block");
+                            //锁上“提交认证”按钮
+                            submitBtn.attr("disabled",true);
+                        },
+                        success: function (msg) { //首次加载，没曾开启图片和短信验证
+                            //var msg = $.parseJSON(msg);
+                            //首次请求，返回504004则为已发送短信验证码/返回210则为发送短信验证码失败，需重新请求
+                            if (msg.errcode && msg.errcode != "210100" && msg.errcode != "504004" && msg.errcode != "201") {
+                                errMsg.html(msg.errmsg);
+                                errPop.css("display", "block");
+                                return;
+                            }
+                            if (msg.errcode === '504004') {
+                                //标识已开启短信验证
+                                meg_code = true;
+                                //提示短信验证码已下发
+                                setTimeout(function () {
+                                    ltText.html("短信验证码已发送到您手机上")
+                                    ltPop.css("display", "block");
+                                    setTimeout(function () {
+                                        ltPop.css("display", "none");
+                                    }, 3000);
+                                }, 3000);
+                                valiMsg.css("display", "block");
+                                veriMsg.html('<span id="get_qr">重新获取验证码</span>');
+                                return;
+                            }
+                            else if(msg.errcode === '201')
+                            {     
+                                meg_code=true;    
+                                //提示需重新获取短信验证码
+                                ltText.html("请重新获取短信验证码")
+                                ltPop.css("display", "block");
+                                //限定短信验证码的有效时间
+                                var timer = null;
+                                (function get_msg(num) {
+                                    timer = setInterval(function () {
+                                        num--;
+                                        if (num == 0) {
+                                            clearInterval(timer);
+                                            getPicBtn.html("重新获取验证码");
+                                            $(".message_time").html("");
+                                            getPicBtn.on("click", function () {
+                                                $.ajax({
+                                                    url: "/InterFace/ValidateJD.ashx",
+                                                    type: "post",
+                                                    data: {
+                                                        "UserName": userName.val(),
+                                                        "Type": "getMessageCode"
+                                                    },
+                                                    success: function (data) {
+                                                        //提示短信验证码已下发
+                                                        setTimeout(function () {
+                                                            ltText.html("短信验证码已下发到你的手机")
+                                                            ltPop.css("display", "block");
+                                                            setTimeout(function () {
+                                                                ltPop.css("display", "none");
+                                                            }, 3000);
+                                                        }, 1000);
+                                                    },
+                                                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                                        errMsg.html(textStatus);
+                                                        errPop.css("display", "block");
+                                                    }
+                                                });
+                                                get_msg(60);
+                                            });
+                                            return;
+                                        }
+                                        getPicBtn.html("获取验证码");
+                                        $(".message_time").html(num + "s");
+                                        getPicBtn.off("click");
+                                    }, 1000);
+                                })(1);
+                                return;
+                            }
+                            if( msg.Pic_cod_data!="" && typeof(msg.Pic_cod_data)!="undefined" )
+                            {
+                                //是否开启图片验证
+                                if( msg.errcode==="210100" )
+                                {
+                                    //已开启图片验证
+                                    pic_code = true;
+                                    //开启图片验证
+                                    $("#verifi_box").css("display","block");
+                                    $(".verifi_img").eq(0).css("background","url(data:image/png;base64,"+msg.Pic_cod_data+") no-repeat 100% 100%");
+                                    $(".verifi_img").eq(0).css("background-size","contain");
+                                    $("#get_verifi_img").on("click",function(){
+                                        $.ajax({
+                                            url:"/InterFace/ValidateJD.ashx",
+                                            type:"post",
+                                            cache:false,
+                                            data:{
+                                                "Type": "Pic_Code",
+                                                "UserName": userName.val()
+                                            },
+                                            success: function (msg) { 
+                                                if (msg.errcode && msg.errcode!="210100") 
+                                                {
+                                                    errMsg.html(msg.msgcode);
+                                                    errPop.css("display", "block");
+                                                    return;
+                                                }
+                                                $(".verifi_img").eq(0).css("background", "url(data:image/png;base64," + msg.Pic_cod_data + ") no-repeat 100% 100%");
+                                                $(".verifi_img").eq(0).css("background-size", "contain");
+                                            },
+                                            error:function(XMLHttpRequest, textStatus, errorThrown)
+                                            {
+                                                errMsg.html(textStatus);
+                                                errPop.css("display", "block");
+                                            }
+                                        });
+                                    });
+                                }
+                                return;
+                            }
+                            if (msg.next === "Redirect") {
+                                location.href = msg.Url;
+                            }
+                        },
+                        complete: function () {
+                            ltPop.css("display", "none");
+                            ltPop.css("display","none");
+                            //解锁“提交认证”按钮
+                            submitBtn.attr("disabled",false);
+                        },
+                        error:function(XMLHttpRequest, textStatus, errorThrown)
+                        {
+                            errMsg.html(textStatus);
+                            errPop.css("display", "block");
+                        }
+                    });
+                }
+            });
+        });
+        //弹窗
+        var error = "{$:error jsencode=”true”}";
+        var errmsg = "{$:errmsg jsencode=”true”}";
+        if (errmsg.indexOf("") == -1) {
+            if (error || errmsg) {
+                $("#errmsg").html(errmsg);
+                $(".modal01").css("display", "block");
+            }
+        }
+    })
+</script>
+</body>
+</html>

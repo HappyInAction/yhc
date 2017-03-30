@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>短借延期</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/NEW/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="content contpad">
+    <div class="recipient"> 
+        <div class="bank jqtab">
+        	<form id="formsub" method="post">
+                <div class="intbank recibank">
+                    <ul>
+                        <li class="bortop">
+                            <b>延期时间</b>
+                            <select id="Time">
+                                <option value="0">请选择</option>
+                            </select>
+                            <i class="sele_bg"></i></li>
+                        </li>
+                        <li id="select_bank" class="bbomnone">
+                            <b>延期手续费</b>
+                            <span id="handling"></span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="both bank_bom">
+                    <p class="tips"><img src="../../images/NEW/input_01.png"><span>注：延期后记得去支付宝找相关人员重新补借条哦，相关人员会根据你的新补借条勾销之前的借条；<a href="https://www.fenqix.com/about/lxkf.html">联系客服勾销借条</a></span></p>
+                    <p>
+                        <input id="btn" name="" class="pass" type="button" value="马上延期" onClick="Paybtn()" >
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--弹窗-->
+<div id="remind02" class="modal01" style="display:none;">
+    <div class="modal_bg"></div>
+    <div class="modal02_nr">
+        <p class="modtwo_tp"><img src="../../images/NEW/modal01.png"><span>分期X温馨提示</span></p>
+        <p class="motwo_wz"></p>
+        <p class="motwo_wz404"></p>
+        <p class="motwo_annv" onclick="javascript: $('#remind02').css({ 'display': 'none' });">确定</p>
+    </div>
+</div>
+<script src="../../js/NEW/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+<script src="../../js/NEW/ShortExtension.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+var channel = "{$:channel jsencode='true'}",
+	PlanID = "{$:PlanID jsencode='true'}",
+	Day = "{$:Day jsencode='true'}";
+
+$(function (){
+	
+	showDay();
+	
+	$("#Time").change(function (){
+		changeDay()
+	})
+
+	//错误弹窗
+	var errcode = "{$:errcode jsencode=”true”}";
+	var errmsg = "{$:errmsg jsencode=”true”}";
+	if(errmsg.indexOf("jsencode") <= -1){
+		if (errcode || errmsg) {
+			errShow({ "errmsg": errmsg, "errcode": errcode });
+		}
+	}
+})
+</script>
+</body>
+</html>

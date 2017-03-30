@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>任性花借款</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/KaNiu/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="content">
+    <div class="monover">
+        <img src="../../images/KaNiu/moneyover.png">
+        <p class="wzwz">您不符合我们的申请条件!<br/></p>
+        <span id="errcode" style="display: block;text-align: center; font-size: 0.8rem; color: #bbb;"></span>
+    </div>
+    <div class="both bank_bom">
+        <p><input class="pass" name="" type="button" value="返 回" onclick="javascript:window.location.href = 'cardniu://app/applyloan'" ></p>
+    </div>
+</div>
+<script src="../../js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function(){
+        var errcode = "{$:errcode jsencode=”true”}";
+        if(errcode.indexOf("jsencode") <= -1){
+            $("#errcode").html("错误码:" + errcode);
+        }
+    })
+</script>
+</body>
+</html>

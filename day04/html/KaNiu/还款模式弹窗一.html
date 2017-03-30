@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>弹窗</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/KaNiu/style.css" rel="stylesheet" type="text/css">
+<link href="../../css/KaNiu/record.css" rel="stylesheet" type="text/css">
+<link href="../../css/KaNiu/gennal.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div id="modal01" class="modal01" style="display:none;">
+    <div class="modal_bg"></div>
+    <div class="four_mod">
+        <div class="four_tp">
+            <p class="pic"><img src="../../images/KaNiu/four_mod.png"></p>
+            <p class="wzwz">系统繁忙，请稍后登录！<br>
+                <span>耽搁您的时间，我们深表歉意</span></p>
+            <p class="four_annv" onClick="document.getElementById('modal01').style.display='none';">确定</p>
+            <p class="tips">如何解决:<br>
+                1，退出本页面，重新打开试试;<br>
+                2，退出卡牛APP，重新打开，再次进入页面试试;</p>
+        </div>
+    </div>
+</div>
+<div class="modal02" style="display:none;">
+    <div class="modal_bg"></div>
+    <div class="modal02_nr">
+        <p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>分期X还款模式</span></p>
+        <p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>分期X温馨提示</span></p>
+        <p class="motwo_wz" id="errmsg">分期X温馨提示分期X温馨提示分期X温馨提示分期X温馨提示</p>
+        <p class="motwo_wz404" id="errmsg">错误代码:404</p>
+        <p class="motwo_annv" onClick="$('.modal02').css('display','none');">确定</p>
+    </div>
+</div>
+
+<!--客服引导mod-->
+<div id="guided_mod" class="guided_mod" style="display:none;"> <i class="guimodal_bg" onClick="document.getElementById('guided_mod').style.display='none'"></i>
+    <div class="guimod">
+        <div class="posrela">
+            <div class="kfyd_box">
+                <div class="index02"><img src="../../images/KaNiu/rg_01.png"></div>
+                <div class="ttu"><span class="nuc">1</span>进入分期X微信公众号，直接输入“客服”即可咨询。</div>
+                <div class="kfyd_img"><img src="../../images/KaNiu/rg_03.jpg"></div>
+                <div class="ttu"><span class="nuc">2</span>咨询人工刻度可点击公众号右上角标识进入公众号简介，点击“客服人员”即可。</div>
+                <div class="kfyd_img mb20"><img src="../../images/KaNiu/rg_05.png"></div>
+            </div>
+            <div class="guimod_bom"><a class="over" onClick="document.getElementById('guided_mod').style.display='none'">关闭</a></div>
+        </div>
+    </div>
+</div>
+
+<!--底部两个按钮-->
+<div class="modal03" style="display:none;">
+    <div class="modal_bg"></div>
+    <div class="modal02_nr">
+        <p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>分期X温馨提示</span></p>
+        <p class="motwo_wz" id="errmsg">分期X温馨提示分期X温馨提示分期X温馨提示分期X温馨提示</p>
+        <p class="motwo_wz404" id="errmsg">错误代码:404</p>
+        <div class="twobtn"> <a class="fl">按钮1</a> <a class="fr" onClick="$('.modal03').css('display','none');">关闭</a> </div>
+    </div>
+</div>
+
+<!--推荐还款方式-->
+<div class="modal04" style="display:;">
+    <div class="modal_bg"></div>
+    <div class="modal04_nr">
+        <p class="modtwo_tp"><img src="../../images/KaNiu/modal01.png"><span>分期X还款模式</span></p>
+        <div class="modtwo_content">
+            <div class="modfour">
+                <p class="modfour_title modfour_title_bg">推荐模式</p>
+                <p class="modfour_content">
+                    <input type="radio" class="fenqi_radio" name="model1" value="on"><label class="fenqi_label_radio fenqi_radio_on"></label>
+                    <span>合同金额<em class="fenqi_red">高</em>，每月应还<em class="fenqi_red">少</em>，最终总还款<em class="fenqi_red">少</em></span>
+                </p>
+            </div>
+            <div class="modfour modfour_down">
+                <p class="modfour_title">其他模式<i class="modfour_title_icon"></i></p>
+                <p class="modfour_content modfour_down_content">
+                    <input type="radio" class="fenqi_radio" name="model2" value="off"><label class="fenqi_label_radio fenqi_radio_off"></label>
+                    合同金额<em class="fenqi_red">低</em>，每月应还<em class="fenqi_red">多</em>，最终总还款<em class="fenqi_red">多</em>
+                </p>
+            </div>
+            <div class="modfour_extra">
+                <p class="modfour_text fenqi_gray">样例试算（以下试算<span class="fenqi_red">仅供参考</span>）</p>
+                <p class="modfour_text">放款金额：<span class="fenqi_red">2000</span>元&nbsp;分期期数：<span class="fenqi_red">6</span>个月</p> 
+                <div class="repayment_example"></div>
+            </div> 
+            <p class="modfour_tips"><i class="modfour_tips_icon"></i>分期X平台评估的是您的最终放款金额，您可以选择两种还款方式，进行还款</p>
+        </div>
+        <p class="modfour_annv" >确定</p>
+    </div>
+</div>
+<script src="../../js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function(){
+        var fenqi_label_radio = $(".fenqi_label_radio");
+        fenqi_label_radio.eq(0).click(
+            function(){
+                $(this).addClass("fenqi_radio_on");
+                fenqi_label_radio.eq(1).removeClass("fenqi_radio_on");
+                fenqi_label_radio.eq(1).addClass("fenqi_radio_off");
+                $(".fenqi_radio").eq(0).val("on");
+                $(".fenqi_radio").eq(1).val("off");
+                $(".hide_radio").val("0");
+        });
+       fenqi_label_radio.eq(1).click(
+            function(){
+                $(this).addClass("fenqi_radio_on");
+                fenqi_label_radio.eq(0).removeClass("fenqi_radio_on");
+                fenqi_label_radio.eq(0).addClass("fenqi_radio_off");
+                $(".fenqi_radio").eq(1).val("on");
+                $(".fenqi_radio").eq(0).val("off");
+                $(".hide_radio").val("1");
+        });
+       var modfour_title_icon = $(".modfour_title_icon");
+       /*(function(bFlag){
+            modfour_title_icon.on("click",function(){
+            
+                if(bFlag){
+                    $(".modfour_extra").css("display","block");
+                    $(".modfour_down_content").css("display","block");
+                    $(".modfour_down").css("height","4.1rem");
+                    bFlag = false;
+                }else{
+                    $(".modfour_extra").css("display","none");
+                    $(".modfour_down_content").css("display","none");
+                    $(".modfour_down").css("height","2.1rem");
+                    bFlag = true;
+                }
+                     
+            })
+        })(true); */
+        modfour_title_icon.on("click",function(){       
+            $(this).css("display","none");
+            $(".modfour_extra").css("display","block");
+            $(".modfour_down_content").css("display","block");
+            $(".modfour_down").css("height","4.1rem");   
+        })
+    })
+</script>
+</body>
+</html>

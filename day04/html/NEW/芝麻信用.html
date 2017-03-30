@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>芝麻信用</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+    <link href="../../css/NEW/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+<div class="content">
+    <div class="sesame">
+        <div class="sesame_top"><span>芝麻信用分</span>
+            <input id="score" name="" type="number" placeholder="比如：750">
+        </div>
+        <div class="sesame_cont">
+            <p class="tt">上传芝麻信用分页面截图</p>
+            <div class="sesame_upimg bankfile">
+                <ul>
+                    <li class='upflpic' style="border:1px #ddd dashed;">
+                        <a id="inputa" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;z-index: 99;opacity: 0;filter: alpha(opacity=0);"></a>
+                        <img id="showImg" src='../../images/NEW/auth07.jpg'>
+
+                    </li>
+                </ul>
+            </div>
+            <p class="tt">图片实例</p>
+            <p class="imgshow"><img src="../../images/NEW/zmxy01.jpg"></p>
+        </div>
+    </div>
+    <p class="btn">
+        <input class="pass" name="" type="button" value="下一步" onclick="butSubmit()">
+    </p>
+</div>
+
+    <!--手机认证提示02-->
+    <div id="remind02" class="modal01" style="display:none;">
+        <div class="modal_bg"></div>
+        <div class="modal02_nr">
+            <p class="modtwo_tp"><img src="../../images/NEW/modal01.png"><span>分期X温馨提示</span></p>
+            <p class="motwo_wz"></p><!--<i class="yes"></i>恭喜你！验证成功-->
+            <p class="motwo_wz404"></p>
+            <p class="motwo_annv" onclick="javascript: $('#remind02').css({ 'display': 'none' });">确定</p>
+        </div>
+    </div>
+
+<script src="../../js/NEW/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+<script src="../../js/NEW/chkHelper.js" type="text/javascript"></script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+<script src="../../js/NEW/WeiXin.js" type="text/javascript"></script>
+<script src="../../js/NEW/zmxy.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+
+        WXOnLoad();
+
+        showScore();
+
+        showImg();
+
+        $("#score").on("focusout", function () {
+            if (!chk_number($(this).val())) {
+                $(this).attr("type", "text");
+                $(this).css("color", "red");
+                $(this).val("请输入数字");
+            } else if ($(this).val() >= 1000 || $(this).val() < 100){
+                $(this).attr("type", "text");
+                $(this).css("color", "red");
+                $(this).val("请输入正确的芝麻分");
+            }
+        });
+
+        $("#score").on("focusin", function () {
+            $(this).css("color", "black");
+            if ($(this).val().indexOf("请输入") > -1){
+                $(this).attr("type", "number");
+                $(this).val("");
+            }
+        });
+
+        //错误弹窗
+        var errcode = "{$:errcode jsencode=”true”}";
+        var errmsg = "{$:errmsg jsencode=”true”}";
+        if(errmsg.indexOf("jsencode") <= -1){
+            if (errcode || errmsg) {
+                errShow({ "errmsg": errmsg, "errcode": errcode });
+            }
+        }
+    })
+</script>
+</body>
+</html>

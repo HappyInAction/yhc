@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>首页</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="cleartype" content="on">
+<link href="../../css/KaNiu/style.css" rel="stylesheet" type="text/css">
+<link href="../../css/KaNiu/record.css" rel="stylesheet" type="text/css">
+<link href="../../css/KaNiu/gennal.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="f5">
+    <div class="index_box fff">
+        <div class="index_bg">
+            <!--<a  class="pointer"></a>-->
+        </div>
+        <div class="both index_bom">
+            <div class="index_tips" style="height: 2rem;">
+                <span class="fl index_check">
+                    <input id="incheck" name="" type="checkbox" value="">
+                    <label for="incheck"></label>
+                </span>
+                <div class="index_protocal" style="width: 90%; font-size: 0.69rem;">
+                    已阅读并同意<a href="/InterFace/NewXieYi.ashx?type=reg">《<span class="f64349">分期X服务和借款协议</span>》</a>、<a href="/InterFace/JwXieYi.ashx?type=page">《<span class="f64349">吉屋-分期X-个人消费借款合同</span>》</a>与<a onclick="javascript:document.getElementById('notice').style.display='block'">《<span class="f64349">贷前须知</span>》</a>
+                </div>
+            </div>
+            <p>
+                <input id="index_button" name="index_button" type="button" value="我要借款">
+                <!--<a class="calculator" href="/InterFace/Calculator.ashx?name={$:name htmlencode=”true”}" target="_blank">费用试算</a>-->
+            </p>
+        </div>
+        <div class="index_text">
+            <div class="text_box">
+                <p class="f64349 p1 ">分期X简介</p>
+                <p class="p2 8b8b8b">分期X（www.fenqiX.com）是深受中国大学生,白领喜爱的一站式在线分期O2O服务平台。分期X核心团队来自腾讯财付通、华为等知名企业，分期X背后的团队力量更不容小觑。</p>
+            </div>
+        </div>
+        <div class="index_nr">
+            <ul>
+                <li class="img1"><img src="../../images/kaniu/index3.png"><span>手续简单</span></li>
+                <li class="img2"><img src="../../images/kaniu/index4.png"><span>利率低</span></li>
+                <li class="img3"><img src="../../images/kaniu/index5.png"><span>无需抵押</span></li>
+            </ul>
+        </div>
+        <div class="footer">
+            <div class="footer">
+                <div class="foottp">
+                    <i></i>
+                    <p><img src="../../images/kaniu/appli03.png"></p>
+                </div>
+                <div class="footbom"><p class="fl"><a>联系客服：<span onclick="document.getElementById('guided_mod').style.display='block'">请点击</span></a></p><p class="fr"><a href="/about/index.html?s=wx">关于我们</a><a class="brtnone" href="/about/cjwt.html?s=wx">常见问题</a></p></div>
+            </div>
+        </div>
+    </div>
+    <form id="user" name="user" method="post" action="/InterFace/kaniuFace01.ashx"></form>
+<div id="modal01" class="modal01" style="display:none;">
+        <div class="modal_bg"></div>
+        <div class="four_mod">
+            <div class="four_tp">
+                <p class="pic"><img src="/InterFace/images/kaniu/four_mod.png"></p>
+            <p class="wzwz">系统繁忙，请稍后登录！<br>
+                <span>耽搁您的时间，我们深表歉意</span></p>
+            <p class="four_annv" onClick="document.getElementById('modal01').style.display='none';">确定</p>
+            <p class="tips">如何解决:<br>
+                1，退出本页面，重新打开试试;<br>
+                2，退出卡牛APP，重新打开，再次进入页面试试;</p>
+            </div>
+        </div>
+</div>
+    <!--弹窗提示-->
+    <div class="modal02" style="display:none;">
+        <div class="modal_bg"></div>
+        <div class="modal02_nr">
+            <p class="modtwo_tp"><img src="/InterFace/images/kaniu/modal01.png"><span>分期X温馨提示</span></p>
+            <p class="motwo_wz" id="errmsg"></p>
+            <p class="motwo_wz404" id="errcode"></p>
+            <p class="motwo_annv" onclick="$('.modal02').css('display','none');">确定</p>
+        </div>
+    </div>
+
+    <!--客服引导mod-->
+    <div id="guided_mod" class="guided_mod" style="display:none;">
+        <i class="modal_bg" onclick="document.getElementById('guided_mod').style.display='none'"></i>
+        <div class="guimod">
+            <div class="posrela">
+                <div class="kfyd_box">
+                    <div class="index02"><img src="/Tenant/style/images/rg_01.png"></div>
+                    <div class="ttu"><span class="nuc">1</span>进入分期X微信公众号，直接输入“客服”即可咨询。</div>
+                    <div class="kfyd_img"><img src="/Tenant/style/images/rg_03.jpg"></div>
+                    <div class="ttu"><span class="nuc">2</span>咨询人工客服可点击公众号右上角标识进入公众号简介，点击“客服人员”即可。</div>
+                    <div class="kfyd_img mb20"><img src="/Tenant/style/images/rg_05.png"></div>
+                </div>
+                <div class="guimod_bom"><a class="over" onclick="document.getElementById('guided_mod').style.display='none'">关闭</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="notice" class="guided_mod" style="display:none;">
+        <i class="modal_bg" onclick="document.getElementById('guided_mod').style.display='none'"></i>
+        <div class="guimod" style="height: 28rem;">
+            <div class="posrela">
+                <p class="head">贷前须知</p>
+                <div class="kfyd_box">
+                    <div class="condiv">
+                        <p class="cont" style="text-indent: 0;">尊敬的用户：</p>
+                        <p class="cont">您好，为了更好地帮助您，提升您的贷款成功率，分期X在卡牛信用卡管家上特别为你定制了两款借贷产品（任性花及小额任性花），帮您解决燃眉之急。</p>
+                    <p class="cont">两种产品的额度和期数各不相同：任性花，申请金额在1500至6000元以内，分期期数为2、3、6、9、12个月；小额任性花，申请额度在800至2000元以内，分期期数为两周或四周；</p>
+                        <p class="cont">分期X会根据您所提供的资料进行系统评估，自动为您推荐对应产品，当您提交申请时，系统会提示您确认还款计划。如您不接受该还款计划，请勿确认。如您确认提交，表示您确认接受该还款计划。</p>
+                        <p class="cont">分期X平台全部系统自动审核，无人工干预，审核通过后自动放款，您可以通过任性花相关页面查询审核进度。放款成功后，我们会通过短信、微信和邮件等渠道通知您放款成功。为了及时收到放款通知，请您关注了我们“分期X”微信公众账号，并完成注册和绑定。一旦放款成功，即表示贷款协议生效，如您想取消订单，需要结清到期的所有还款计划，并支付未到期本金10%的违约金。</p>
+                        <p class="cont">分期X平台会通过您的申请资料对您的信用状况进行评估，不同信用额度的用户采取不同的利率，信用额度越高利率越低，我们会根据您的资料认证和还款情况提升您的额度，降低利率与手续费。</p>
+                        <p class="cont">由于理财平台保证金、第三方支付平台手续费、用户资质确认手续费等支出，平台在您每月还款金额上除了本期本金、利息和分期手续费外，增添综合管理费。综合管理费由人工服务费、账户管理费、担保费和融资服务费组成；</p>
+                        <p class="cont">希望我们的改善能为您提供更好的帮助，感谢您的信任与支持。</p>
+                        <p class="cont">客服邮箱：renxh@51dai.com ；</p>
+                        <p class="cont">客服QQ：2897923012 、2938809318、3451150552 添加请备注您的姓名与手机号码；</p>
+                        <p class="bom bomp">深圳市五一贷金融服务有限公司</p>
+                    </div>
+                </div>
+                <div class="guimod_bom" style="background-color: #f64349;"><a class="over" style="color: #fff;font-weight: bold;" onclick="document.getElementById('notice').style.display='none'">确 认</a></div>
+            </div>
+        </div>
+    </div>
+    <!--新错误弹窗-->
+     <div id="springPop" class="popContainer" style="display:none;">
+        <div class="popBg"></div>
+        <div class="popWrap">
+            <div class="popTtile"></div>
+            <div class="popContent">
+                <p class="contentTitle">错误码:-1</p>
+                <p class="contentDetail">今日额度已抢光，请明天再试</p>
+            </div>
+            <div class="popBtnOne">
+                <button id="btn_notice" onclick="$('#springPop').hide();">我知道了</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../InterFace/js/KaNiu/jquery-1.10.2.7l.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            //弹窗
+            var errcode = "{$:errcode jsencode=”true”}";
+            var errmsg = "{$:errmsg jsencode=”true”}";
+            if (/\d+/.test(errcode)) {
+               
+                if (errmsg) {
+                    $("#springPop .contentDetail").html(errmsg);
+                    if (errcode) {
+                        if (errcode == -2) {
+                            $("#springPop .contentTitle").html("尊敬的用户您好：");
+                        }
+                        else {
+                            $("#springPop .contentTitle").html("");
+                        }
+                    }
+                    $("#springPop").css("display", "block");
+                }
+            }
+           
+        
+            $(".index_check label").click(function () {
+                if (!$("#incheck").is(":checked")) {
+                    $(".index_check label,#index_button").addClass("pass");
+                } else {
+                    $(".index_check label,#index_button").removeClass("pass");
+                }
+            })
+            $("#index_button").click(function () {
+                if (!$("#incheck").is(":checked")) {
+                    $("#errmsg").html("请先同意分期X借款协议");
+                    $("#errcode").html("");
+                    $(".modal02").css("display", "block");
+                }
+                else {
+                    //$('#user').submit();
+                    $.ajax({
+                        url: "/InterFace/kaniuFace01.ashx",
+                        type: 'post',
+                        data: {},
+                        success: function(data){
+                            if (data.Url !== undefined) {
+                                $("#errmsg").html("您有一个未完成订单");
+                                $("#errcode").html("");
+                                $(".modal02").css("display", "block");
+                                data.timer = setTimeout(function(){
+                                    window.location.href = data.Url;
+                                    $(".modal02").css("display", "none");
+                                },10000);
+                            }else{
+                                $('#user').submit();
+                            }
+                        },
+                        error: function(err,status) {
+                            $("#errmsg").html(err.status);
+                            $("#errcode").html("");
+                            $(".modal02").css("display", "block");
+                        }
+                    });
+                }
+            })
+
+            //<form id="user" name="user" method="post" action="/InterFace/kaniuFace01.ashx"></form>
+            //$(".index_check label").click(function () {
+            //    if (!$("#incheck").is(":checked")) {
+            //        $(".index_check label").addClass("pass");
+            //        $("#index_button").removeAttr("disabled");
+            //        $("#index_button").addClass("pass");
+            //    } else {
+            //        $(".index_check label").removeClass("pass");
+            //        $("#index_button").attr("disabled");
+            //        $("#index_button").removeClass("pass");
+            //    }
+            //})
+        })
+    </script>
+</body>
+</html>
